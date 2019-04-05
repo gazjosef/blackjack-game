@@ -97,6 +97,12 @@ function deal() {
     playerHolder.innerHTML += cardOutput(cardCount, x);
     redeal();
   }
+
+  // End play if blackjack
+  let playervalue = checktotal(playerCard);
+  if (playervalue == 21 && playerCard.length == 2) {
+    playend();
+  }
   pValue.innerHTML = checktotal(playerCard);
   console.log(dealerCard);
   console.log(playerCard);
@@ -178,7 +184,7 @@ function playend() {
   let payoutJack = 1;
 
   let dealervalue = checktotal(dealerCard);
-  pValue.innerHTML = dealervalue;
+  dValue.innerHTML = dealervalue;
 
   while (dealervalue < 17) {
     dealerCard.push(cards[cardCount]);
