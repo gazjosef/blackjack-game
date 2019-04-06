@@ -18,6 +18,8 @@ const playerHolder = document.getElementById("playerHolder");
 const pValue = document.getElementById("pValue");
 const dValue = document.getElementById("dValue");
 const dollarValue = document.getElementById("dollars");
+
+// Event listeners
 document.getElementById("mybet").onchange = function() {
   if (this.value < 0) {
     this.value = 0;
@@ -50,7 +52,7 @@ function Start() {
   shuffleDeck(cards);
   dealNew();
   document.getElementById("start").style.display = "none";
-  document.getElementById("dollars").innerHTML = mydollars;
+  dollarValue.innerHTML = mydollars;
 }
 
 function dealNew() {
@@ -103,7 +105,7 @@ function deal() {
   if (playervalue == 21 && playerCard.length == 2) {
     playend();
   }
-  pValue.innerHTML = checktotal(playerCard);
+  pValue.innerHTML = playervalue;
   console.log(dealerCard);
   console.log(playerCard);
 }
