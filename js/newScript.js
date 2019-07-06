@@ -48,14 +48,30 @@ for (s in suits) {
   }
 }
 
+// Start Game
+
 function Start() {
   shuffleDeck(cards);
-  dealNew();
+  newDeal();
   document.getElementById("start").style.display = "none";
   dollarValue.innerHTML = mydollars;
 }
 
-function dealNew() {
+// Shuffle Deck
+
+function shuffleDeck(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    let temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+  return array;
+}
+
+// New Deal
+
+function newDeal() {
   dValue.innerHTML = "?";
   playerCard = [];
   dealerCard = [];
@@ -63,15 +79,14 @@ function dealNew() {
   playerHolder.innerHTML = "";
 
   const betvalue = document.getElementById("mybet").value;
-  mydollars = mydollars - betvalue;
-  document.getElementById("dollars").innerHTML = mydollars;
+  document.getElementById("dollars").innerHTML = mydollars - betvalue;
   document.getElementById("myactions").style.display = "block";
-  message.innerHTML =
-    "Get up to 21 and beat the dealer to win.<br>Current bet is $" + betvalue;
+  message.innerHTML = "Current bet is $" + betvalue;
   document.getElementById("mybet").disabled = true;
-  document.getElementById("maxbet").disabled = true;
   deal();
-  document.getElementById("btndeal").style.display = "none";
+  document.getElementById("start").style.display = "none";
+  document.getElementById("decrease").style.display = "none";
+  document.getElementById("increase").style.display = "none";
 }
 
 function redeal() {
@@ -125,10 +140,7 @@ function cardOutput(n, x) {
   );
 }
 
-function maxbet() {
-  document.getElementById("mybet").value = mydollars;
-  message.innerHTML = "Bet changed to $" + mydollars;
-}
+// Card Action
 
 function cardAction(a) {
   console.log(a);
@@ -175,13 +187,14 @@ function playucard() {
   }
 }
 
+// End Play
+
 function playend() {
   endplay = true;
   document.getElementById("cover").style.display = "none";
   document.getElementById("myactions").style.display = "none";
-  document.getElementById("btndeal").style.display = "block";
+  document.getElementById("start").style.display = "block";
   document.getElementById("mybet").disabled = false;
-  document.getElementById("maxbet").disabled = false;
   message.innerHTML = "Game Over<br>";
   let payoutJack = 1;
 
@@ -197,6 +210,7 @@ function playend() {
   }
 
   // Who won?
+
   let playervalue = checktotal(playerCard);
   if (playervalue == 21 && playerCard.length == 2) {
     message.innerHTML = "Player Blackjack";
@@ -230,6 +244,8 @@ function playend() {
   }
 }
 
+// Check Total
+
 function checktotal(arr) {
   let rValue = 0;
   let aceAdjust = false;
@@ -244,16 +260,6 @@ function checktotal(arr) {
     rValue = rValue - 10;
   }
   return rValue;
-}
-
-function shuffleDeck(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
-    let temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
-  }
-  return array;
 }
 
 function outputCard() {

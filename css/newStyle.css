@@ -1,101 +1,17 @@
-body {
-  background-color: #40a040;
-}
+/* 
+COLORS
 
-a {
-  text-decoration: none;
-}
+*Green
+APPLE = #40a040
+FOREST GREEN = #208020
+MANTIS = #60c060
+CAMARONE = #006000
+SULU = #90f090
 
-a:hover {
-  text-decoration: underline;
-}
+*Yellow
+Shalimar = #ffffc0
 
-body {
-  background-color: #ffffff;
-  color: #000000;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 10pt;
-}
-
-h2 {
-  font-size: 140%;
-}
-
-h3 {
-  font-size: 120%;
-}
-
-h4 {
-  font-size: 100%;
-}
-
-pre {
-  font-family: Courier New, Courier, monospace;
-  font-size: 80%;
-}
-
-td,
-th {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 10pt;
-  text-align: left;
-  vertical-align: top;
-}
-
-th {
-  font-weight: bold;
-  vertical-align: bottom;
-}
-
-ul {
-  list-style-type: square;
-}
-
-#demoBox {
-  border-color: #000000;
-  border-style: solid;
-  border-width: 1px;
-  padding: 8px;
-  width: 24em;
-}
-
-.footer {
-  margin-bottom: 0px;
-  text-align: center;
-}
-
-/* Boxed table styles */
-
-table.boxed {
-  border-spacing: 2px;
-  empty-cells: hide;
-}
-
-td.boxed,
-th.boxed,
-th.boxedHeader {
-  background-color: #ffffff;
-  border-color: #000000;
-  border-style: solid;
-  border-width: 1px;
-  color: #000000;
-  padding: 2px;
-  padding-left: 8px;
-  padding-right: 8px;
-}
-
-th.boxed {
-  background-color: #c0c0c0;
-}
-
-th.boxedHeader {
-  background-color: #808080;
-  color: #ffffff;
-}
-
-/******************************************************************************
-* Styles for page and game areas.                                             *
-******************************************************************************/
+*/
 
 body {
   background-color: #40a040;
@@ -105,20 +21,34 @@ body {
   text-align: center;
 }
 
+.container {
+  width: 80%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 #header {
   background-color: #208020;
   border-color: #60c060 #006000 #006000 #60c060;
   border-style: solid;
   border-width: 1px;
   color: #ffffc0;
-  margin-bottom: 1ex;
   padding: 4px 1em;
 }
 
 #header h2 {
   margin: 0px;
   padding: 0px;
+  font-size: 1rem;
 }
+
+h2 {
+  font-weight: bold;
+}
+
+/* Playing Fields */
 
 .playingField {
   border-color: #208020 #60c060 #60c060 #208020;
@@ -130,14 +60,9 @@ body {
   text-align: left;
 }
 
-.activeField {
-  /* [disabled]background-color: #60c060; */
-  border-color: #006000 #90f090 #90f090 #006000;
-}
-
 .cardArea {
   font-size: 20pt;
-  height: 6em;
+  height: 8em;
   position: relative;
 }
 
@@ -164,37 +89,11 @@ body {
   color: #ffffc0;
 }
 
-.result {
-  color: #c00000;
-}
-
-.dollars {
-  color: #006000;
-}
-
-.lost {
-  color: #80b060;
-}
+/* Control Area */
 
 #controlsArea {
   margin-top: 0.5em;
   text-align: left;
-}
-
-#rulesBox {
-  background-color: #60c060;
-  border-color: #006000 #90f090 #90f090 #006000;
-  border-style: solid;
-  border-width: 1px;
-  display: none;
-  margin: 1em auto 1em auto;
-  padding: 0.5em 1em 0.5em 1em;
-  text-align: left;
-  width: 40em;
-}
-
-#message {
-  float: right;
 }
 
 input.button {
@@ -202,19 +101,14 @@ input.button {
   width: 8em;
 }
 
-#output {
-  font-size: 1.5em;
-}
-
-#btndeal,
-#myactions {
-  display: none;
+.dollars {
+  color: #006000;
 }
 
 /* Cards */
 
 #cover {
-  height: 160px;
+  height: 180px;
   width: 120px;
   padding: 3px;
   border: 1px solid #000;
@@ -224,7 +118,7 @@ input.button {
 }
 
 .icard {
-  height: 160px;
+  height: 180px;
   width: 120px;
   padding: 3px;
   border: 1px solid #000;
@@ -238,19 +132,19 @@ input.button {
 
 .top-card {
   font-size: 30px;
-  line-height: 20px;
+  line-height: 25px;
   left: 2px;
   top: 2px;
 }
 
 .content-card {
   text-align: center;
-  font-size: 70px;
+  font-size: 50px;
 }
 
 .bottom-card {
   font-size: 30px;
-  line-height: 20px;
+  line-height: 25px;
   right: 2px;
   bottom: 2px;
   transform: rotate(-180deg);
