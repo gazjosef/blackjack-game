@@ -105,6 +105,10 @@ input.button {
   color: #006000;
 }
 
+.result {
+  color: #c00000;
+}
+
 /* Cards */
 
 #cover {
