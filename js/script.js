@@ -133,10 +133,19 @@ function deal() {
   pValue.innerHTML = playervalue;
   console.log(dealerCard);
   console.log(playerCard);
+
+  // Check for Pairs
+  if (playerCard[0].cardnum === playerCard[1].cardnum) {
+    document.getElementById("btnsplit").style.display = "inline";
+    console.log("split cards?");
+    console.log(playerCard[0]);
+    console.log(playerHolder);
+  }
 }
 
 function cardOutput(n, x) {
   let hpos = x > 0 ? x * 60 + 100 : 100;
+  console.log(hpos);
   return (
     '<div class="icard ' +
     cards[n].icon +
@@ -157,6 +166,7 @@ function cardAction(a) {
   switch (a) {
     case "hit":
       takeCard(); // add new card to players hand
+      document.getElementById("btndouble").style.display = "none";
       break;
     case "hold":
       endPlay(); //Playout and calculate
@@ -177,6 +187,14 @@ function cardAction(a) {
       endPlay(); //Playout and calculate
       break;
     case "split":
+      // let betvalue = parseInt(document.getElementById("mybet").value);
+      // if (mydollars - betvalue < 0) {
+      //   betvalue = betvalue + mydollars;
+      //   mydollars = 0;
+      // } else {
+      //   mydollars = mydollars - betvalue;
+      //   betvalue = betvalue * 2;
+      // }
       splitCard(); //Split cards into two hands
       break;
     default:
@@ -198,6 +216,17 @@ function takeCard() {
     endPlay();
   }
 }
+
+// Split Card
+
+// function splitCard() {
+//   console.log(playerCard);
+//   if (playerCard[0].cardnum === playerCard[1].cardnum) {
+//     console.log("split cards?");
+//     console.log(playerCard[0]);
+//     console.log(playerHolder);
+//   }
+// }
 
 // End Play
 

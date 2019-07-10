@@ -45,10 +45,10 @@
 
       <div id="player1" class="playingField" style="display:none;">
         <div class="textBox name">Player</div>
-        <div id="player1Score" class="textBox">&nbsp;</div>
+        <div id="playerScore" class="textBox">&nbsp;</div>
         <div id="player1Bet" class="textBox dollars">&nbsp;</div>
         <div id="player1Result" class="textBox result">&nbsp;</div>
-        <div id="player1Cards" class="cardArea"></div>
+        <div id="playerHolder2" class="cardArea"></div>
       </div>
 
       <!-- Game buttons. -->
@@ -113,7 +113,7 @@
                 type="button"
                 value="Split"
                 onclick="cardAction('split')"
-                disabled="disabled"
+                style="display:none;"
               />
               <input
                 id="btndouble"
