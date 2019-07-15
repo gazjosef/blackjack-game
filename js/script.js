@@ -3,6 +3,7 @@
 const deck = [];
 let dealerHand = [];
 let playerHand = [];
+// Split Hand
 let playerHand2 = [];
 
 const suits = ["spades", "hearts", "clubs", "diams"];
@@ -85,9 +86,10 @@ function newDeal() {
   dealerHolder.innerHTML = "";
   playerHolder.innerHTML = "";
 
-  const betvalue = document.getElementById("mybet").value;
+  let betvalue = document.getElementById("mybet").value;
+  mydollars = mydollars - betvalue;
 
-  document.getElementById("dollars").innerHTML = mydollars - betvalue;
+  document.getElementById("dollars").innerHTML = mydollars;
   document.getElementById("myactions").style.display = "block";
   message.innerHTML = "Current bet is $" + betvalue;
   document.getElementById("mybet").disabled = true;
@@ -95,18 +97,6 @@ function newDeal() {
   document.getElementById("start").style.display = "none";
   document.getElementById("decrease").style.display = "none";
   document.getElementById("increase").style.display = "none";
-}
-
-// Re-Deal
-
-function reDeal() {
-  cardCount++;
-  if (cardCount > 40) {
-    console.log("New Deck");
-    shuffleDeck(deck);
-    cardCount = 0;
-    message.innerHTML = "New Shuffle";
-  }
 }
 
 // Deal
@@ -133,17 +123,40 @@ function deal() {
     endPlay();
   }
   pValue.innerHTML = playervalue;
-  console.log(dealerHand);
-  console.log(playerHand);
+  // console.log(dealerHand);
+  // console.log(playerHand);
 
-  // Check for Pairs
+  // Double: Check if value is 9, 10, or 11
+  if (
+    (checktotal(playerHand) === 9 ||
+      checktotal(playerHand) === 10 ||
+      checktotal(playerHand) === 11) &&
+    playerHand.length === 2
+  ) {
+    console.log("Double-down?");
+  }
+
+  // Split: Check for Pairs
   if (playerHand[0].cardnum === playerHand[1].cardnum) {
     document.getElementById("btnsplit").style.display = "inline";
-    console.log("split cards?");
-    console.log(playerHand[0]);
-    console.log(playerHolder);
+    console.log("Split cards?");
+    // console.log(playerHand[0]);
   }
 }
+
+// Re-Deal
+
+function reDeal() {
+  cardCount++;
+  if (cardCount > 40) {
+    console.log("New Deck");
+    shuffleDeck(deck);
+    cardCount = 0;
+    message.innerHTML = "New Shuffle";
+  }
+}
+
+// Card Output
 
 function cardOutput(n, x) {
   let hpos = x > 0 ? x * 60 + 100 : 100;
@@ -188,14 +201,6 @@ function cardAction(a) {
       endPlay(); //Playout and calculate
       break;
     case "split":
-      // let betvalue = parseInt(document.getElementById("mybet").value);
-      // if (mydollars - betvalue < 0) {
-      //   betvalue = betvalue + mydollars;
-      //   mydollars = 0;
-      // } else {
-      //   mydollars = mydollars - betvalue;
-      //   betvalue = betvalue * 2;
-      // }
       splitCard(); //Split cards into two hands
       break;
     default:
@@ -255,7 +260,7 @@ function endPlay() {
 
   let playervalue = checktotal(playerHand);
   if (playervalue === 21 && playerHand.length === 2) {
-    message.innerHTML = "Blackjack";
+    message.innerHTML = "Blackjack<br>";
     payoutJack = 1.5;
   }
 
@@ -273,6 +278,7 @@ function endPlay() {
       '<span style="color: red;">Dealer Wins! You lost $' +
       betvalue +
       "</span>";
+    mydollars = mydollars - betvalue;
     // pValue.innerHTML = playervalue;
     // dollarValue.innerHTML = mydollars;
   } else if (playervalue === dealervalue) {
