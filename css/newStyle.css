@@ -64,6 +64,7 @@ h2 {
   font-size: 20pt;
   height: 8em;
   position: relative;
+  padding: 20px;  
 }
 
 .textBox {

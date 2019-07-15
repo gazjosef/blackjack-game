@@ -36,10 +36,10 @@ document.getElementById("mybet").onchange = function() {
 
 // Build deck of cards
 
-for (s in suits) {
+for (let s in suits) {
   let suit = suits[s][0].toUpperCase();
-  const bgcolor = suit == "S" || suit == "C" ? "black" : "red";
-  for (n in numb) {
+  const bgcolor = suit === "S" || suit === "C" ? "black" : "red";
+  for (let n in numb) {
     //output.innerHTML += "<span style='color:" + bgcolor + "'>&" + suits[s] + ";" + numb[n] + "</span> ";
     const cardValue = n > 9 ? 10 : parseInt(n) + 1;
     let card = {
@@ -127,7 +127,7 @@ function deal() {
 
   // End play if blackjack
   let playervalue = checktotal(playerCard);
-  if (playervalue == 21 && playerCard.length == 2) {
+  if (playervalue === 21 && playerCard.length === 2) {
     endPlay();
   }
   pValue.innerHTML = playervalue;
@@ -145,7 +145,6 @@ function deal() {
 
 function cardOutput(n, x) {
   let hpos = x > 0 ? x * 60 + 100 : 100;
-  console.log(hpos);
   return (
     '<div class="icard ' +
     cards[n].icon +
@@ -219,14 +218,12 @@ function takeCard() {
 
 // Split Card
 
-// function splitCard() {
-//   console.log(playerCard);
-//   if (playerCard[0].cardnum === playerCard[1].cardnum) {
-//     console.log("split cards?");
-//     console.log(playerCard[0]);
-//     console.log(playerHolder);
-//   }
-// }
+function splitCard() {
+  document.getElementById("player1").style.display = "block";
+  let newHand = playerCard.slice(1, playerCard.length);
+  console.log(newHand);
+  player1.innerHTML += newHand;
+}
 
 // End Play
 
@@ -255,8 +252,8 @@ function endPlay() {
   // Who won?
 
   let playervalue = checktotal(playerCard);
-  if (playervalue == 21 && playerCard.length == 2) {
-    message.innerHTML = "Player Blackjack";
+  if (playervalue === 21 && playerCard.length === 2) {
+    message.innerHTML = "Blackjack";
     payoutJack = 1.5;
   }
 
@@ -274,7 +271,9 @@ function endPlay() {
       '<span style="color: red;">Dealer Wins! You lost $' +
       betvalue +
       "</span>";
-  } else if (playervalue == dealervalue) {
+    // pValue.innerHTML = playervalue;
+    // dollarValue.innerHTML = mydollars;
+  } else if (playervalue === dealervalue) {
     message.innerHTML += '<span style="color: blue;">Push</span>';
     mydollars = mydollars + betvalue;
   } else {
