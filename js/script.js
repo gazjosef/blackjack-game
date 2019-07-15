@@ -105,7 +105,7 @@ function deal() {
   console.log(deck);
 
   // Card count reshuffle
-  for (x = 0; x < 2; x++) {
+  for (let x = 0; x < 2; x++) {
     dealerHand.push(deck[cardCount]);
     dealerHolder.innerHTML += cardOutput(cardCount, x);
     if (x === 0) {
@@ -133,10 +133,12 @@ function deal() {
       checktotal(playerHand) === 11) &&
     playerHand.length === 2
   ) {
+    document.getElementById("btndouble").style.display = "inline";
     console.log("Double-down?");
   }
 
   // Split: Check for Pairs
+  playerHolder2.innerHTML += cardOutput(cardCount - 1, 0);
   if (playerHand[0].cardnum === playerHand[1].cardnum) {
     document.getElementById("btnsplit").style.display = "inline";
     console.log("Split cards?");
@@ -227,9 +229,8 @@ function takeCard() {
 
 function splitCard() {
   document.getElementById("player1").style.display = "block";
-  let newHand = playerHand.slice(1, playerHand.length);
-  console.log(newHand);
-  player1.innerHTML += newHand;
+  playerHand.slice(1, playerHand.length);
+  // player1.innerHTML += newHand;
 }
 
 // End Play
@@ -239,8 +240,8 @@ function endPlay() {
   document.getElementById("cover").style.display = "none";
   document.getElementById("myactions").style.display = "none";
   document.getElementById("start").style.display = "inline";
-  document.getElementById("increase").style.display = "inline";
-  document.getElementById("decrease").style.display = "inline";
+  // document.getElementById("increase").style.display = "inline";
+  // document.getElementById("decrease").style.display = "inline";
   document.getElementById("mybet").disabled = false;
   message.innerHTML = "Game Over<br>";
   let payoutJack = 1;
@@ -278,9 +279,6 @@ function endPlay() {
       '<span style="color: red;">Dealer Wins! You lost $' +
       betvalue +
       "</span>";
-    mydollars = mydollars - betvalue;
-    // pValue.innerHTML = playervalue;
-    // dollarValue.innerHTML = mydollars;
   } else if (playervalue === dealervalue) {
     message.innerHTML += '<span style="color: blue;">Push</span>';
     mydollars = mydollars + betvalue;
@@ -289,9 +287,9 @@ function endPlay() {
       '<span style="color: red;">Dealer Wins! You lost $' +
       betvalue +
       "</span>";
-    pValue.innerHTML = playervalue;
-    dollarValue.innerHTML = mydollars;
   }
+  pValue.innerHTML = playervalue;
+  dollarValue.innerHTML = mydollars;
 }
 
 // Check Total
