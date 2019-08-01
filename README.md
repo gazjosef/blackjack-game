@@ -1,4 +1,4 @@
-# blackjack-game
+# Blackjack Casino Game
 
 ## Description
 Simple Blackjack game
