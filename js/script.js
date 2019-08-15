@@ -3,8 +3,6 @@
 const deck = [];
 let dealerHand = [];
 let playerHand = [];
-// Split Hand
-let playerHand2 = [];
 
 const suits = ["spades", "hearts", "clubs", "diams"];
 const numb = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
@@ -18,12 +16,13 @@ let endplay = false;
 // Dom Elements
 
 const message = document.getElementById("message");
-const output = document.getElementById("output");
+const message2 = document.getElementById("message2");
+// const output = document.getElementById("output");
 const dealerHolder = document.getElementById("dealerHolder");
 const playerHolder = document.getElementById("playerHolder");
 const pValue = document.getElementById("pValue");
 const dValue = document.getElementById("dValue");
-const dollarValue = document.getElementById("dollars");
+const chipStack = document.getElementById("dollars");
 
 // Event listeners
 
@@ -43,7 +42,6 @@ for (let s in suits) {
   let suit = suits[s][0].toUpperCase();
   const bgcolor = suit === "S" || suit === "C" ? "black" : "red";
   for (let n in numb) {
-    //output.innerHTML += "<span style='color:" + bgcolor + "'>&" + suits[s] + ";" + numb[n] + "</span> ";
     const cardValue = n > 9 ? 10 : parseInt(n) + 1;
     let card = {
       suit: suit,
@@ -62,7 +60,7 @@ function Start() {
   shuffleDeck(deck);
   newDeal();
   document.getElementById("start").style.display = "none";
-  dollarValue.innerHTML = mydollars;
+  chipStack.innerHTML = mydollars;
 }
 
 // Shuffle Deck
@@ -122,9 +120,8 @@ function deal() {
   if (playervalue === 21 && playerHand.length === 2) {
     endPlay();
   }
+  console.log(playerHand);
   pValue.innerHTML = playervalue;
-  // console.log(dealerHand);
-  // console.log(playerHand);
 
   // Double: Check if value is 9, 10, or 11
   if (
@@ -138,8 +135,9 @@ function deal() {
   }
 
   // Split: Check for Pairs
-  playerHolder2.innerHTML += cardOutput(cardCount - 1, 0);
+
   if (playerHand[0].cardnum === playerHand[1].cardnum) {
+    playerHolder2.innerHTML += cardOutput(cardCount - 1, 0);
     document.getElementById("btnsplit").style.display = "inline";
     console.log("Split cards?");
     // console.log(playerHand[0]);
@@ -228,9 +226,8 @@ function takeCard() {
 // Split Card
 
 function splitCard() {
+  playerHolder.innerHTML = cardOutput(cardCount - 3, 0);
   document.getElementById("player1").style.display = "block";
-  playerHand.slice(1, playerHand.length);
-  // player1.innerHTML += newHand;
 }
 
 // End Play
@@ -289,7 +286,7 @@ function endPlay() {
       "</span>";
   }
   pValue.innerHTML = playervalue;
-  dollarValue.innerHTML = mydollars;
+  chipStack.innerHTML = mydollars;
 }
 
 // Check Total
@@ -320,9 +317,3 @@ function outputCard() {
     deck[cardCount].icon +
     ";</span>  ";
 }
-
-// Increase / Decrease Bet Amount
-
-// function changeBet(stake) {
-//   document.getElementById("mybet").innerHTML =
-// }
