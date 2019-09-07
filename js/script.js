@@ -16,7 +16,6 @@ let endplay = false;
 // Dom Elements
 
 const message = document.getElementById("message");
-const message2 = document.getElementById("message2");
 // const output = document.getElementById("output");
 const dealerHolder = document.getElementById("dealerHolder");
 const playerHolder = document.getElementById("playerHolder");
@@ -26,7 +25,9 @@ const chipStack = document.getElementById("dollars");
 
 // Event listeners
 
-document.getElementById("mybet").onchange = function() {
+document.getElementById("mybet").addEventListener("change", changeBetSize);
+
+function changeBetSize() {
   if (this.value < 0) {
     this.value = 0;
   }
@@ -34,7 +35,7 @@ document.getElementById("mybet").onchange = function() {
     this.value = mydollars;
   }
   message.innerHTML = "Bet changed to $" + this.value;
-};
+}
 
 // Build deck of cards
 
@@ -317,3 +318,5 @@ function outputCard() {
     deck[cardCount].icon +
     ";</span>  ";
 }
+
+module.exports = script;

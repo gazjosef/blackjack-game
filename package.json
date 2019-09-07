@@ -1,0 +1,22 @@
+{
+  "name": "blackjack-game",
+  "version": "1.0.0",
+  "description": "Simple Blackjack game",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gazjosef/blackjack-game.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gazjosef/blackjack-game/issues"
+  },
+  "homepage": "https://github.com/gazjosef/blackjack-game#readme",
+  "devDependencies": {
+    "jest": "^24.9.0"
+  }
+}
