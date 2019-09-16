@@ -1,6 +1,6 @@
 // Arrays
 
-const deck: Array<Object> = [];
+const deck: any = [];
 let dealerHand: Array<Object> = [];
 let playerHand: Array<Object> = [];
 
@@ -16,13 +16,13 @@ let endplay: boolean = false;
 // Dom Elements
 
 const message = document.getElementById("message");
-// const message2 = document.getElementById("message2");
-// const output = document.getElementById("output");
+const output = document.getElementById("output");
 const dealerHolder = document.getElementById("dealerHolder");
 const playerHolder = document.getElementById("playerHolder");
 const pValue = document.getElementById("pValue");
 const dValue = document.getElementById("dValue");
 const chipStack = document.getElementById("dollars");
+const myBet = <HTMLInputElement>document.getElementById("mybet");
 
 // Event listeners
 
@@ -62,7 +62,7 @@ function Start() {
   shuffleDeck(deck);
   newDeal();
   document.getElementById("start").style.display = "none";
-  chipStack.innerHTML = mydollars;
+  chipStack.innerHTML = mydollars.toString();
 }
 
 // Shuffle Deck
@@ -86,13 +86,13 @@ function newDeal() {
   dealerHolder.innerHTML = "";
   playerHolder.innerHTML = "";
 
-  let betvalue = document.getElementById("mybet").value;
+  let betvalue: any = myBet.value;
   mydollars = mydollars - betvalue;
 
-  document.getElementById("dollars").innerHTML = mydollars;
+  document.getElementById("dollars").innerHTML = mydollars.toString();
   document.getElementById("myactions").style.display = "block";
   message.innerHTML = "Current bet is $" + betvalue;
-  document.getElementById("mybet").disabled = true;
+  myBet.disabled = true;
   deal();
   document.getElementById("start").style.display = "none";
   document.getElementById("decrease").style.display = "none";
@@ -123,7 +123,7 @@ function deal() {
     endPlay();
   }
   console.log(playerHand);
-  pValue.innerHTML = playervalue;
+  pValue.innerHTML = playervalue.toString();
 
   // Double: Check if value is 9, 10, or 11
   if (
@@ -179,7 +179,7 @@ function cardAction(a) {
       endPlay(); //Playout and calculate
       break;
     case "double":
-      let betvalue = parseInt(document.getElementById("mybet").value);
+      let betvalue = parseInt(myBet.value);
       if (mydollars - betvalue < 0) {
         betvalue = betvalue + mydollars;
         mydollars = 0;
@@ -187,7 +187,7 @@ function cardAction(a) {
         mydollars = mydollars - betvalue;
         betvalue = betvalue * 2;
       }
-      document.getElementById("dollars").innerHTML = mydollars;
+      document.getElementById("dollars").innerHTML = mydollars.toString();
       document.getElementById("mybet").value = betvalue;
       // double current bet, remove value from mydollars
       takeCard(); // add new card to players hand
@@ -209,7 +209,7 @@ function takeCard() {
   playerHolder.innerHTML += cardOutput(cardCount, playerHand.length - 1);
   reDeal();
   let rValu = checktotal(playerHand);
-  pValue.innerHTML = rValu;
+  pValue.innerHTML = rValu.toString();
   if (rValu > 21) {
     message.innerHTML = "Busted!";
     endPlay();
@@ -232,19 +232,19 @@ function endPlay() {
   document.getElementById("start").style.display = "inline";
   // document.getElementById("increase").style.display = "inline";
   // document.getElementById("decrease").style.display = "inline";
-  document.getElementById("mybet").disabled = false;
+  myBet.disabled = false;
   message.innerHTML = "Game Over<br>";
   let payoutJack = 1;
 
   let dealervalue = checktotal(dealerHand);
-  dValue.innerHTML = dealervalue;
+  dValue.innerHTML = dealervalue.toString();
 
   while (dealervalue < 17) {
     dealerHand.push(deck[cardCount]);
     dealerHolder.innerHTML += cardOutput(cardCount, dealerHand.length - 1);
     reDeal();
     dealervalue = checktotal(dealerHand);
-    dValue.innerHTML = dealervalue;
+    dValue.innerHTML = dealervalue.toString();
   }
 
   // Who won?
@@ -255,7 +255,7 @@ function endPlay() {
     payoutJack = 1.5;
   }
 
-  let betvalue = parseInt(document.getElementById("mybet").value) * payoutJack;
+  let betvalue = parseInt(myBet.value) * payoutJack;
 
   if (
     (playervalue < 22 && dealervalue < playervalue) ||
@@ -278,8 +278,8 @@ function endPlay() {
       betvalue +
       "</span>";
   }
-  pValue.innerHTML = playervalue;
-  chipStack.innerHTML = mydollars;
+  pValue.innerHTML = playervalue.toString();
+  chipStack.innerHTML = mydollars.toString();
 }
 
 // Check Total
