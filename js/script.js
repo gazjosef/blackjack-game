@@ -221,14 +221,14 @@ function takeCard() {
   }
 }
 
-// Split Card
+// SPLIT CARD
 
 function splitCard() {
   playerHolder.innerHTML = cardOutput(cardCount - 3, 0);
   document.getElementById("player1").style.display = "block";
 }
 
-// End Play
+// END PLAY
 
 function endPlay() {
   endplay = true;
@@ -252,7 +252,7 @@ function endPlay() {
     dValue.innerHTML = dealervalue;
   }
 
-  // Who won?
+  // WHO wON?
 
   let playervalue = checktotal(playerHand);
   if (playervalue === 21 && playerHand.length === 2) {
@@ -287,7 +287,7 @@ function endPlay() {
   chipStack.innerHTML = mydollars;
 }
 
-// Check Total
+// CHECK TOTAL
 
 function checktotal(arr) {
   let rValue = 0;
