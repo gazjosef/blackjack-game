@@ -1,4 +1,4 @@
-// Arrays
+// ARRAYS
 
 const deck = [];
 let dealerHand = [];
@@ -7,12 +7,12 @@ let playerHand = [];
 const suits = ["spades", "hearts", "clubs", "diams"];
 const numb = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 
-// Game Status
+// GAME STATUS
 
 let cardCount = 0;
 let mydollars = 1000;
 
-// Dom Elements
+// DOM ELEMENTS
 
 const message = document.getElementById("message");
 const dealerHolder = document.getElementById("dealerHolder");
@@ -21,7 +21,7 @@ const pValue = document.getElementById("pValue");
 const dValue = document.getElementById("dValue");
 const chipStack = document.getElementById("dollars");
 
-// Event listeners
+// EVENT LISTENERS
 
 document.getElementById("mybet").addEventListener("change", changeBetSize);
 
