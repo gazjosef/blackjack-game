@@ -35,7 +35,7 @@ function changeBetSize() {
   message.innerHTML = "Bet changed to $" + this.value;
 }
 
-// Build deck of cards
+// BUILD DECK OF CARDS
 
 for (let s in suits) {
   let suit = suits[s][0].toUpperCase();
@@ -53,7 +53,7 @@ for (let s in suits) {
   }
 }
 
-// Start Game
+// START GAME
 
 function Start() {
   shuffleDeck(deck);
@@ -62,7 +62,7 @@ function Start() {
   chipStack.innerHTML = mydollars;
 }
 
-// Shuffle Deck
+// SHUFFLE DECK
 
 function shuffleDeck(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -74,7 +74,7 @@ function shuffleDeck(array) {
   return array;
 }
 
-// New Deal
+// NEW DEAL
 
 function newDeal() {
   dValue.innerHTML = "?";
@@ -96,7 +96,7 @@ function newDeal() {
   document.getElementById("increase").style.display = "none";
 }
 
-// Deal
+// DEAL
 
 function deal() {
   console.log(deck);
