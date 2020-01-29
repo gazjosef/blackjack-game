@@ -142,7 +142,7 @@ function deal() {
   }
 }
 
-// Re-Deal
+// RE-DEAL
 
 function reDeal() {
   cardCount++;
@@ -154,7 +154,7 @@ function reDeal() {
   }
 }
 
-// Card Output
+// CARD OUTPUT
 
 function cardOutput(n, x) {
   let hpos = x > 0 ? x * 60 + 100 : 100;
@@ -171,7 +171,7 @@ function cardOutput(n, x) {
   );
 }
 
-// Card Action
+// CARD ACTION
 
 function cardAction(a) {
   console.log(a);
@@ -207,7 +207,7 @@ function cardAction(a) {
   }
 }
 
-// Take Card
+// TAKE CARD
 
 function takeCard() {
   playerHand.push(deck[cardCount]);
