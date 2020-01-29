@@ -11,12 +11,10 @@ const numb = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 
 let cardCount = 0;
 let mydollars = 1000;
-let endplay = false;
 
 // Dom Elements
 
 const message = document.getElementById("message");
-// const output = document.getElementById("output");
 const dealerHolder = document.getElementById("dealerHolder");
 const playerHolder = document.getElementById("playerHolder");
 const pValue = document.getElementById("pValue");
@@ -141,7 +139,6 @@ function deal() {
     playerHolder2.innerHTML += cardOutput(cardCount - 1, 0);
     document.getElementById("btnsplit").style.display = "inline";
     console.log("Split cards?");
-    // console.log(playerHand[0]);
   }
 }
 
