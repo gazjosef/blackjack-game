@@ -324,7 +324,7 @@ function selectPlayerBoxes() {
   console.log('clicked');
   console.log(playerBoxes.value);
 
-  const newPlayer = document.createElement('div');
+  var newPlayer = document.createElement('div');
   newPlayer.id = `player${playerBoxes.value}`;
   newPlayer.classList = 'playerArea';
   var newContent = document.createTextNode('Hi there and greetings!');
@@ -333,7 +333,9 @@ function selectPlayerBoxes() {
 
   // add the newly created element and its content into the DOM
   var currentDiv = document.getElementById('player0');
-  document.body.insertBefore(newPlayer, currentDiv);
+  console.log(currentDiv);
+  currentDiv.appendChild(newPlayer);
+  // document.body.insertBefore(newPlayer, currentDiv);
 }
 
 // Event Listeners
