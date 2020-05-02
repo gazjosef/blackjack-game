@@ -324,12 +324,6 @@ function changeBetSize() {
 function selectPlayerBoxes() {
   for (let i = 0; i < playerBoxes.value; i++) {
     let playerNumber = i + 1;
-    // let newPlayer = document.createElement('div');
-    // newPlayer.id = `player${playerNumber}`;
-    // let newName = document.createTextNode(`player${playerNumber}`);
-    // newPlayer.appendChild(newName);
-    // let playerArea = document.getElementById('player');
-    // playerArea.appendChild(newPlayer);
     player.innerHTML += `
       <div id="player${playerNumber}">
         <div class="textBox name">Player${playerNumber}</div>
