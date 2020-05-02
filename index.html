@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-
+    <!-- Font Awesome -->
     <link
       rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+      integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="css/style.css" />
@@ -17,7 +17,7 @@
   </head>
   <body>
     <div class="container">
-      <!-- DEALER's AREA -->
+      <!-- Dealer's Area -->
       <div id="dealer" class="playingField">
         <div class="textBox name">Dealer</div>
         <!-- dValue to dealerScore -->
@@ -25,7 +25,7 @@
         <div id="dealerHolder" class="cardArea"></div>
       </div>
 
-      <!-- MAIN PLAYER'S AREA -->
+      <!-- Player's Area -->
       <div id="player0" class="playingField">
         <div class="textBox name">Player</div>
         <div id="pValue" class="textBox">&nbsp;</div>
@@ -33,7 +33,7 @@
         <div id="playerHolder" class="cardArea"></div>
       </div>
 
-      <!-- GAME BUTTON -->
+      <!-- Game Button -->
       <form id="controls" action="">
         <div id="controlsArea">
           <!-- Player Credit Total / Bet Amount -->
@@ -60,7 +60,7 @@
               type="reset"
               value="Decrease Bet"
               onclick="changeBet(-5);return false;"
-              style="display:none;"
+              style="display: none;"
             />
             <input
               id="increase"
@@ -68,9 +68,9 @@
               type="reset"
               value="Increase Bet"
               onclick="changeBet(+5);return false;"
-              style="display:none;"
+              style="display: none;"
             />
-            <div id="myactions" style="display:none;">
+            <div id="myactions" style="display: none;">
               <input
                 id="btnhit"
                 class="button"
@@ -91,7 +91,7 @@
                 type="button"
                 value="Split"
                 onclick="cardAction('split')"
-                style="display:none;"
+                style="display: none;"
               />
               <input
                 id="btndouble"
@@ -99,7 +99,7 @@
                 type="button"
                 value="Double"
                 onclick="cardAction('double')"
-                style="display:none;"
+                style="display: none;"
               />
               <input
                 id="surrender"
@@ -108,7 +108,7 @@
                 value="Insurance?"
                 onclick="playerSurrender();return false;"
                 disabled="disabled"
-                style="display:none;"
+                style="display: none;"
               />
             </div>
           </div>

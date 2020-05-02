@@ -4,8 +4,8 @@ const deck = [];
 let dealerHand = [];
 let playerHand = [];
 
-const suits = ["spades", "hearts", "clubs", "diams"];
-const numb = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+const suits = ['spades', 'hearts', 'clubs', 'diams'];
+const numb = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 
 // GAME STATUS
 
@@ -14,32 +14,19 @@ let mydollars = 1000;
 
 // DOM ELEMENTS
 
-const message = document.getElementById("message");
-const dealerHolder = document.getElementById("dealerHolder");
-const playerHolder = document.getElementById("playerHolder");
-const pValue = document.getElementById("pValue");
-const dValue = document.getElementById("dValue");
-const chipStack = document.getElementById("dollars");
-
-// EVENT LISTENERS
-
-document.getElementById("mybet").addEventListener("change", changeBetSize);
-
-function changeBetSize() {
-  if (this.value < 0) {
-    this.value = 0;
-  }
-  if (this.value > mydollars) {
-    this.value = mydollars;
-  }
-  message.innerHTML = "Bet changed to $" + this.value;
-}
+const message = document.getElementById('message');
+const dealerHolder = document.getElementById('dealerHolder');
+const dealerValue = document.getElementById('dValue');
+const playerHolder = document.getElementById('playerHolder');
+const playerValue = document.getElementById('pValue');
+const chipStack = document.getElementById('dollars');
+const myBet = document.getElementById('mybet');
 
 // BUILD DECK OF CARDS
 
 for (let s in suits) {
   let suit = suits[s][0].toUpperCase();
-  const bgcolor = suit === "S" || suit === "C" ? "black" : "red";
+  const bgcolor = suit === 'S' || suit === 'C' ? 'black' : 'red';
   for (let n in numb) {
     const cardValue = n > 9 ? 10 : parseInt(n) + 1;
     let card = {
@@ -47,7 +34,7 @@ for (let s in suits) {
       icon: suits[s],
       bgcolor: bgcolor,
       cardnum: numb[n],
-      cardvalue: cardValue
+      cardvalue: cardValue,
     };
     deck.push(card);
   }
@@ -58,7 +45,7 @@ for (let s in suits) {
 function Start() {
   shuffleDeck(deck);
   newDeal();
-  document.getElementById("start").style.display = "none";
+  document.getElementById('start').style.display = 'none';
   chipStack.innerHTML = mydollars;
 }
 
@@ -77,23 +64,23 @@ function shuffleDeck(array) {
 // NEW DEAL
 
 function newDeal() {
-  dValue.innerHTML = "?";
+  dealerValue.innerHTML = '?';
   playerHand = [];
   dealerHand = [];
-  dealerHolder.innerHTML = "";
-  playerHolder.innerHTML = "";
+  dealerHolder.innerHTML = '';
+  playerHolder.innerHTML = '';
 
-  let betvalue = document.getElementById("mybet").value;
+  let betvalue = document.getElementById('mybet').value;
   mydollars = mydollars - betvalue;
 
-  document.getElementById("dollars").innerHTML = mydollars;
-  document.getElementById("myactions").style.display = "block";
-  message.innerHTML = "Current bet is $" + betvalue;
-  document.getElementById("mybet").disabled = true;
+  document.getElementById('dollars').innerHTML = mydollars;
+  document.getElementById('myactions').style.display = 'block';
+  message.innerHTML = 'Current bet is $' + betvalue;
+  document.getElementById('mybet').disabled = true;
   deal();
-  document.getElementById("start").style.display = "none";
-  document.getElementById("decrease").style.display = "none";
-  document.getElementById("increase").style.display = "none";
+  document.getElementById('start').style.display = 'none';
+  document.getElementById('decrease').style.display = 'none';
+  document.getElementById('increase').style.display = 'none';
 }
 
 // DEAL
@@ -120,7 +107,7 @@ function deal() {
     endPlay();
   }
   console.log(playerHand);
-  pValue.innerHTML = playervalue;
+  playerValue.innerHTML = playervalue;
 
   // Double: Check if value is 9, 10, or 11
   if (
@@ -129,16 +116,16 @@ function deal() {
       checktotal(playerHand) === 11) &&
     playerHand.length === 2
   ) {
-    document.getElementById("btndouble").style.display = "inline";
-    console.log("Double-down?");
+    document.getElementById('btndouble').style.display = 'inline';
+    console.log('Double-down?');
   }
 
   // Split: Check for Pairs
 
   if (playerHand[0].cardnum === playerHand[1].cardnum) {
     playerHolder2.innerHTML += cardOutput(cardCount - 1, 0);
-    document.getElementById("btnsplit").style.display = "inline";
-    console.log("Split cards?");
+    document.getElementById('btnsplit').style.display = 'inline';
+    console.log('Split cards?');
   }
 }
 
@@ -147,10 +134,10 @@ function deal() {
 function reDeal() {
   cardCount++;
   if (cardCount > 40) {
-    console.log("New Deck");
+    console.log('New Deck');
     shuffleDeck(deck);
     cardCount = 0;
-    message.innerHTML = "New Shuffle";
+    message.innerHTML = 'New Shuffle';
   }
 }
 
@@ -167,7 +154,7 @@ function cardOutput(n, x) {
     deck[n].cardnum +
     '<br></div>  <div class="content-card suit"></div>  <div class="bottom-card suit">' +
     deck[n].cardnum +
-    "<br></div> </div>"
+    '<br></div> </div>'
   );
 }
 
@@ -176,15 +163,15 @@ function cardOutput(n, x) {
 function cardAction(a) {
   console.log(a);
   switch (a) {
-    case "hit":
+    case 'hit':
       takeCard(); // add new card to players hand
-      document.getElementById("btndouble").style.display = "none";
+      document.getElementById('btndouble').style.display = 'none';
       break;
-    case "hold":
+    case 'hold':
       endPlay(); //Playout and calculate
       break;
-    case "double":
-      let betvalue = parseInt(document.getElementById("mybet").value);
+    case 'double':
+      let betvalue = parseInt(document.getElementById('mybet').value);
       if (mydollars - betvalue < 0) {
         betvalue = betvalue + mydollars;
         mydollars = 0;
@@ -192,17 +179,17 @@ function cardAction(a) {
         mydollars = mydollars - betvalue;
         betvalue = betvalue * 2;
       }
-      document.getElementById("dollars").innerHTML = mydollars;
-      document.getElementById("mybet").value = betvalue;
+      document.getElementById('dollars').innerHTML = mydollars;
+      document.getElementById('mybet').value = betvalue;
       // double current bet, remove value from mydollars
       takeCard(); // add new card to players hand
       endPlay(); //Playout and calculate
       break;
-    case "split":
+    case 'split':
       splitCard(); //Split cards into two hands
       break;
     default:
-      console.log("done");
+      console.log('done');
       endPlay(); //Playout and calculate
   }
 }
@@ -214,9 +201,9 @@ function takeCard() {
   playerHolder.innerHTML += cardOutput(cardCount, playerHand.length - 1);
   reDeal();
   let rValu = checktotal(playerHand);
-  pValue.innerHTML = rValu;
+  playerValue.innerHTML = rValu;
   if (rValu > 21) {
-    message.innerHTML = "Busted!";
+    message.innerHTML = 'Busted!';
     endPlay();
   }
 }
@@ -225,55 +212,55 @@ function takeCard() {
 
 function splitCard() {
   playerHolder.innerHTML = cardOutput(cardCount - 3, 0);
-  document.getElementById("player1").style.display = "block";
+  document.getElementById('player1').style.display = 'block';
 }
 
 // END PLAY
 
 function endPlay() {
   endplay = true;
-  document.getElementById("cover").style.display = "none";
-  document.getElementById("myactions").style.display = "none";
-  document.getElementById("start").style.display = "inline";
+  document.getElementById('cover').style.display = 'none';
+  document.getElementById('myactions').style.display = 'none';
+  document.getElementById('start').style.display = 'inline';
   // document.getElementById("increase").style.display = "inline";
   // document.getElementById("decrease").style.display = "inline";
-  document.getElementById("mybet").disabled = false;
-  message.innerHTML = "Game Over<br>";
+  document.getElementById('mybet').disabled = false;
+  message.innerHTML = 'Game Over<br>';
   let payoutJack = 1;
 
   let dealervalue = checktotal(dealerHand);
-  dValue.innerHTML = dealervalue;
+  dealerValue.innerHTML = dealervalue;
 
   while (dealervalue < 17) {
     dealerHand.push(deck[cardCount]);
     dealerHolder.innerHTML += cardOutput(cardCount, dealerHand.length - 1);
     reDeal();
     dealervalue = checktotal(dealerHand);
-    dValue.innerHTML = dealervalue;
+    dealerValue.innerHTML = dealervalue;
   }
 
   // WHO wON?
 
   let playervalue = checktotal(playerHand);
   if (playervalue === 21 && playerHand.length === 2) {
-    message.innerHTML = "Blackjack<br>";
+    message.innerHTML = 'Blackjack<br>';
     payoutJack = 1.5;
   }
 
-  let betvalue = parseInt(document.getElementById("mybet").value) * payoutJack;
+  let betvalue = parseInt(document.getElementById('mybet').value) * payoutJack;
 
   if (
     (playervalue < 22 && dealervalue < playervalue) ||
     (dealervalue > 21 && playervalue < 22)
   ) {
     message.innerHTML +=
-      '<span style="color: green;">You WIN! You won $' + betvalue + "</span>";
+      '<span style="color: green;">You WIN! You won $' + betvalue + '</span>';
     mydollars = mydollars + betvalue * 2;
   } else if (playervalue > 21) {
     message.innerHTML +=
       '<span style="color: red;">Dealer Wins! You lost $' +
       betvalue +
-      "</span>";
+      '</span>';
   } else if (playervalue === dealervalue) {
     message.innerHTML += '<span style="color: blue;">Push</span>';
     mydollars = mydollars + betvalue;
@@ -281,9 +268,9 @@ function endPlay() {
     message.innerHTML +=
       '<span style="color: red;">Dealer Wins! You lost $' +
       betvalue +
-      "</span>";
+      '</span>';
   }
-  pValue.innerHTML = playervalue;
+  playerValue.innerHTML = playervalue;
   chipStack.innerHTML = mydollars;
 }
 
@@ -293,7 +280,7 @@ function checktotal(arr) {
   let rValue = 0;
   let aceAdjust = false;
   for (let i in arr) {
-    if (arr[i].cardnum === "A" && !aceAdjust) {
+    if (arr[i].cardnum === 'A' && !aceAdjust) {
       aceAdjust = true;
       rValue = rValue + 10;
     }
@@ -311,9 +298,23 @@ function outputCard() {
     deck[cardCount].bgcolor +
     "'>" +
     deck[cardCount].cardnum +
-    "&" +
+    '&' +
     deck[cardCount].icon +
-    ";</span>  ";
+    ';</span>  ';
 }
 
-module.exports = script;
+// Change Bet Size
+
+function changeBetSize() {
+  if (this.value < 0) {
+    this.value = 0;
+  }
+  if (this.value > mydollars) {
+    this.value = mydollars;
+  }
+  message.innerHTML = 'Bet changed to $' + this.value;
+}
+
+// Event Listeners
+
+myBet.addEventListener('change', changeBetSize);
