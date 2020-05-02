@@ -12,22 +12,21 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="css/style.css" />
-
     <title>BlackJack</title>
   </head>
   <body>
     <div class="container">
       <!-- Select Bet Stake & Boxes -->
       <div>
-        Select Bet Stake: $<input
-          type="number"
-          id="mybet"
-          value="5"
-          min="1"
-          max="100"
-        /><br />
         Select Player Boxes:
-        <input type="number" id="playerBoxes" value="1" min="1" max="3" /><br />
+        <input type="number" id="playerBoxes" value="1" min="1" max="3" />
+        <button
+          id="selectBoxes"
+          class="btn btn-dark"
+          onclick="selectPlayerBoxes()"
+        >
+          Submit</button
+        ><br />
       </div>
       <!-- Dealer's Area -->
       <div id="dealer" class="playingField">
@@ -38,11 +37,13 @@
       </div>
 
       <!-- Player's Area -->
-      <div id="player0" class="playingField">
-        <div class="textBox name">Player</div>
-        <div id="pValue" class="textBox">&nbsp;</div>
-        <div id="message" class="textBox result">&nbsp;</div>
-        <div id="playerHolder" class="cardArea"></div>
+      <div id="player" class="playingField">
+        <div id="player0">
+          <div class="textBox name">Player</div>
+          <div id="pValue" class="textBox">&nbsp;</div>
+          <div id="message" class="textBox result">&nbsp;</div>
+          <div id="playerHolder" class="cardArea"></div>
+        </div>
       </div>
 
       <!-- Game Button -->

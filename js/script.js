@@ -21,6 +21,10 @@ const playerHolder = document.getElementById('playerHolder');
 const playerValue = document.getElementById('pValue');
 const chipStack = document.getElementById('dollars');
 const myBet = document.getElementById('mybet');
+const playerBoxes = document.getElementById('playerBoxes');
+// --- Buttons
+const start = document.getElementById('start');
+const selectBoxesBtn = document.getElementById('selectBoxes');
 
 // BUILD DECK OF CARDS
 
@@ -45,7 +49,7 @@ for (let s in suits) {
 function Start() {
   shuffleDeck(deck);
   newDeal();
-  document.getElementById('start').style.display = 'none';
+  start.style.display = 'none';
   chipStack.innerHTML = mydollars;
 }
 
@@ -78,7 +82,7 @@ function newDeal() {
   message.innerHTML = 'Current bet is $' + betvalue;
   document.getElementById('mybet').disabled = true;
   deal();
-  document.getElementById('start').style.display = 'none';
+  start.style.display = 'none';
   document.getElementById('decrease').style.display = 'none';
   document.getElementById('increase').style.display = 'none';
 }
@@ -120,13 +124,13 @@ function deal() {
     console.log('Double-down?');
   }
 
-  // Split: Check for Pairs
+  // // Split: Check for Pairs
 
-  if (playerHand[0].cardnum === playerHand[1].cardnum) {
-    playerHolder2.innerHTML += cardOutput(cardCount - 1, 0);
-    document.getElementById('btnsplit').style.display = 'inline';
-    console.log('Split cards?');
-  }
+  // if (playerHand[0].cardnum === playerHand[1].cardnum) {
+  //   playerHolder2.innerHTML += cardOutput(cardCount - 1, 0);
+  //   document.getElementById('btnsplit').style.display = 'inline';
+  //   console.log('Split cards?');
+  // }
 }
 
 // RE-DEAL
@@ -221,7 +225,7 @@ function endPlay() {
   endplay = true;
   document.getElementById('cover').style.display = 'none';
   document.getElementById('myactions').style.display = 'none';
-  document.getElementById('start').style.display = 'inline';
+  start.style.display = 'inline';
   // document.getElementById("increase").style.display = "inline";
   // document.getElementById("decrease").style.display = "inline";
   document.getElementById('mybet').disabled = false;
@@ -313,6 +317,23 @@ function changeBetSize() {
     this.value = mydollars;
   }
   message.innerHTML = 'Bet changed to $' + this.value;
+}
+
+// Select Player Boxes
+function selectPlayerBoxes() {
+  console.log('clicked');
+  console.log(playerBoxes.value);
+
+  const newPlayer = document.createElement('div');
+  newPlayer.id = `player${playerBoxes.value}`;
+  newPlayer.classList = 'playerArea';
+  var newContent = document.createTextNode('Hi there and greetings!');
+  // add the text node to the newly created div
+  newPlayer.appendChild(newContent);
+
+  // add the newly created element and its content into the DOM
+  var currentDiv = document.getElementById('player0');
+  document.body.insertBefore(newPlayer, currentDiv);
 }
 
 // Event Listeners
