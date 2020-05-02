@@ -23,6 +23,7 @@ const chipStack = document.getElementById('dollars');
 const myBet = document.getElementById('mybet');
 const playerBoxes = document.getElementById('playerBoxes');
 const playingField = document.getElementById('playingField');
+const cover = document.getElementById('cover');
 // --- Buttons
 const start = document.getElementById('start');
 const selectBoxesBtn = document.getElementById('selectBoxes');
@@ -78,7 +79,7 @@ function newDeal() {
   let betvalue = document.getElementById('mybet').value;
   mydollars = mydollars - betvalue;
 
-  document.getElementById('dollars').innerHTML = mydollars;
+  chipStack.innerHTML = mydollars;
   document.getElementById('myactions').style.display = 'block';
   message.innerHTML = 'Current bet is $' + betvalue;
   document.getElementById('mybet').disabled = true;
@@ -184,7 +185,7 @@ function cardAction(a) {
         mydollars = mydollars - betvalue;
         betvalue = betvalue * 2;
       }
-      document.getElementById('dollars').innerHTML = mydollars;
+      chipStack.innerHTML = mydollars;
       document.getElementById('mybet').value = betvalue;
       // double current bet, remove value from mydollars
       takeCard(); // add new card to players hand
@@ -213,12 +214,12 @@ function takeCard() {
   }
 }
 
-// SPLIT CARD
+// // SPLIT CARD
 
-function splitCard() {
-  playerHolder.innerHTML = cardOutput(cardCount - 3, 0);
-  document.getElementById('player1').style.display = 'block';
-}
+// function splitCard() {
+//   playerHolder.innerHTML = cardOutput(cardCount - 3, 0);
+//   document.getElementById('player1').style.display = 'block';
+// }
 
 // END PLAY
 
@@ -254,6 +255,7 @@ function endPlay() {
 
   let betvalue = parseInt(document.getElementById('mybet').value) * payoutJack;
 
+  // MESSAGE
   if (
     (playervalue < 22 && dealervalue < playervalue) ||
     (dealervalue > 21 && playervalue < 22)
@@ -326,7 +328,7 @@ function selectPlayerBoxes() {
     let playerNumber = i + 1;
     player.innerHTML += `
       <div id="player${playerNumber}">
-        <div class="textBox name">Player${playerNumber}</div>
+        <div class="textBox name">Box ${playerNumber}</div>
         <div id="pValue" class="textBox">&nbsp;</div>
         <div id="message" class="textBox result">&nbsp;</div>
         <div id="playerHolder" class="cardArea"></div>
