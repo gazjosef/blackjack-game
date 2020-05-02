@@ -22,6 +22,7 @@ const playerValue = document.getElementById('pValue');
 const chipStack = document.getElementById('dollars');
 const myBet = document.getElementById('mybet');
 const playerBoxes = document.getElementById('playerBoxes');
+const playingField = document.getElementById('playingField');
 // --- Buttons
 const start = document.getElementById('start');
 const selectBoxesBtn = document.getElementById('selectBoxes');
@@ -321,21 +322,23 @@ function changeBetSize() {
 
 // Select Player Boxes
 function selectPlayerBoxes() {
-  console.log('clicked');
-  console.log(playerBoxes.value);
-
-  var newPlayer = document.createElement('div');
-  newPlayer.id = `player${playerBoxes.value}`;
-  newPlayer.classList = 'playerArea';
-  var newContent = document.createTextNode('Hi there and greetings!');
-  // add the text node to the newly created div
-  newPlayer.appendChild(newContent);
-
-  // add the newly created element and its content into the DOM
-  var currentDiv = document.getElementById('player0');
-  console.log(currentDiv);
-  currentDiv.appendChild(newPlayer);
-  // document.body.insertBefore(newPlayer, currentDiv);
+  for (let i = 0; i < playerBoxes.value; i++) {
+    let playerNumber = i + 1;
+    // let newPlayer = document.createElement('div');
+    // newPlayer.id = `player${playerNumber}`;
+    // let newName = document.createTextNode(`player${playerNumber}`);
+    // newPlayer.appendChild(newName);
+    // let playerArea = document.getElementById('player');
+    // playerArea.appendChild(newPlayer);
+    player.innerHTML += `
+      <div id="player${playerNumber}">
+        <div class="textBox name">Player${playerNumber}</div>
+        <div id="pValue" class="textBox">&nbsp;</div>
+        <div id="message" class="textBox result">&nbsp;</div>
+        <div id="playerHolder" class="cardArea"></div>
+      </div>
+`;
+  }
 }
 
 // Event Listeners
