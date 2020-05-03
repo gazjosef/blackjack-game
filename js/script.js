@@ -23,10 +23,12 @@ const chipStack = document.getElementById('dollars');
 const myBet = document.getElementById('mybet');
 const playerBoxes = document.getElementById('playerBoxes');
 const playingField = document.getElementById('playingField');
-const cover = document.getElementById('cover');
+const myActions = document.getElementById('myactions');
 // --- Buttons
 const start = document.getElementById('start');
 const selectBoxesBtn = document.getElementById('selectBoxes');
+const decreaseBtn = document.getElementById('decrease');
+const increaseBtn = document.getElementById('increase');
 
 // BUILD DECK OF CARDS
 
@@ -76,17 +78,17 @@ function newDeal() {
   dealerHolder.innerHTML = '';
   playerHolder.innerHTML = '';
 
-  let betvalue = document.getElementById('mybet').value;
+  let betvalue = myBet.value;
   mydollars = mydollars - betvalue;
 
   chipStack.innerHTML = mydollars;
-  document.getElementById('myactions').style.display = 'block';
+  myActions.style.display = 'block';
   message.innerHTML = 'Current bet is $' + betvalue;
-  document.getElementById('mybet').disabled = true;
+  myBet.disabled = true;
   deal();
   start.style.display = 'none';
-  document.getElementById('decrease').style.display = 'none';
-  document.getElementById('increase').style.display = 'none';
+  decreaseBtn.style.display = 'none';
+  increaseBtn.style.display = 'none';
 }
 
 // DEAL
@@ -177,7 +179,7 @@ function cardAction(a) {
       endPlay(); //Playout and calculate
       break;
     case 'double':
-      let betvalue = parseInt(document.getElementById('mybet').value);
+      let betvalue = parseInt(myBet.value);
       if (mydollars - betvalue < 0) {
         betvalue = betvalue + mydollars;
         mydollars = 0;
@@ -186,7 +188,7 @@ function cardAction(a) {
         betvalue = betvalue * 2;
       }
       chipStack.innerHTML = mydollars;
-      document.getElementById('mybet').value = betvalue;
+      myBet.value = betvalue;
       // double current bet, remove value from mydollars
       takeCard(); // add new card to players hand
       endPlay(); //Playout and calculate
@@ -226,11 +228,11 @@ function takeCard() {
 function endPlay() {
   endplay = true;
   document.getElementById('cover').style.display = 'none';
-  document.getElementById('myactions').style.display = 'none';
+  myActions.style.display = 'none';
   start.style.display = 'inline';
   // document.getElementById("increase").style.display = "inline";
   // document.getElementById("decrease").style.display = "inline";
-  document.getElementById('mybet').disabled = false;
+  myBet.disabled = false;
   message.innerHTML = 'Game Over<br>';
   let payoutJack = 1;
 
@@ -253,7 +255,7 @@ function endPlay() {
     payoutJack = 1.5;
   }
 
-  let betvalue = parseInt(document.getElementById('mybet').value) * payoutJack;
+  let betvalue = parseInt(myBet.value) * payoutJack;
 
   // MESSAGE
   if (
@@ -299,16 +301,16 @@ function checktotal(arr) {
   return rValue;
 }
 
-function outputCard() {
-  output.innerHTML +=
-    "<span style='color:" +
-    deck[cardCount].bgcolor +
-    "'>" +
-    deck[cardCount].cardnum +
-    '&' +
-    deck[cardCount].icon +
-    ';</span>  ';
-}
+// function outputCard() {
+//   output.innerHTML +=
+//     "<span style='color:" +
+//     deck[cardCount].bgcolor +
+//     "'>" +
+//     deck[cardCount].cardnum +
+//     '&' +
+//     deck[cardCount].icon +
+//     ';</span>  ';
+// }
 
 // Change Bet Size
 
