@@ -72,12 +72,7 @@ function shuffleDeck(array) {
 // NEW DEAL
 
 function newDeal() {
-  dealerValue.innerHTML = '?';
-  playerHand = [];
-  dealerHand = [];
-  dealerHolder.innerHTML = '';
-  playerHolder.innerHTML = '';
-
+  clearTable();
   let betvalue = myBet.value;
   mydollars = mydollars - betvalue;
 
@@ -89,6 +84,16 @@ function newDeal() {
   start.style.display = 'none';
   decreaseBtn.style.display = 'none';
   increaseBtn.style.display = 'none';
+}
+
+// CLEAR TABLE
+
+function clearTable() {
+  dealerValue.innerHTML = '?';
+  playerHand = [];
+  dealerHand = [];
+  dealerHolder.innerHTML = '';
+  playerHolder.innerHTML = '';
 }
 
 // DEAL
