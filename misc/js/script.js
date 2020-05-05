@@ -21,9 +21,9 @@ const ranks = [
   { rank: '8', value: 8, spots: 'spotA1 spotA3 spotB2' },
   { rank: '9', value: 9, spots: 'spotA1 spotA2 spotB4 ' },
   { rank: '10', value: 10, spots: 'spotA1 spotA2 spotB2' },
-  { rank: 'J', value: 10, spots: '' },
-  { rank: 'Q', value: 10, spots: '' },
-  { rank: 'K', value: 10, spots: '' },
+  { rank: 'J', value: 10, spots: 'spotJack' },
+  { rank: 'Q', value: 10, spots: 'spotQueen' },
+  { rank: 'K', value: 10, spots: 'spotKing' },
 ];
 
 const selectBoxesBtn = document.getElementById('selectBoxes');
