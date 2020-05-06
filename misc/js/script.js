@@ -1,8 +1,8 @@
 // ARRAYS
 
 const deck = [];
-let dealerHand = [];
-let playerHand = [];
+let dealersHand = [];
+let playersHands = [];
 
 const suits = [
   { suit: 'spades', color: 'black', unicode: '\u2660' },
@@ -11,20 +11,25 @@ const suits = [
   { suit: 'diams', color: 'red', unicode: '\u2666' },
 ];
 const ranks = [
-  { rank: 'A', value: 11, spots: 'spotB4' },
-  { rank: '2', value: 2, spots: 'spotB1' },
-  { rank: '3', value: 3, spots: 'spotB1 spotB4' },
-  { rank: '4', value: 4, spots: 'spotA1' },
-  { rank: '5', value: 5, spots: 'spotA1 spotB4' },
-  { rank: '6', value: 6, spots: 'spotA1 spotA3' },
-  { rank: '7', value: 7, spots: 'spotA1 spotA3 spotB5' },
-  { rank: '8', value: 8, spots: 'spotA1 spotA3 spotB2' },
-  { rank: '9', value: 9, spots: 'spotA1 spotA2 spotB4 ' },
-  { rank: '10', value: 10, spots: 'spotA1 spotA2 spotB2' },
-  { rank: 'J', value: 10, spots: 'spotJack' },
-  { rank: 'Q', value: 10, spots: 'spotQueen' },
-  { rank: 'K', value: 10, spots: 'spotKing' },
+  { rank: 'A', value: 11, pattern: 'spotB4' },
+  { rank: '2', value: 2, pattern: 'spotB1' },
+  { rank: '3', value: 3, pattern: 'spotB1 spotB4' },
+  { rank: '4', value: 4, pattern: 'spotA1' },
+  { rank: '5', value: 5, pattern: 'spotA1 spotB4' },
+  { rank: '6', value: 6, pattern: 'spotA1 spotA3' },
+  { rank: '7', value: 7, pattern: 'spotA1 spotA3 spotB5' },
+  { rank: '8', value: 8, pattern: 'spotA1 spotA3 spotB2' },
+  { rank: '9', value: 9, pattern: 'spotA1 spotA2 spotB4 ' },
+  { rank: '10', value: 10, pattern: 'spotA1 spotA2 spotB2' },
+  { rank: 'J', value: 10, pattern: 'spotJack' },
+  { rank: 'Q', value: 10, pattern: 'spotQueen' },
+  { rank: 'K', value: 10, pattern: 'spotKing' },
 ];
+
+// GAME STATUS
+
+let cardCount = 0;
+let mydollars = 1000;
 
 const selectBoxesBtn = document.getElementById('selectBoxes');
 
@@ -39,6 +44,7 @@ for (let suit in suits) {
 
 console.log(deck);
 console.log(shuffleDeck(deck));
+console.log(playersHands);
 
 // START GAME
 
@@ -66,15 +72,21 @@ function shuffleDeck(array) {
 // Select Player Boxes
 function selectPlayerBoxes() {
   for (let i = 0; i < playerBoxes.value; i++) {
-    let playerNumber = i + 1;
+    let boxNumber = i + 1;
+    let box = {
+      box: `box${boxNumber}`,
+      cards: [],
+      total: 0,
+    };
     player.innerHTML += `
-      <div id="player${playerNumber}">
-        <div class="textBox name">Box ${playerNumber}</div>
+      <div id="player${boxNumber}">
+        <div class="textBox name">Box ${boxNumber}</div>
         <div id="pValue" class="textBox">&nbsp;</div>
         <div id="message" class="textBox result">&nbsp;</div>
         <div id="playerHolder" class="cardArea"></div>
       </div>
-`;
+    `;
+    playersHands.push(box);
   }
 }
 

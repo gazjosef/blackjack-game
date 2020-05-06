@@ -21,6 +21,16 @@ body {
   text-align: center;
 }
 
+#playerMenu {
+  display: flex;
+  align-items: center;
+}
+
+/* .menuOptions {
+  align-items: center;
+  justify-content: center;
+} */
+
 /* Playing Fields */
 
 .playingField {

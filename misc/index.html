@@ -23,18 +23,35 @@
   </head>
   <body>
     <div class="container">
-      <!-- Select Bet Stake & Boxes -->
-      <div>
-        Select Player Boxes:
-        <input type="number" id="playerBoxes" value="1" min="1" max="3" />
-        <button
-          id="selectBoxes"
-          class="btn btn-light btn-sm"
-          onclick="selectPlayerBoxes()"
-        >
-          Submit</button
-        ><br />
-      </div>
+      <section id="playerMenu">
+        <div class="menuOptions">
+          <!-- Select Game -->
+
+          Game: BlackJack
+        </div>
+        <div class="menuOptions">
+          <!-- Select Bet Stake -->
+          Bet Amount: $<input
+            type="number"
+            id="mybet"
+            value="5"
+            min="1"
+            max="100"
+          />
+        </div>
+        <div class="menuOptions">
+          <!-- Select Boxes -->
+          Select Player Boxes:
+          <input type="number" id="playerBoxes" value="1" min="1" max="3" />
+          <button
+            id="selectBoxes"
+            class="btn btn-light btn-sm"
+            onclick="selectPlayerBoxes()"
+          >
+            Submit</button
+          ><br />
+        </div>
+      </section>
       <section class="playingField">
         <!-- Dealer's Area -->
         <div id="dealer">
@@ -54,6 +71,83 @@
           </div> -->
         </div>
       </section>
+      <!-- Game Button -->
+      <form id="controls" action="">
+        <div id="controlsArea">
+          <!-- Player Credit Total / Bet Amount -->
+          <div id="total" class="textBox dollars">
+            Total: $<span id="dollars">1000</span>
+          </div>
+
+          <!-- Buttons -->
+          <div id="buttonsArea">
+            <input
+              id="start"
+              class="button"
+              type="button"
+              value="Deal"
+              onclick="Start()"
+            />
+            <input
+              id="decrease"
+              class="button"
+              type="reset"
+              value="Decrease Bet"
+              onclick="changeBet(-5);return false;"
+              style="display: none;"
+            />
+            <input
+              id="increase"
+              class="button"
+              type="reset"
+              value="Increase Bet"
+              onclick="changeBet(+5);return false;"
+              style="display: none;"
+            />
+            <div id="myactions" style="display: none;">
+              <input
+                id="btnhit"
+                class="button"
+                type="button"
+                value="Hit"
+                onclick="cardAction('hit')"
+              />
+              <input
+                id="btnhold"
+                class="button"
+                type="button"
+                value="Stand"
+                onclick="cardAction('hold')"
+              />
+              <input
+                id="btnsplit"
+                class="button"
+                type="button"
+                value="Split"
+                onclick="cardAction('split')"
+                style="display: none;"
+              />
+              <input
+                id="btndouble"
+                class="button"
+                type="button"
+                value="Double"
+                onclick="cardAction('double')"
+                style="display: none;"
+              />
+              <input
+                id="surrender"
+                class="button"
+                type="reset"
+                value="Insurance?"
+                onclick="playerSurrender();return false;"
+                disabled="disabled"
+                style="display: none;"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
     <script src="js/script.js"></script>
     <!-- JQUERY -->
