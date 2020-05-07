@@ -42,10 +42,6 @@ for (let suit in suits) {
   }
 }
 
-console.log(deck);
-console.log(shuffleDeck(deck));
-console.log(playersHands);
-
 // START GAME
 
 function Start() {
@@ -88,6 +84,7 @@ function selectPlayerBoxes() {
     `;
     playersHands.push(box);
   }
+  deal2();
 }
 
 // NEW DEAL
@@ -110,8 +107,6 @@ function newDeal() {
 // Deal
 
 function deal() {
-  console.log(deck);
-
   // Card count reshuffle
   for (let x = 0; x < 2; x++) {
     dealerHand.push(deck[cardCount]);
@@ -124,6 +119,22 @@ function deal() {
     playerHolder.innerHTML += cardOutput(cardCount, x);
     reDeal();
   }
+}
+
+// New Deal
+
+function deal2() {
+  for (let x = 0; x < 2; x++) {
+    dealersHand.push(deck[cardCount]);
+    cardCount++;
+    for (let i = 0; i < playersHands.length; i++) {
+      console.log('scrolling through hands');
+      playersHands[i].cards.push(deck[cardCount]);
+      cardCount++;
+    }
+  }
+  console.log(dealersHand);
+  console.log(playersHands);
 }
 
 // Clear Blackjack Table

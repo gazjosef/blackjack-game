@@ -53,8 +53,6 @@ for (let s in suits) {
 function Start() {
   shuffleDeck(deck);
   newDeal();
-  start.style.display = 'none';
-  chipStack.innerHTML = mydollars;
 }
 
 // SHUFFLE DECK
@@ -94,6 +92,8 @@ function clearTable() {
   dealerHand = [];
   dealerHolder.innerHTML = '';
   playerHolder.innerHTML = '';
+  start.style.display = 'none';
+  chipStack.innerHTML = mydollars;
 }
 
 // DEAL
