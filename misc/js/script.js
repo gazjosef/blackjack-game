@@ -67,6 +67,8 @@ function shuffleDeck(array) {
 
 // Select Player Boxes
 function selectPlayerBoxes() {
+  // shuffleDeck(deck);
+
   for (let i = 0; i < playerBoxes.value; i++) {
     let boxNumber = i + 1;
     let box = {
@@ -77,9 +79,9 @@ function selectPlayerBoxes() {
     player.innerHTML += `
       <div id="player${boxNumber}">
         <div class="textBox name">Box ${boxNumber}</div>
-        <div id="pValue" class="textBox">&nbsp;</div>
-        <div id="message" class="textBox result">&nbsp;</div>
-        <div id="playerHolder" class="cardArea"></div>
+        <div id="pValue${boxNumber}" class="textBox">&nbsp;</div>
+        <div id="pMessage${boxNumber}" class="textBox result">&nbsp;</div>
+        <div id="pHolder${boxNumber}" class="cardArea"></div>
       </div>
     `;
     playersHands.push(box);
@@ -126,15 +128,35 @@ function deal() {
 function deal2() {
   for (let x = 0; x < 2; x++) {
     dealersHand.push(deck[cardCount]);
+    deck.splice(0, 1);
     cardCount++;
     for (let i = 0; i < playersHands.length; i++) {
       console.log('scrolling through hands');
       playersHands[i].cards.push(deck[cardCount]);
+      deck.splice(0, 1);
       cardCount++;
     }
   }
   console.log(dealersHand);
   console.log(playersHands);
+  console.log(deck);
+}
+
+// CARD OUTPUT
+
+function cardOutput(n, x) {
+  let hpos = x > 0 ? x * 60 + 100 : 100;
+  return (
+    '<div class="icard ' +
+    deck[n].icon +
+    '" style="left:' +
+    hpos +
+    'px;">  <div class="top-card suit">' +
+    deck[n].cardnum +
+    '<br></div>  <div class="content-card suit"></div>  <div class="bottom-card suit">' +
+    deck[n].cardnum +
+    '<br></div> </div>'
+  );
 }
 
 // Clear Blackjack Table
@@ -144,23 +166,4 @@ function clearTable() {
   dealerHand = [];
   dealerHolder.innerHTML = '';
   playerHolder.innerHTML = '';
-}
-
-// DEAL
-
-function deal() {
-  console.log(deck);
-
-  // Card count reshuffle
-  for (let x = 0; x < 2; x++) {
-    dealerHand.push(deck[cardCount]);
-    dealerHolder.innerHTML += cardOutput(cardCount, x);
-    if (x === 0) {
-      dealerHolder.innerHTML += '<div id="cover" style="left: 100px"></div>';
-    }
-    reDeal();
-    playerHand.push(deck[cardCount]);
-    playerHolder.innerHTML += cardOutput(cardCount, x);
-    reDeal();
-  }
 }
