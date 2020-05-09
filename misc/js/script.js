@@ -106,6 +106,15 @@ function newDeal() {
   increaseBtn.style.display = 'none';
 }
 
+// Clear Blackjack Table
+function clearTable() {
+  dealerValue.innerHTML = '?';
+  playerHand = [];
+  dealerHand = [];
+  dealerHolder.innerHTML = '';
+  playerHolder.innerHTML = '';
+}
+
 // Deal
 
 function deal() {
@@ -126,15 +135,21 @@ function deal() {
 // New Deal
 
 function deal2() {
+  shuffleDeck(deck);
+
   for (let x = 0; x < 2; x++) {
-    dealersHand.push(deck[cardCount]);
+    dealersHand.push(deck[0]);
+    dealerHolder.innerHTML += deck[0].rank + deck[0].unicode;
+
     deck.splice(0, 1);
-    cardCount++;
     for (let i = 0; i < playersHands.length; i++) {
-      console.log('scrolling through hands');
-      playersHands[i].cards.push(deck[cardCount]);
+      playersHands[i].cards.push(deck[0]);
+      let boxNumber = i + 1;
+      let pHolder = `pHolder${boxNumber}`;
+      let pHolderEl = document.getElementById(pHolder);
+      pHolderEl.innerHTML += deck[0].rank + deck[0].unicode;
+
       deck.splice(0, 1);
-      cardCount++;
     }
   }
   console.log(dealersHand);
@@ -157,13 +172,4 @@ function cardOutput(n, x) {
     deck[n].cardnum +
     '<br></div> </div>'
   );
-}
-
-// Clear Blackjack Table
-function clearTable() {
-  dealerValue.innerHTML = '?';
-  playerHand = [];
-  dealerHand = [];
-  dealerHolder.innerHTML = '';
-  playerHolder.innerHTML = '';
 }
