@@ -144,7 +144,14 @@ function deal2() {
     deck.splice(0, 1);
     for (let i = 0; i < playersHands.length; i++) {
       playersHands[i].cards.push(deck[0]);
+      playersHands[i].cards.forEach((card) => {
+        console.log(card.value);
+      });
       let boxNumber = i + 1;
+      let pValue = `pHolder${boxNumber}`;
+      let pValueEl = document.getElementById(pValue);
+      // pValueEl.innerHTML += parseInt(deck[0].value);
+
       let pHolder = `pHolder${boxNumber}`;
       let pHolderEl = document.getElementById(pHolder);
       pHolderEl.innerHTML += deck[0].rank + deck[0].unicode;
