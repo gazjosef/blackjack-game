@@ -15,9 +15,9 @@ let mydollars = 1000;
 // DOM ELEMENTS
 
 const message = document.getElementById('message');
-const dealerHolder = document.getElementById('dealerHolder');
+const $dealerHolder = document.getElementById('dealerHolder');
 const dealerValue = document.getElementById('dValue');
-const playerHolder = document.getElementById('playerHolder');
+const $playerHolder = document.getElementById('playerHolder');
 const playerValue = document.getElementById('pValue');
 const chipStack = document.getElementById('dollars');
 const myBet = document.getElementById('mybet');
@@ -90,8 +90,8 @@ function clearTable() {
   dealerValue.innerHTML = '?';
   PLAYERS_HAND = [];
   DEALERS_HAND = [];
-  dealerHolder.innerHTML = '';
-  playerHolder.innerHTML = '';
+  $dealerHolder.innerHTML = '';
+  $playerHolder.innerHTML = '';
   start.style.display = 'none';
   chipStack.innerHTML = mydollars;
 }
@@ -104,13 +104,13 @@ function deal() {
   // Card count reshuffle
   for (let x = 0; x < 2; x++) {
     DEALERS_HAND.push(DECK[cardCount]);
-    dealerHolder.innerHTML += cardOutput(cardCount, x);
+    $dealerHolder.innerHTML += cardOutput(cardCount, x);
     if (x === 0) {
-      dealerHolder.innerHTML += '<div id="cover" style="left: 100px"></div>';
+      $dealerHolder.innerHTML += '<div id="cover" style="left: 100px"></div>';
     }
     reDeal();
     PLAYERS_HAND.push(DECK[cardCount]);
-    playerHolder.innerHTML += cardOutput(cardCount, x);
+    $playerHolder.innerHTML += cardOutput(cardCount, x);
     reDeal();
   }
 
@@ -211,7 +211,7 @@ function cardAction(a) {
 
 function takeCard() {
   PLAYERS_HAND.push(DECK[cardCount]);
-  playerHolder.innerHTML += cardOutput(cardCount, PLAYERS_HAND.length - 1);
+  $playerHolder.innerHTML += cardOutput(cardCount, PLAYERS_HAND.length - 1);
   reDeal();
   let rValu = checktotal(PLAYERS_HAND);
   playerValue.innerHTML = rValu;
@@ -246,7 +246,7 @@ function endPlay() {
 
   while (dealervalue < 17) {
     DEALERS_HAND.push(DECK[cardCount]);
-    dealerHolder.innerHTML += cardOutput(cardCount, DEALERS_HAND.length - 1);
+    $dealerHolder.innerHTML += cardOutput(cardCount, DEALERS_HAND.length - 1);
     reDeal();
     dealervalue = checktotal(DEALERS_HAND);
     dealerValue.innerHTML = dealervalue;
