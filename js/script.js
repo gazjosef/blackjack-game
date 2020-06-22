@@ -4,8 +4,8 @@ const DECK = [];
 let DEALERS_HAND = [];
 let PLAYERS_HAND = [];
 
-const suits = ['spades', 'hearts', 'clubs', 'diams'];
-const numb = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+const SUITS = ['spades', 'hearts', 'clubs', 'diams'];
+const NUMB = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 
 // GAME STATUS
 
@@ -14,12 +14,12 @@ let mydollars = 1000;
 
 // DOM ELEMENTS
 
-const message = document.getElementById('message');
+const $message = document.getElementById('message');
 const $dealerHolder = document.getElementById('dealerHolder');
 const dealerValue = document.getElementById('dValue');
 const $playerHolder = document.getElementById('playerHolder');
 const playerValue = document.getElementById('pValue');
-const chipStack = document.getElementById('dollars');
+const $chipStack = document.getElementById('dollars');
 const myBet = document.getElementById('mybet');
 const playerBoxes = document.getElementById('playerBoxes');
 const playingField = document.getElementById('playingField');
@@ -32,16 +32,16 @@ const increaseBtn = document.getElementById('increase');
 
 // BUILD DECK OF CARDS
 
-for (let s in suits) {
-  let suit = suits[s][0].toUpperCase();
+for (let s in SUITS) {
+  let suit = SUITS[s][0].toUpperCase();
   const bgcolor = suit === 'S' || suit === 'C' ? 'black' : 'red';
-  for (let n in numb) {
+  for (let n in NUMB) {
     const cardValue = n > 9 ? 10 : parseInt(n) + 1;
     let card = {
       suit: suit,
-      icon: suits[s],
+      icon: SUITS[s],
       bgcolor: bgcolor,
-      cardnum: numb[n],
+      cardnum: NUMB[n],
       cardvalue: cardValue,
     };
     DECK.push(card);
@@ -74,9 +74,9 @@ function newDeal() {
   let betvalue = myBet.value;
   mydollars = mydollars - betvalue;
 
-  chipStack.innerHTML = mydollars;
+  $chipStack.innerHTML = mydollars;
   myActions.style.display = 'block';
-  message.innerHTML = 'Current bet is $' + betvalue;
+  $message.innerHTML = 'Current bet is $' + betvalue;
   myBet.disabled = true;
   deal();
   start.style.display = 'none';
@@ -93,7 +93,7 @@ function clearTable() {
   $dealerHolder.innerHTML = '';
   $playerHolder.innerHTML = '';
   start.style.display = 'none';
-  chipStack.innerHTML = mydollars;
+  $chipStack.innerHTML = mydollars;
 }
 
 // DEAL
@@ -115,7 +115,7 @@ function deal() {
   }
 
   // End play if blackjack
-  let playervalue = checktotal(PLAYERS_HAND);
+  let playervalue = checkTotal(PLAYERS_HAND);
   if (playervalue === 21 && PLAYERS_HAND.length === 2) {
     endPlay();
   }
@@ -124,9 +124,9 @@ function deal() {
 
   // Double: Check if value is 9, 10, or 11
   if (
-    (checktotal(PLAYERS_HAND) === 9 ||
-      checktotal(PLAYERS_HAND) === 10 ||
-      checktotal(PLAYERS_HAND) === 11) &&
+    (checkTotal(PLAYERS_HAND) === 9 ||
+      checkTotal(PLAYERS_HAND) === 10 ||
+      checkTotal(PLAYERS_HAND) === 11) &&
     PLAYERS_HAND.length === 2
   ) {
     document.getElementById('btndouble').style.display = 'inline';
@@ -150,7 +150,7 @@ function reDeal() {
     console.log('New Deck');
     shuffleDeck(DECK);
     cardCount = 0;
-    message.innerHTML = 'New Shuffle';
+    $message.innerHTML = 'New Shuffle';
   }
 }
 
@@ -192,7 +192,7 @@ function cardAction(a) {
         mydollars = mydollars - betvalue;
         betvalue = betvalue * 2;
       }
-      chipStack.innerHTML = mydollars;
+      $chipStack.innerHTML = mydollars;
       myBet.value = betvalue;
       // double current bet, remove value from mydollars
       takeCard(); // add new card to players hand
@@ -213,10 +213,10 @@ function takeCard() {
   PLAYERS_HAND.push(DECK[cardCount]);
   $playerHolder.innerHTML += cardOutput(cardCount, PLAYERS_HAND.length - 1);
   reDeal();
-  let rValu = checktotal(PLAYERS_HAND);
+  let rValu = checkTotal(PLAYERS_HAND);
   playerValue.innerHTML = rValu;
   if (rValu > 21) {
-    message.innerHTML = 'Busted!';
+    $message.innerHTML = 'Busted!';
     endPlay();
   }
 }
@@ -238,25 +238,25 @@ function endPlay() {
   // document.getElementById("increase").style.display = "inline";
   // document.getElementById("decrease").style.display = "inline";
   myBet.disabled = false;
-  message.innerHTML = 'Game Over<br>';
+  $message.innerHTML = 'Game Over<br>';
   let payoutJack = 1;
 
-  let dealervalue = checktotal(DEALERS_HAND);
+  let dealervalue = checkTotal(DEALERS_HAND);
   dealerValue.innerHTML = dealervalue;
 
   while (dealervalue < 17) {
     DEALERS_HAND.push(DECK[cardCount]);
     $dealerHolder.innerHTML += cardOutput(cardCount, DEALERS_HAND.length - 1);
     reDeal();
-    dealervalue = checktotal(DEALERS_HAND);
+    dealervalue = checkTotal(DEALERS_HAND);
     dealerValue.innerHTML = dealervalue;
   }
 
   // WHO wON?
 
-  let playervalue = checktotal(PLAYERS_HAND);
+  let playervalue = checkTotal(PLAYERS_HAND);
   if (playervalue === 21 && PLAYERS_HAND.length === 2) {
-    message.innerHTML = 'Blackjack<br>';
+    $message.innerHTML = 'Blackjack<br>';
     payoutJack = 1.5;
   }
 
@@ -267,30 +267,30 @@ function endPlay() {
     (playervalue < 22 && dealervalue < playervalue) ||
     (dealervalue > 21 && playervalue < 22)
   ) {
-    message.innerHTML +=
+    $message.innerHTML +=
       '<span style="color: green;">You WIN! You won $' + betvalue + '</span>';
     mydollars = mydollars + betvalue * 2;
   } else if (playervalue > 21) {
-    message.innerHTML +=
+    $message.innerHTML +=
       '<span style="color: red;">Dealer Wins! You lost $' +
       betvalue +
       '</span>';
   } else if (playervalue === dealervalue) {
-    message.innerHTML += '<span style="color: blue;">Push</span>';
+    $message.innerHTML += '<span style="color: blue;">Push</span>';
     mydollars = mydollars + betvalue;
   } else {
-    message.innerHTML +=
+    $message.innerHTML +=
       '<span style="color: red;">Dealer Wins! You lost $' +
       betvalue +
       '</span>';
   }
   playerValue.innerHTML = playervalue;
-  chipStack.innerHTML = mydollars;
+  $chipStack.innerHTML = mydollars;
 }
 
 // CHECK TOTAL
 
-function checktotal(arr) {
+function checkTotal(arr) {
   let rValue = 0;
   let aceAdjust = false;
   for (let i in arr) {
@@ -326,7 +326,7 @@ function changeBetSize() {
   if (this.value > mydollars) {
     this.value = mydollars;
   }
-  message.innerHTML = 'Bet changed to $' + this.value;
+  $message.innerHTML = 'Bet changed to $' + this.value;
 }
 
 // Select Player Boxes
