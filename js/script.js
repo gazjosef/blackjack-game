@@ -1,6 +1,6 @@
 // ARRAYS
 
-const deck = [];
+const DECK = [];
 let dealerHand = [];
 let playerHand = [];
 
@@ -44,14 +44,14 @@ for (let s in suits) {
       cardnum: numb[n],
       cardvalue: cardValue,
     };
-    deck.push(card);
+    DECK.push(card);
   }
 }
 
 // START GAME
 
 function Start() {
-  shuffleDeck(deck);
+  shuffleDeck(DECK);
   newDeal();
 }
 
@@ -99,17 +99,17 @@ function clearTable() {
 // DEAL
 
 function deal() {
-  console.log(deck);
+  console.log(DECK);
 
   // Card count reshuffle
   for (let x = 0; x < 2; x++) {
-    dealerHand.push(deck[cardCount]);
+    dealerHand.push(DECK[cardCount]);
     dealerHolder.innerHTML += cardOutput(cardCount, x);
     if (x === 0) {
       dealerHolder.innerHTML += '<div id="cover" style="left: 100px"></div>';
     }
     reDeal();
-    playerHand.push(deck[cardCount]);
+    playerHand.push(DECK[cardCount]);
     playerHolder.innerHTML += cardOutput(cardCount, x);
     reDeal();
   }
@@ -148,7 +148,7 @@ function reDeal() {
   cardCount++;
   if (cardCount > 40) {
     console.log('New Deck');
-    shuffleDeck(deck);
+    shuffleDeck(DECK);
     cardCount = 0;
     message.innerHTML = 'New Shuffle';
   }
@@ -160,13 +160,13 @@ function cardOutput(n, x) {
   let hpos = x > 0 ? x * 60 + 100 : 100;
   return (
     '<div class="icard ' +
-    deck[n].icon +
+    DECK[n].icon +
     '" style="left:' +
     hpos +
     'px;">  <div class="top-card suit">' +
-    deck[n].cardnum +
+    DECK[n].cardnum +
     '<br></div>  <div class="content-card suit"></div>  <div class="bottom-card suit">' +
-    deck[n].cardnum +
+    DECK[n].cardnum +
     '<br></div> </div>'
   );
 }
@@ -210,7 +210,7 @@ function cardAction(a) {
 // TAKE CARD
 
 function takeCard() {
-  playerHand.push(deck[cardCount]);
+  playerHand.push(DECK[cardCount]);
   playerHolder.innerHTML += cardOutput(cardCount, playerHand.length - 1);
   reDeal();
   let rValu = checktotal(playerHand);
@@ -245,7 +245,7 @@ function endPlay() {
   dealerValue.innerHTML = dealervalue;
 
   while (dealervalue < 17) {
-    dealerHand.push(deck[cardCount]);
+    dealerHand.push(DECK[cardCount]);
     dealerHolder.innerHTML += cardOutput(cardCount, dealerHand.length - 1);
     reDeal();
     dealervalue = checktotal(dealerHand);
@@ -309,11 +309,11 @@ function checktotal(arr) {
 // function outputCard() {
 //   output.innerHTML +=
 //     "<span style='color:" +
-//     deck[cardCount].bgcolor +
+//     DECK[cardCount].bgcolor +
 //     "'>" +
-//     deck[cardCount].cardnum +
+//     DECK[cardCount].cardnum +
 //     '&' +
-//     deck[cardCount].icon +
+//     DECK[cardCount].icon +
 //     ';</span>  ';
 // }
 

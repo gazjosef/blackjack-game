@@ -72,7 +72,7 @@ function selectPlayerBoxes() {
   for (let i = 0; i < playerBoxes.value; i++) {
     let boxNumber = i + 1;
     let box = {
-      box: `box${boxNumber}`,
+      box: `Box ${boxNumber}`,
       cards: [],
       total: 0,
     };
