@@ -1,8 +1,8 @@
 // ARRAYS
 
 const DECK = [];
-let dealerHand = [];
-let playerHand = [];
+let DEALERS_HAND = [];
+let PLAYERS_HAND = [];
 
 const suits = ['spades', 'hearts', 'clubs', 'diams'];
 const numb = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
@@ -88,8 +88,8 @@ function newDeal() {
 
 function clearTable() {
   dealerValue.innerHTML = '?';
-  playerHand = [];
-  dealerHand = [];
+  PLAYERS_HAND = [];
+  DEALERS_HAND = [];
   dealerHolder.innerHTML = '';
   playerHolder.innerHTML = '';
   start.style.display = 'none';
@@ -103,31 +103,31 @@ function deal() {
 
   // Card count reshuffle
   for (let x = 0; x < 2; x++) {
-    dealerHand.push(DECK[cardCount]);
+    DEALERS_HAND.push(DECK[cardCount]);
     dealerHolder.innerHTML += cardOutput(cardCount, x);
     if (x === 0) {
       dealerHolder.innerHTML += '<div id="cover" style="left: 100px"></div>';
     }
     reDeal();
-    playerHand.push(DECK[cardCount]);
+    PLAYERS_HAND.push(DECK[cardCount]);
     playerHolder.innerHTML += cardOutput(cardCount, x);
     reDeal();
   }
 
   // End play if blackjack
-  let playervalue = checktotal(playerHand);
-  if (playervalue === 21 && playerHand.length === 2) {
+  let playervalue = checktotal(PLAYERS_HAND);
+  if (playervalue === 21 && PLAYERS_HAND.length === 2) {
     endPlay();
   }
-  console.log(playerHand);
+  console.log(PLAYERS_HAND);
   playerValue.innerHTML = playervalue;
 
   // Double: Check if value is 9, 10, or 11
   if (
-    (checktotal(playerHand) === 9 ||
-      checktotal(playerHand) === 10 ||
-      checktotal(playerHand) === 11) &&
-    playerHand.length === 2
+    (checktotal(PLAYERS_HAND) === 9 ||
+      checktotal(PLAYERS_HAND) === 10 ||
+      checktotal(PLAYERS_HAND) === 11) &&
+    PLAYERS_HAND.length === 2
   ) {
     document.getElementById('btndouble').style.display = 'inline';
     console.log('Double-down?');
@@ -135,7 +135,7 @@ function deal() {
 
   // // Split: Check for Pairs
 
-  // if (playerHand[0].cardnum === playerHand[1].cardnum) {
+  // if (PLAYERS_HAND[0].cardnum === PLAYERS_HAND[1].cardnum) {
   //   playerHolder2.innerHTML += cardOutput(cardCount - 1, 0);
   //   document.getElementById('btnsplit').style.display = 'inline';
   //   console.log('Split cards?');
@@ -210,10 +210,10 @@ function cardAction(a) {
 // TAKE CARD
 
 function takeCard() {
-  playerHand.push(DECK[cardCount]);
-  playerHolder.innerHTML += cardOutput(cardCount, playerHand.length - 1);
+  PLAYERS_HAND.push(DECK[cardCount]);
+  playerHolder.innerHTML += cardOutput(cardCount, PLAYERS_HAND.length - 1);
   reDeal();
-  let rValu = checktotal(playerHand);
+  let rValu = checktotal(PLAYERS_HAND);
   playerValue.innerHTML = rValu;
   if (rValu > 21) {
     message.innerHTML = 'Busted!';
@@ -241,21 +241,21 @@ function endPlay() {
   message.innerHTML = 'Game Over<br>';
   let payoutJack = 1;
 
-  let dealervalue = checktotal(dealerHand);
+  let dealervalue = checktotal(DEALERS_HAND);
   dealerValue.innerHTML = dealervalue;
 
   while (dealervalue < 17) {
-    dealerHand.push(DECK[cardCount]);
-    dealerHolder.innerHTML += cardOutput(cardCount, dealerHand.length - 1);
+    DEALERS_HAND.push(DECK[cardCount]);
+    dealerHolder.innerHTML += cardOutput(cardCount, DEALERS_HAND.length - 1);
     reDeal();
-    dealervalue = checktotal(dealerHand);
+    dealervalue = checktotal(DEALERS_HAND);
     dealerValue.innerHTML = dealervalue;
   }
 
   // WHO wON?
 
-  let playervalue = checktotal(playerHand);
-  if (playervalue === 21 && playerHand.length === 2) {
+  let playervalue = checktotal(PLAYERS_HAND);
+  if (playervalue === 21 && PLAYERS_HAND.length === 2) {
     message.innerHTML = 'Blackjack<br>';
     payoutJack = 1.5;
   }
