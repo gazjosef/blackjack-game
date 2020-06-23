@@ -99,8 +99,6 @@ function clearTable() {
 // DEAL
 
 function deal() {
-  console.log(DECK);
-
   // Card count reshuffle
   for (let x = 0; x < 2; x++) {
     DEALERS_HAND.push(DECK[cardCount]);
