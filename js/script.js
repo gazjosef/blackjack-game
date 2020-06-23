@@ -16,9 +16,9 @@ let mydollars = 1000;
 
 const $message = document.getElementById('message');
 const $dealerHolder = document.getElementById('dealerHolder');
-const dealerValue = document.getElementById('dValue');
+const $dealerValue = document.getElementById('dValue');
 const $playerHolder = document.getElementById('playerHolder');
-const playerValue = document.getElementById('pValue');
+const $playerValue = document.getElementById('pValue');
 const $chipStack = document.getElementById('dollars');
 const myBet = document.getElementById('mybet');
 const playerBoxes = document.getElementById('playerBoxes');
@@ -87,7 +87,7 @@ function newDeal() {
 // CLEAR TABLE
 
 function clearTable() {
-  dealerValue.innerHTML = '?';
+  $dealerValue.innerHTML = '?';
   PLAYERS_HAND = [];
   DEALERS_HAND = [];
   $dealerHolder.innerHTML = '';
@@ -120,7 +120,7 @@ function deal() {
     endPlay();
   }
   console.log(PLAYERS_HAND);
-  playerValue.innerHTML = playervalue;
+  $playerValue.innerHTML = playervalue;
 
   // Double: Check if value is 9, 10, or 11
   if (
@@ -214,7 +214,7 @@ function takeCard() {
   $playerHolder.innerHTML += cardOutput(cardCount, PLAYERS_HAND.length - 1);
   reDeal();
   let rValu = checkTotal(PLAYERS_HAND);
-  playerValue.innerHTML = rValu;
+  $playerValue.innerHTML = rValu;
   if (rValu > 21) {
     $message.innerHTML = 'Busted!';
     endPlay();
@@ -242,14 +242,14 @@ function endPlay() {
   let payoutJack = 1;
 
   let dealervalue = checkTotal(DEALERS_HAND);
-  dealerValue.innerHTML = dealervalue;
+  $dealerValue.innerHTML = dealervalue;
 
   while (dealervalue < 17) {
     DEALERS_HAND.push(DECK[cardCount]);
     $dealerHolder.innerHTML += cardOutput(cardCount, DEALERS_HAND.length - 1);
     reDeal();
     dealervalue = checkTotal(DEALERS_HAND);
-    dealerValue.innerHTML = dealervalue;
+    $dealerValue.innerHTML = dealervalue;
   }
 
   // WHO wON?
@@ -284,7 +284,7 @@ function endPlay() {
       betvalue +
       '</span>';
   }
-  playerValue.innerHTML = playervalue;
+  $playerValue.innerHTML = playervalue;
   $chipStack.innerHTML = mydollars;
 }
 
