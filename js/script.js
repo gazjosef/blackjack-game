@@ -29,6 +29,8 @@ const start = document.getElementById('start');
 const selectBoxesBtn = document.getElementById('selectBoxes');
 const decreaseBtn = document.getElementById('decrease');
 const increaseBtn = document.getElementById('increase');
+const doubleBtn = document.getElementById('btndouble');
+// const splitBtn = document.getElementById('increase');
 
 // BUILD DECK OF CARDS
 
@@ -71,17 +73,21 @@ function shuffleDeck(deck) {
 
 function newDeal() {
   clearTable();
+
+  // Display Bet Value
   let betvalue = myBet.value;
   mydollars = mydollars - betvalue;
-
   $chipStack.innerHTML = mydollars;
-  myActions.style.display = 'block';
-  $message.innerHTML = 'Current bet is $' + betvalue;
+  $message.innerHTML = `Current bet is $${betvalue}`;
+
+  // Hide myBet, startBtn, increaseBtn, & decreaseBtn
   myBet.disabled = true;
-  deal();
   start.style.display = 'none';
   decreaseBtn.style.display = 'none';
   increaseBtn.style.display = 'none';
+
+  myActions.style.display = 'block';
+  deal();
 }
 
 // CLEAR TABLE
@@ -127,7 +133,7 @@ function deal() {
       checkTotal(PLAYERS_HAND) === 11) &&
     PLAYERS_HAND.length === 2
   ) {
-    document.getElementById('btndouble').style.display = 'inline';
+    doubleBtn.style.display = 'inline';
     console.log('Double-down?');
   }
 
