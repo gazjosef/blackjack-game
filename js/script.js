@@ -57,14 +57,14 @@ function Start() {
 
 // SHUFFLE DECK
 
-function shuffleDeck(array) {
-  for (let i = array.length - 1; i > 0; i--) {
+function shuffleDeck(deck) {
+  for (let i = deck.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
-    let temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
+    let temp = deck[i];
+    deck[i] = deck[j];
+    deck[j] = temp;
   }
-  return array;
+  return deck;
 }
 
 // NEW DEAL
