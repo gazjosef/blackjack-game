@@ -271,8 +271,7 @@ function endPlay() {
     (playervalue < 22 && dealervalue < playervalue) ||
     (dealervalue > 21 && playervalue < 22)
   ) {
-    $message.innerHTML +=
-      '<span style="color: green;">You WIN! You won $' + betvalue + '</span>';
+    $message.innerHTML += `<span style="color: green;">You WIN! You won $${betvalue}</span>`;
     mydollars = mydollars + betvalue * 2;
   } else if (playervalue > 21) {
     $message.innerHTML +=
