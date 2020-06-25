@@ -276,13 +276,10 @@ function endPlay() {
   } else if (playervalue > 21) {
     $message.innerHTML += `<span style="color: red;">Dealer Wins! You lost $${betvalue}</span>`;
   } else if (playervalue === dealervalue) {
-    $message.innerHTML += '<span style="color: blue;">Push</span>';
+    $message.innerHTML += `<span style="color: blue;">Push</span>`;
     mydollars = mydollars + betvalue;
   } else {
-    $message.innerHTML +=
-      '<span style="color: red;">Dealer Wins! You lost $' +
-      betvalue +
-      '</span>';
+    $message.innerHTML += `<span style="color: red;">Dealer Wins! You lost $${betvalue}</span>`;
   }
   $playerValue.innerHTML = playervalue;
   $chipStack.innerHTML = mydollars;
