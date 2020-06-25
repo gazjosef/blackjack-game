@@ -323,7 +323,7 @@ function changeBetSize() {
   if (this.value > mydollars) {
     this.value = mydollars;
   }
-  $message.innerHTML = 'Bet changed to $' + this.value;
+  $message.innerHTML = `Bet changed to $${this.value}`;
 }
 
 // Select Player Boxes
