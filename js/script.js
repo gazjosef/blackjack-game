@@ -182,7 +182,7 @@ function cardAction(a) {
   switch (a) {
     case 'hit':
       takeCard(); // add new card to players hand
-      document.getElementById('btndouble').style.display = 'none';
+      doubleBtn.style.display = 'none';
       break;
     case 'hold':
       endPlay(); //Playout and calculate
