@@ -274,10 +274,7 @@ function endPlay() {
     $message.innerHTML += `<span style="color: green;">You WIN! You won $${betvalue}</span>`;
     mydollars = mydollars + betvalue * 2;
   } else if (playervalue > 21) {
-    $message.innerHTML +=
-      '<span style="color: red;">Dealer Wins! You lost $' +
-      betvalue +
-      '</span>';
+    $message.innerHTML += `<span style="color: red;">Dealer Wins! You lost $${betvalue}</span>`;
   } else if (playervalue === dealervalue) {
     $message.innerHTML += '<span style="color: blue;">Push</span>';
     mydollars = mydollars + betvalue;
