@@ -18,5 +18,8 @@
   "homepage": "https://github.com/gazjosef/blackjack-game#readme",
   "devDependencies": {
     "jest": "^24.9.0"
+  },
+  "dependencies": {
+    "node-sass": "^4.14.1"
   }
 }
