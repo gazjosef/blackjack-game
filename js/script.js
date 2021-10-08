@@ -138,8 +138,8 @@ function clearTable() {
   $decreaseBtn.style.display = "none";
   $increaseBtn.style.display = "none";
 
-  $hitBtn.style.display = "flex";
-  $standBtn.style.display = "flex";
+  $hitBtn.style.display = "inline";
+  $standBtn.style.display = "inline";
 }
 
 ////////////////////////////////////////
