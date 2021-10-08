@@ -1,8 +1,15 @@
-@import '../sass/abstract/variables';
+@import "abstract/mixins";
+@import "abstract/variables";
 
-@import '../sass/base/base';
-@import '../sass/base/typography';
+@import "base/base";
+@import "base//elements";
+@import "base/typography";
 
-@import '../sass/components/buttons';
+@import "components/buttons";
+@import "components/cards";
 
-@import '../sass/layouts/grid"
+@import "layout/aside";
+@import "layout/grid";
+@import "layout/main";
+
+@import "pages/home";

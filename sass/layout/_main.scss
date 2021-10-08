@@ -1,0 +1,55 @@
+.playing-area {
+  height: 70rem;
+  width: 70rem;
+  padding: 2rem;
+
+  border: 1px solid $color-black;
+  border-radius: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  &__dealer,
+  &__player {
+    width: 35rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    position: relative;
+
+    .card-box {
+      width: 15rem;
+      height: 22.5rem;
+
+      border: 1.5px solid $color-gold;
+      border-radius: 1rem;
+
+      position: relative;
+    }
+
+    .card-value {
+      position: absolute;
+      left: 2rem;
+      top: 5rem;
+
+      font-size: 1.75rem;
+    }
+  }
+
+  &__player {
+    height: 30rem;
+
+    .button-menu {
+      width: 100%;
+
+      display: flex;
+      align-self: center;
+      justify-content: center;
+    }
+  }
+}

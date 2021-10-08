@@ -3,137 +3,83 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <!-- Font Awesome -->
-    <!-- <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
-      integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
-      crossorigin="anonymous"
-    /> -->
+
+    <link rel="shortcut icon" href="#" />
+
     <link rel="stylesheet" href="css/style.css" />
+
+    <script src="js/script.js" defer></script>
+
     <title>BlackJack</title>
   </head>
   <body>
-    <header class="header">
-      <!-- Select Bet Stake & Boxes -->
-      <!-- <div>
-        Select Player Boxes:
-        <input type="number" id="playerBoxes" value="1" min="1" max="3" />
-        <button
-          id="selectBoxes"
-          class="btn btn-dark"
-          onclick="selectPlayerBoxes()"
-        >
-          Submit</button
-        ><br />
-      </div> -->
-    </header>
-    <main>
-      <div class="container">
-        <div class="playingField">
-          <!-- Dealer's Area -->
-          <div id="dealer">
-            <div class="textBox name">Dealer</div>
-            <!-- dValue to dealerScore -->
-            <div id="dValue" class="textBox">&nbsp;</div>
-            <div id="dealerHolder" class="cardArea"></div>
-          </div>
-    
-          <!-- Player's Area -->
-          <div id="player">
-            <div id="player0">
-              <div class="textBox name">Player</div>
-              <div id="pValue" class="textBox">&nbsp;</div>
-              <div id="message" class="textBox result">&nbsp;</div>
-              <div id="playerHolder" class="cardArea"></div>
-            </div>
+    <section class="section-home">
+      <!-- Main Area -->
+      <main class="playing-area">
+        <!-- Dealer -->
+        <div class="playing-area__dealer">
+          <div id="dealer-value" class="card-value"></div>
+
+          <div id="dealer-hand" class="card-box"></div>
+        </div>
+        <!-- Player -->
+        <div class="playing-area__player">
+          <div id="player-value" class="card-value"></div>
+
+          <div id="player-hand" class="card-box"></div>
+
+          <div class="button-menu">
+            <button id="button-hit" class="button button--hit">Hit</button>
+            <button id="button-stand" class="button button--stand">
+              Stand
+            </button>
+            <button id="button-double" class="button button--double">
+              Double
+            </button>
+            <button id="button-split" class="button button--split">
+              Split
+            </button>
           </div>
         </div>
-  
-        <!-- Game Button -->
-        <form id="controls" action="">
-          <div id="controlsArea">
-            <!-- Player Credit Total / Bet Amount -->
-            <div id="total" class="textBox dollars">
-              Total: $<span id="dollars">1000</span>
-            </div>
-            <div id="default" class="textBox dollars">
-              Bet Amount: <br />
-              $<input type="number" id="mybet" value="5" min="1" max="100" />
-            </div>
-  
-            <!-- Buttons -->
-            <div id="buttonsArea">
-              <input
-                id="start"
-                class="button"
-                type="button"
-                value="Deal"
-                onclick="Start()"
-              />
-              <input
-                id="decrease"
-                class="button"
-                type="reset"
-                value="Decrease Bet"
-                onclick="changeBet(-5);return false;"
-                style="display: none;"
-              />
-              <input
-                id="increase"
-                class="button"
-                type="reset"
-                value="Increase Bet"
-                onclick="changeBet(+5);return false;"
-                style="display: none;"
-              />
-              <div id="myactions" style="display: none;">
-                <input
-                  id="btnhit"
-                  class="button"
-                  type="button"
-                  value="Hit"
-                  onclick="cardAction('hit')"
-                />
-                <input
-                  id="btnhold"
-                  class="button"
-                  type="button"
-                  value="Stand"
-                  onclick="cardAction('hold')"
-                />
-                <input
-                  id="btnsplit"
-                  class="button"
-                  type="button"
-                  value="Split"
-                  onclick="cardAction('split')"
-                  style="display: none;"
-                />
-                <input
-                  id="btndouble"
-                  class="button"
-                  type="button"
-                  value="Double"
-                  onclick="cardAction('double')"
-                  style="display: none;"
-                />
-                <input
-                  id="surrender"
-                  class="button"
-                  type="reset"
-                  value="Insurance?"
-                  onclick="playerSurrender();return false;"
-                  disabled="disabled"
-                  style="display: none;"
-                />
-              </div>
-            </div>
+      </main>
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <!-- Image -->
+        <div class="sidebar__image">
+          <img src="img/pngegg.png" alt="blackjack-logo" />
+        </div>
+        <!-- Message -->
+        <div id="message" class="sidebar__message"></div>
+        <!-- Score -->
+        <div class="sidebar__score">
+          <div class="box-score">
+            <h1>
+              <div class="value">$<span id="bet-stake">25</span></div>
+            </h1>
+            <h1>Betting Stake</h1>
           </div>
-        </form>
-      </div>
-    </main>
-    <script src="js/script.js"></script>
+          <div class="box-score">
+            <h1>
+              <div class="value">$<span id="chip-stack">1000</span></div>
+            </h1>
+            <h1>Balance</h1>
+          </div>
+        </div>
+        <!-- Change Stake -->
+        <div class="sidebar__change-stake">
+          <button id="button-increase" class="button button--increase">
+            + Bet Size
+          </button>
+          <button id="button-decrease" class="button button--decrease">
+            - Bet Size
+          </button>
+        </div>
+        <!-- Deal -->
+        <div class="sidebar__deal">
+          <button id="button-deal" class="button button--deal">Deal</button>
+        </div>
+      </aside>
+    </section>
   </body>
 </html>

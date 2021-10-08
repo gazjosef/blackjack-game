@@ -1,25 +1,15 @@
 {
-  "name": "blackjack-game",
+  "name": "mock-up",
   "version": "1.0.0",
-  "description": "Simple Blackjack game",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gazjosef/blackjack-game.git"
+    "compile:sass": "node-sass sass/main.scss css/style.css -w"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/gazjosef/blackjack-game/issues"
-  },
-  "homepage": "https://github.com/gazjosef/blackjack-game#readme",
+  "dependencies": {},
   "devDependencies": {
-    "jest": "^24.9.0"
-  },
-  "dependencies": {
     "node-sass": "^4.14.1"
   }
 }

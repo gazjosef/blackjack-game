@@ -1,0 +1,65 @@
+.sidebar {
+  height: 70rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  &__image {
+    img {
+      height: 35rem;
+      width: 35rem;
+    }
+  }
+
+  &__message {
+    color: $color-white;
+    font-size: 2rem;
+  }
+
+  &__score {
+    width: 35rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    .box-score {
+      height: 10rem;
+      width: 12rem;
+      padding: 1rem;
+
+      border: 1px solid $color-black;
+      border-radius: 1rem;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      font-family: Arial;
+      font-size: 1rem;
+      color: $color-white;
+
+      h1 {
+        text-transform: uppercase;
+
+        .value {
+          font-size: 2.75rem;
+        }
+      }
+    }
+  }
+
+  &__change-stake {
+    width: 25rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__deal {
+  }
+}

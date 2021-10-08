@@ -1,0 +1,27 @@
+.button {
+  padding: 1rem 2rem;
+  min-width: 10rem;
+  margin-left: 1rem;
+
+  border-radius: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: bold;
+  text-transform: uppercase;
+
+  &--hit,
+  &--stand,
+  &--double,
+  &--split {
+    display: none;
+  }
+
+  &--deal {
+    padding: 1rem 3rem;
+
+    font-size: 3rem;
+  }
+}
