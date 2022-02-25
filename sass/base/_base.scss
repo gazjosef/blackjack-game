@@ -16,3 +16,8 @@ body {
 
   background-color: $color-green;
 }
+
+.container {
+  display: grid;
+  grid-template-columns: 65% 35%;
+}

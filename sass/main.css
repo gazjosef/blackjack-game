@@ -18,10 +18,10 @@ body {
 }
 
 .container {
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 65% 35%;
+      grid-template-columns: 65% 35%;
 }
 
 body {
@@ -169,33 +169,33 @@ body {
 }
 
 .sidebar {
-  height: 70rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  padding: 2rem;
+  display: -ms-grid;
+  display: grid;
+  grid-gap: 2rem;
+}
+
+.sidebar__image {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1 / span 1;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
 }
 
 .sidebar__image img {
-  height: 35rem;
-  width: 35rem;
-}
-
-.sidebar__message {
-  color: #fff;
-  font-size: 2rem;
+  height: 25rem;
+  width: 25rem;
 }
 
 .sidebar__score {
-  width: 35rem;
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2 / span 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -207,11 +207,11 @@ body {
 }
 
 .sidebar__score .box-score {
-  height: 10rem;
-  width: 12rem;
-  padding: 1rem;
   border: 1px solid #000;
   border-radius: 1rem;
+  height: 10rem;
+  padding: 1rem;
+  width: 12rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -231,79 +231,55 @@ body {
 }
 
 .sidebar__score .box-score h1 {
+  text-align: center;
   text-transform: uppercase;
 }
 
 .sidebar__score .box-score h1 .value {
-  font-size: 2.75rem;
+  font-size: 2 rem;
+}
+
+.sidebar__message {
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 1;
+  grid-row: 3 / span 1;
+  color: #fff;
+  font-size: 2rem;
+  text-align: center;
 }
 
 .sidebar__change-stake {
-  width: 25rem;
+  -ms-grid-row: 4;
+  -ms-grid-row-span: 1;
+  grid-row: 4 / span 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-.row {
-  max-width: 114rem;
-  margin: 0 auto;
-}
-
-.row:not(:last-child) {
-  margin-bottom: 8rem;
-}
-
-.row::after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.row [class^="col-"] {
-  float: left;
-}
-
-.row [class^="col-"]:not(:last-child) {
-  margin-right: 6rem;
-}
-
-.row .col-1-of-2 {
-  width: calc((100% - 6rem) / 2);
-}
-
-.row .col-1-of-3 {
-  width: calc((100% - 6rem * 2) / 3);
-}
-
-.row .col-2-of-3 {
-  width: calc(2 * ((100% - 6rem * 2) / 3) + 6rem);
-}
-
-.row .col-1-of-4 {
-  width: calc((100% - 6rem * 3) / 4);
-}
-
-.row .col-2-of-4 {
-  width: calc(2 * ((100% - 6rem * 3) / 4) + 6rem);
-}
-
-.row .col-3-of-4 {
-  width: calc(3 * ((100% - 6rem * 3) / 4) + (2 * 6rem));
+.sidebar__deal {
+  -ms-grid-row: 5;
+  -ms-grid-row-span: 1;
+  grid-row: 5 / span 1;
+  display: -ms-grid;
+  display: grid;
+  place-content: center;
 }
 
 .playing-area {
-  height: 70rem;
-  width: 70rem;
-  padding: 2rem;
   border: 1px solid #000;
   border-radius: 1rem;
+  height: 65rem;
+  padding: 2rem;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1 / span 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -363,19 +339,6 @@ body {
   display: flex;
   -ms-flex-item-align: center;
       align-self: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.section-home {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
