@@ -17,7 +17,7 @@ body {
   grid-template-columns: 65% 35%; }
 
 body {
-  font-family: "Lato", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.7;
@@ -134,9 +134,9 @@ body {
       align-items: center;
       justify-content: center;
       font-family: Arial;
-      font-size: 1rem;
       color: #fff; }
       .sidebar__score .box-score h1 {
+        font-size: 0.9em;
         text-align: center;
         text-transform: uppercase; }
         .sidebar__score .box-score h1 .value {
@@ -174,16 +174,17 @@ body {
     justify-content: space-between;
     position: relative; }
     .playing-area__dealer .card-box, .playing-area__player .card-box {
-      width: 15rem;
-      height: 22.5rem;
       border: 1.5px solid #fdc269;
       border-radius: 1rem;
+      height: 22.5rem;
+      width: 15rem;
       position: relative; }
     .playing-area__dealer .card-value, .playing-area__player .card-value {
       position: absolute;
       left: 2rem;
       top: 5rem;
-      font-size: 1.75rem; }
+      color: #fff;
+      font-size: 2rem; }
   .playing-area__player {
     height: 30rem; }
     .playing-area__player .button-menu {
