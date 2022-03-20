@@ -109,7 +109,8 @@ body {
 .sidebar {
   padding: 2rem;
   display: grid;
-  grid-gap: 2rem; }
+  align-content: start;
+  grid-gap: 2.5rem; }
   .sidebar__image {
     grid-row: 1 / span 1;
     justify-content: start;
