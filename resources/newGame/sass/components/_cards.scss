@@ -1,0 +1,102 @@
+/* Cards */
+
+.card {
+  height: 20rem;
+  width: 13.5rem;
+  padding: 1rem 0.75rem;
+  border: 1px solid $color-black;
+  background-color: $color-white;
+  border-radius: 1rem;
+
+  position: absolute;
+  left: 10rem;
+  display: inline-block;
+
+  font-family: "Lato";
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  &__cover {
+    background: $color-brown;
+    background: linear-gradient(
+          115deg,
+          transparent 75%,
+          rgba($color-white, 0.8) 75%
+        )
+        0 0,
+      linear-gradient(245deg, transparent 75%, rgba($color-white, 0.8) 75%) 0 0,
+      linear-gradient(115deg, transparent 75%, rgba($color-white, 0.8) 75%) 7px -15px,
+      linear-gradient(245deg, transparent 75%, rgba($color-white, 0.8) 75%) 7px -15px,
+      $color-brown;
+    background-size: 1.5rem 3rem;
+
+    // position: absolute;
+  }
+
+  &__top,
+  &__bottom {
+    width: 100%;
+
+    display: flex;
+    align-items: left;
+
+    font-size: 3rem;
+    line-height: 2.5rem;
+  }
+
+  &__corner {
+    height: 5.25rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__content {
+    height: 6rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 8rem;
+  }
+
+  &__bottom {
+    -webkit-transform: rotate(-180deg);
+    -moz-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+  }
+}
+
+/* Suits */
+
+.clubs,
+.spades {
+  color: $color-black;
+}
+
+.diams,
+.hearts {
+  color: $color-red;
+}
+
+.clubs .suit::after {
+  content: "\2663";
+}
+.diams .suit::after {
+  content: "\2666";
+}
+
+.hearts .suit::after {
+  content: "\2665";
+}
+.spades .suit::after {
+  content: "\2660";
+}

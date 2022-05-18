@@ -6,11 +6,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>New BlackJack Game</title>
 
+    <link rel="stylesheet" href="css/style.css" />
+
     <!-- <script>
       var exports = {};
     </script> -->
 
     <script type="module" src="build/index.js" defer></script>
   </head>
-  <body></body>
+  <body class="container">
+    <!-- Main Area -->
+    <main class="playing-area">
+      <!-- Dealer -->
+      <div class="playing-area__dealer">
+        <div id="dealer-value" class="card-value"></div>
+
+        <div id="dealer-hand" class="card-box"></div>
+      </div>
+
+      <!-- Player -->
+      <div class="playing-area__player">
+        <div id="player-value" class="card-value"></div>
+
+        <div id="player-hand" class="card-box"></div>
+
+        <div class="button-menu">
+          <button id="button-hit" class="button button--hit">Hit</button>
+          <button id="button-stand" class="button button--stand">Stand</button>
+          <button id="button-double" class="button button--double">
+            Double
+          </button>
+          <button id="button-split" class="button button--split">Split</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <!-- Image -->
+      <div class="sidebar__image">
+        <img src="img/pngegg.png" alt="blackjack-logo" />
+      </div>
+
+      <!-- Score -->
+      <div class="sidebar__score">
+        <div class="box-score">
+          <h2>
+            <div class="value">$<span id="bet-stake">25</span></div>
+          </h2>
+          <h1>Stake</h1>
+        </div>
+        <div class="box-score">
+          <h2>
+            <div class="value">$<span id="chip-stack">1000</span></div>
+          </h2>
+          <h1>Balance</h1>
+        </div>
+      </div>
+
+      <!-- Message -->
+      <div id="message" class="sidebar__message"></div>
+
+      <!-- Change Stake -->
+      <div class="sidebar__change-stake">
+        <button id="button-increase" class="button button--increase">
+          + Bet Size
+        </button>
+        <button id="button-decrease" class="button button--decrease">
+          - Bet Size
+        </button>
+      </div>
+
+      <!-- Deal -->
+      <div class="sidebar__deal">
+        <button id="button-deal" class="button button--deal">Deal</button>
+      </div>
+    </aside>
+  </body>
 </html>
