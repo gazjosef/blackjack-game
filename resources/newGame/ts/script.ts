@@ -395,9 +395,9 @@ function takeCard() {
 
 function endPlay() {
   //   endplay = true;
-  if ($cover) {
-    $cover.style.display = "none";
-  }
+  // if ($cover) {
+  //   $cover.style.display = "none";
+  // }
 
   if ($start) {
     $start.style.display = "inline";

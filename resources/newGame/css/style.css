@@ -146,6 +146,7 @@ body {
     grid-row: 3 / span 1;
     color: #fff;
     font-size: 2rem;
+    font-weight: 600;
     text-align: center; }
   .sidebar__change-stake {
     grid-row: 4 / span 1;
