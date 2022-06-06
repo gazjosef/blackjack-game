@@ -12,6 +12,7 @@ Simple Blackjack game built with HTML, CSS, and JavaScript.
 
 ## Built-With
 - Vanilla JavaScript
+- SASS
 
 ## GitHub Page
 https://gazjosef.github.io/blackjack-game/
