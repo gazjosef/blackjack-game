@@ -1,3 +1,8 @@
+// // import { Deck } from "./Deck";
+// import { buildDeck } from "./Cards";
+
+// const deck = buildDeck();
+
 // 1. Variables
 // 2. Build Deck of Cards
 // 3. Shuffle Deck
@@ -43,23 +48,20 @@ const NUMB2: any = {
   A: 11,
 };
 
-// -- DOM ELEMENTS
+// DOM ELEMENTS
 
 const $dealerHand = document.getElementById("dealer-hand");
-const $playerHand = document.getElementById("player-hand");
 const $dealerValue = document.getElementById("dealer-value");
+const $playerHand = document.getElementById("player-hand");
 const $playerValue = document.getElementById("player-value");
-
 const $cover = document.getElementById("cover");
 const $message = document.getElementById("message");
 const $betStake = document.getElementById("bet-stake");
 const $chipStack = document.getElementById("chip-stack");
-
 // -- Buttons
 const $start = document.getElementById("button-deal");
 const $increaseBtn = document.getElementById("button-increase");
 const $decreaseBtn = document.getElementById("button-decrease");
-
 const $hitBtn = document.getElementById("button-hit");
 const $standBtn = document.getElementById("button-stand");
 const $doubleBtn = document.getElementById("button-double");
@@ -111,25 +113,19 @@ if ($doubleBtn) {
 
 ////////////////////////////////////////
 // 2. BUILD DECK OF CARDS
-type Card = {
-  suit: string;
-  icon?: string;
-  bgcolor: string;
-  cardnum?: string;
-  cardvalue: number;
-};
+// type Card = {
+//   suit: string;
+//   icon?: string;
+//   bgcolor: string;
+//   cardnum?: string;
+//   cardvalue: number;
+// };
 
 for (let s in SUITS) {
   let suit = SUITS[s][0].toUpperCase();
   const bgcolor = suit === "S" || suit === "C" ? "black" : "red";
   for (let key in NUMB2) {
-    // let cardValue = 9;
-    // if (isNaN(n)) {
-    //   cardValue = parseInt(n) + 1;
-    // } else {
-    //   cardValue = 10;
-    // }
-    let card: Card = {
+    let card = {
       suit: suit,
       icon: SUITS[s],
       bgcolor: bgcolor,
@@ -158,7 +154,7 @@ function shuffleDeck(deck: typeof DECK) {
 
 function Start() {
   shuffleDeck(DECK);
-  console.log(DECK);
+  console.log("DECK", DECK);
   newDeal();
 }
 

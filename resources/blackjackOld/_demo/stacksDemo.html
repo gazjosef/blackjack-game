@@ -1,0 +1,59 @@
+<!doctype html>
+
+<!-- Author: Gaz Hind -->
+<!-- Date: 05 September 2013 -->
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Stacks Demo</title>
+        <script src="../_js/stacksDemo.js" type="text/javascript"></script>
+        <script src="../_js/cards.js" type="text/javascript"></script>
+        <link href="../_css/stacksDemo.css" rel="stylesheet" type="text/css">
+    </head>
+    
+    <body>
+
+            <div id="demoBox">
+            
+                <h3>Card Stacks Demo</h3>
+                
+                <p>This page demonstrates some of the <code>Stack</code> object's features.
+                Three stacks are defined, a deck, a seven card hand and a discard pile. You
+                can use the links below to shuffle the deck, deal a hand, discard the hand or
+                return all used cards to the deck.</p>
+                
+                <p>
+                <a href="" onclick="shuffle();return false;">Shuffle Deck</a>
+                |
+                <a href="" onclick="deal();return false;">Deal</a>
+                |
+                <a href="" onclick="discard();return false;">Discard</a>
+                |
+                <a href="" onclick="reset();return false;">Reset Deck</a>
+                </p>
+                
+                <p>Use your browser's <code>View Source</code> option to see the full source
+                code.</p>
+            
+            </div>
+            
+            <p></p>
+            
+            <form action="" onsubmit="return false;">
+              <div style="float:left;margin-right:1em;">
+                <b>Deck:</b><br />
+                <textarea rows="10" cols="20"></textarea>
+              </div>
+              <div style="float:left;margin-right:1em;">
+                <b>Hand:</b><br />
+                <textarea rows="10" cols="20"></textarea>
+              </div>
+              <div style="float:left;">
+                <b>Discards:</b><br />
+                <textarea rows="10" cols="20"></textarea>
+              </div>
+            </form>
+               
+    </body>
+</html>

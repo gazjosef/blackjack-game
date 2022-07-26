@@ -1,8 +1,7 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-// import { Deck } from "./Deck";
-const Cards_1 = require("./Cards");
-const deck = (0, Cards_1.buildDeck)();
+// // import { Deck } from "./Deck";
+// import { buildDeck } from "./Cards";
+// const deck = buildDeck();
 // 1. Variables
 // 2. Build Deck of Cards
 // 3. Shuffle Deck
@@ -41,10 +40,10 @@ const NUMB2 = {
     K: 10,
     A: 11,
 };
-// -- DOM ELEMENTS
+// DOM ELEMENTS
 const $dealerHand = document.getElementById("dealer-hand");
-const $playerHand = document.getElementById("player-hand");
 const $dealerValue = document.getElementById("dealer-value");
+const $playerHand = document.getElementById("player-hand");
 const $playerValue = document.getElementById("player-value");
 const $cover = document.getElementById("cover");
 const $message = document.getElementById("message");
@@ -132,8 +131,6 @@ function shuffleDeck(deck) {
 ////////////////////////////////////////
 // 4. START GAME
 function Start() {
-    console.log("working");
-    console.log("deck", deck);
     shuffleDeck(DECK);
     console.log("DECK", DECK);
     newDeal();
