@@ -38,7 +38,7 @@ Gareth Hind
 <br />
 <div align="center">
   <a href="https://github.com/gazjosef/blackjack-game">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="img/blackjack.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">BlackJack</h3>
