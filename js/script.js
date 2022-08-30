@@ -1,3 +1,7 @@
+////////////////////////////////////////
+//* 0. TABLE OF CONTENTS
+////////////////////////////////////////
+
 // 1. Variables
 // 2. Build Deck of Cards
 // 3. Shuffle Deck
@@ -12,7 +16,8 @@
 // 12. End Play
 
 ////////////////////////////////////////
-// 1. VARIABLES
+//* 1. VARIABLES
+////////////////////////////////////////
 
 // -- GAME STATUS
 
@@ -81,7 +86,8 @@ $doubleBtn.addEventListener("click", (e) => {
 });
 
 ////////////////////////////////////////
-// 2. BUILD DECK OF CARDS
+//* 2. BUILD DECK OF CARDS
+////////////////////////////////////////
 
 for (let s in SUITS) {
   let suit = SUITS[s][0].toUpperCase();
@@ -100,7 +106,8 @@ for (let s in SUITS) {
 }
 
 ////////////////////////////////////////
-// 3. SHUFFLE DECK
+//* 3. SHUFFLE DECK
+////////////////////////////////////////
 
 function shuffleDeck(deck) {
   for (let i = deck.length - 1; i > 0; i--) {
@@ -113,7 +120,8 @@ function shuffleDeck(deck) {
 }
 
 ////////////////////////////////////////
-// 4. START GAME
+//* 4. START GAME
+////////////////////////////////////////
 
 function Start() {
   shuffleDeck(DECK);
@@ -121,7 +129,8 @@ function Start() {
 }
 
 ////////////////////////////////////////
-// 5. CLEAR TABLE
+//* 5. CLEAR TABLE
+////////////////////////////////////////
 
 function clearTable() {
   PLAYERS_HAND = [];
@@ -143,7 +152,8 @@ function clearTable() {
 }
 
 ////////////////////////////////////////
-// 6. DEAL
+//* 6. DEAL
+////////////////////////////////////////
 
 function deal() {
   // Card count reshuffle
@@ -189,7 +199,8 @@ function deal() {
 }
 
 ////////////////////////////////////////
-// 7. NEW DEAL
+//* 7. NEW DEAL
+////////////////////////////////////////
 
 function newDeal() {
   clearTable();
@@ -203,7 +214,8 @@ function newDeal() {
 }
 
 ////////////////////////////////////////
-// 8. RE-DEAL
+//* 8. RE-DEAL
+////////////////////////////////////////
 
 function reDeal() {
   cardCount++;
@@ -216,7 +228,8 @@ function reDeal() {
 }
 
 ////////////////////////////////////////
-// 9. CARD OUTPUT
+//* 9. CARD OUTPUT
+////////////////////////////////////////
 
 function cardOutput(n, x) {
   let hpos = x > 0 ? x * 60 + 0 : 0;
@@ -237,7 +250,8 @@ function cardOutput(n, x) {
 }
 
 ////////////////////////////////////////
-// 10. CARD ACTION
+//* 10. CARD ACTION
+////////////////////////////////////////
 
 function cardAction(a) {
   console.log(a);
@@ -277,7 +291,8 @@ function cardAction(a) {
 }
 
 ////////////////////////////////////////
-// 11. TAKE CARD
+//* 11. TAKE CARD
+////////////////////////////////////////
 
 function takeCard() {
   PLAYERS_HAND.push(DECK[cardCount]);
@@ -297,11 +312,18 @@ function takeCard() {
 }
 
 ////////////////////////////////////////
-// 12. END PLAY
+//* 12. END PLAY
+////////////////////////////////////////
 
 function endPlay() {
   // endplay = true;
   document.getElementById("cover").style.display = "none";
+
+  $hitBtn.style.display = "none";
+  $standBtn.style.display = "none";
+  $doubleBtn.style.display = "none";
+  $splitBtn.style.display = "none";
+
   $start.style.display = "inline";
   $increaseBtn.style.display = "inline";
   $decreaseBtn.style.display = "inline";
@@ -312,7 +334,7 @@ function endPlay() {
   let dealervalue = checkTotal(DEALERS_HAND);
   $dealerValue.innerHTML = dealervalue;
 
-  while (dealervalue < 17) {
+  while (dealervalue < 17 && PLAYERS_HAND.length > 2) {
     DEALERS_HAND.push(DECK[cardCount]);
     $dealerHand.innerHTML += cardOutput(cardCount, DEALERS_HAND.length - 1);
     reDeal();
@@ -323,6 +345,7 @@ function endPlay() {
   // WHO wON?
 
   let playervalue = checkTotal(PLAYERS_HAND);
+
   if (playervalue === 21 && PLAYERS_HAND.length === 2) {
     $message.innerHTML = "Blackjack<br>";
     payoutJack = 1.5;
