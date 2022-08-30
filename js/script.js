@@ -14,6 +14,8 @@
 // 10. Card Action
 // 11. Take Card
 // 12. End Play
+// 13. Change Total
+// 14. Change Bet Size
 
 ////////////////////////////////////////
 //* 1. VARIABLES
@@ -372,7 +374,9 @@ function endPlay() {
   $chipStack.innerHTML = balance;
 }
 
-// 13. CHECK TOTAL
+////////////////////////////////////////
+//* 13. CHECK TOTAL
+////////////////////////////////////////
 
 function checkTotal(arr) {
   let rValue = 0;
@@ -390,7 +394,9 @@ function checkTotal(arr) {
   return rValue;
 }
 
-// CHANGE BET SIZE
+////////////////////////////////////////
+//* CHANGE BET SIZE
+////////////////////////////////////////
 
 function increaseBetSize() {
   $betStake.innerHTML = parseInt($betStake.innerHTML) + 5;
