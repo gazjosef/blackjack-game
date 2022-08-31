@@ -336,7 +336,7 @@ function endPlay() {
   let dealervalue = checkTotal(DEALERS_HAND);
   $dealerValue.innerHTML = dealervalue;
 
-  while (dealervalue < 17 && PLAYERS_HAND.length > 2) {
+  while (dealervalue < 17) {
     DEALERS_HAND.push(DECK[cardCount]);
     $dealerHand.innerHTML += cardOutput(cardCount, DEALERS_HAND.length - 1);
     reDeal();
@@ -360,15 +360,15 @@ function endPlay() {
     (playervalue < 22 && dealervalue < playervalue) ||
     (dealervalue > 21 && playervalue < 22)
   ) {
-    $message.innerHTML += `You WIN! You won $${betvalue}`;
+    $message.innerHTML += `<span style="color:chartreuse;font-weight:bold">You WIN!</span> You won $${betvalue}`;
     balance = balance + betvalue * 2;
   } else if (playervalue > 21) {
-    $message.innerHTML += `Dealer Wins! You lost $${betvalue}`;
+    $message.innerHTML += `<span style="color:tomato;font-weight:bold;">Dealer Wins!</span> You lost $${betvalue}`;
   } else if (playervalue === dealervalue) {
-    $message.innerHTML += `Push`;
+    $message.innerHTML += `<span style="color:dodgerblue;font-weight:bold">Push</span>`;
     balance = balance + betvalue;
   } else {
-    $message.innerHTML += `Dealer Wins! You lost $${betvalue}`;
+    $message.innerHTML += `<span style="color:tomato;font-weight:bold;">Dealer Wins!</span> You lost $${betvalue}`;
   }
   $playerValue.innerHTML = playervalue;
   $chipStack.innerHTML = balance;
