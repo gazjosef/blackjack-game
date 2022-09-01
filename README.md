@@ -15,7 +15,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/gazjosef/blackjack-game">
-    <img src="img/blackjack.png" alt="Logo" width="250" height="250">
+    <img src="img/pngegg.png" alt="Logo" width="250" height="250">
   </a>
 
 <h3 align="center">BlackJack</h3>
