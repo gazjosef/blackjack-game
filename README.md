@@ -15,7 +15,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/gazjosef/blackjack-game">
-    <img src="img/blackjack.png" alt="Logo" width="250" height="250">
+    <img src="img/pngegg.png" alt="Logo" width="250" height="250">
   </a>
 
 <h3 align="center">BlackJack</h3>
@@ -73,6 +73,7 @@ Simple Blackjack game built with HTML, CSS, and JavaScript.
 ### Installation
 
 1. Clone the repo
+
    ```sh
    git clone https://github.com/gazjosef/blackjack-game.git
    ```
@@ -100,7 +101,7 @@ Simple Blackjack game built with HTML, CSS, and JavaScript.
 - [ ] Allow player to split hand into two boxes when their initial hand contains a pair
 
 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
+<!-- See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues). -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -109,11 +110,11 @@ See the [open issues](https://github.com/github_username/repo_name/issues) for a
 <!-- CONTACT -->
 ## Contact
 
+GitPage: https://gazjosef.github.io/blackjack-game/
+
 Gareth Hind - garethjhind@gmail.com
 
 Project Link: [https://github.com/gazjosef/blackjack-game](https://github.com/gazjosef/blackjack-game)
-
-GitPage: https://gazjosef.github.io/blackjack-game/
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
