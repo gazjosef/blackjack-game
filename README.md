@@ -54,6 +54,10 @@ Simple Blackjack game built with HTML, CSS, and JavaScript.
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+BlackJack game written in basic JavaScript.
+
+Further plans are to rewrite game in Object-Oriented Programming, Typescript, Cypress Testing.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
@@ -97,6 +101,12 @@ Simple Blackjack game built with HTML, CSS, and JavaScript.
 <!-- ROADMAP -->
 ## Roadmap
 
+- [x] Create Deck of Cards
+- [x] Deal cards to player and dealer
+- [x] Allow hit, stand, double features
+- [x] Calculate result
+- [ ] Re-write into Object-Oriented Programming
+- [ ] Add TypeScript
 - [ ] Deal cards to multiple player boxes
 - [ ] Allow player to split hand into two boxes when their initial hand contains a pair
 
