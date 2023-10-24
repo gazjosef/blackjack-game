@@ -54,13 +54,31 @@ Simple Blackjack game built with HTML, CSS, and JavaScript.
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+BlackJack game written in basic JavaScript.
+
+Created Deck of Cards.
+
+Dealt cards to Player and Dealer.
+
+Add player action - Hit, Stand, or Double.
+
+Calculate result.
+
+Further plans are to rewrite game in Object-Oriented Programming, Typescript, and Cypress Testing.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
 
+* ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+* ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 * ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 * ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
 
+Coming soon:
+
+* ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+* ![cypress](https://img.shields.io/badge/-cypress-%23E5E5E5?style=for-the-badge&logo=cypress&logoColor=058a5e)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -97,6 +115,12 @@ Simple Blackjack game built with HTML, CSS, and JavaScript.
 <!-- ROADMAP -->
 ## Roadmap
 
+- [x] Create Deck of Cards
+- [x] Deal cards to player and dealer
+- [x] Allow hit, stand, double features
+- [x] Calculate result
+- [ ] Re-write into Object-Oriented Programming
+- [ ] Add TypeScript
 - [ ] Deal cards to multiple player boxes
 - [ ] Allow player to split hand into two boxes when their initial hand contains a pair
 
