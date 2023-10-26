@@ -184,11 +184,15 @@ body {
   place-content: center;
 }
 
+.container {
+  margin-inline: auto;
+  width: min(90%, 120rem);
+}
+
 .playing-area {
   border: 1px solid #97d3b4;
   border-radius: 1rem;
   height: 65rem;
-  width: 80rem;
   padding: 2rem;
   grid-column: 1/span 1;
   display: flex;
