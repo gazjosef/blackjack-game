@@ -146,7 +146,7 @@ body {
   justify-content: space-around;
 }
 .sidebar__score .box-score {
-  border: 1px solid #000;
+  border: 1px solid #97d3b4;
   border-radius: 1rem;
   height: 10rem;
   padding: 1rem;
@@ -188,6 +188,7 @@ body {
   border: 1px solid #97d3b4;
   border-radius: 1rem;
   height: 65rem;
+  width: 80rem;
   padding: 2rem;
   grid-column: 1/span 1;
   display: flex;
@@ -204,7 +205,7 @@ body {
   position: relative;
 }
 .playing-area__dealer .card-box, .playing-area__player .card-box {
-  border: 1.5px solid #fdc269;
+  border: 1.5px solid #97d3b4;
   border-radius: 1rem;
   height: 22.5rem;
   width: 15rem;
