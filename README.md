@@ -33,10 +33,10 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">Weather App</h3>
+<h3 align="center">BlackJack Game</h3>
 
   <p align="center">
-    Stay ahead of the forecast with real-time weather updates and personalized alerts on our intuitive weather app.
+    Test your luck and strategy in our captivating blackjack game.
     <br />
     <br />
     <a href="https://github.com/gazjosef/blackjack-game">View Demo</a>
@@ -84,8 +84,8 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 ### Built With
 
 - [![JavaScript][JavaScript.com]][JavaScript-url]
-- [![Jest][Jest.com]][Jest-url]
 - [![SASS][SASS.com]][SASS-url]
+- [![Jest][Jest.com]][Jest-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
