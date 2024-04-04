@@ -1,5 +1,7 @@
 <!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
+
 <a name="readme-top"></a>
+
 <!--
 *** Thanks for checking out the Best-README-Template. If you have a suggestion
 *** that would make this better, please fork the repo and create a pull request
@@ -16,6 +18,7 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
+
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -23,23 +26,26 @@
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/gazjosef/blackjack-game">
-    <img src="img/pngegg.png" alt="Logo" width="250" height="250">
+    <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">BlackJack</h3>
+<h3 align="center">Weather App</h3>
 
   <p align="center">
-Simple Blackjack game built with HTML, CSS, and JavaScript.
+    Stay ahead of the forecast with real-time weather updates and personalized alerts on our intuitive weather app.
     <br />
+    <br />
+    <a href="https://github.com/gazjosef/blackjack-game">View Demo</a>
+    ·
+    <a href="https://github.com/gazjosef/blackjack-game/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/gazjosef/blackjack-game/issues">Request Feature</a>
   </p>
 </div>
-
-
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -54,106 +60,151 @@ Simple Blackjack game built with HTML, CSS, and JavaScript.
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
 
-
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
-BlackJack game written in basic JavaScript.
+[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Created Deck of Cards.
-
-Dealt cards to Player and Dealer.
-
-Add player action - Hit, Stand, or Double.
-
-Calculate result.
-
-Further plans are to rewrite game in Object-Oriented Programming, Typescript, and Cypress Testing.
+Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `gazjosef`, `blackjack-game`, `twitter_handle`, `gareth-h-a32448191`, `gmail`, `email`, `Weather App`, `project_description`
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
 
-* ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
-* ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
-* ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
-* ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
-
-Coming soon:
-
-* ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
-* ![cypress](https://img.shields.io/badge/-cypress-%23E5E5E5?style=for-the-badge&logo=cypress&logoColor=058a5e)
+- [![JavaScript][JavaScript.com]][JavaScript-url]
+- [![Jest][Jest.com]][Jest-url]
+- [![SASS][SASS.com]][SASS-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
+This is an example of how you may give instructions on setting up your project locally.
+To get a local copy up and running follow these simple example steps.
+
+### Prerequisites
+
+This is an example of how to list things you need to use the software and how to install them.
+
+- npm
+  ```sh
+  npm install npm@latest -g
+  ```
 
 ### Installation
 
-1. Clone the repo
-
+1. Get a free API Key at [https://www.mongodb.com/](https://www.mongodb.com/)
+2. Clone the repo
    ```sh
    git clone https://github.com/gazjosef/blackjack-game.git
+   ```
+3. Install NPM packages
+   ```sh
+   npm install
+   ```
+4. Enter your API in `.env`
+   ```js
+   const API_KEY = "ENTER YOUR API";
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- USAGE EXAMPLES -->
+
 ## Usage
 
-1. Choose betting wager
-2. Click deal.
-3. Choose between Hit, Stand, and Double
-4. Winner is decided between Player value and Dealer value
+Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+
+_For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- ROADMAP -->
+
 ## Roadmap
 
-- [x] Create Deck of Cards
-- [x] Deal cards to player and dealer
-- [x] Allow hit, stand, double features
-- [x] Calculate result
-- [ ] Re-write into Object-Oriented Programming
-- [ ] Add TypeScript
-- [ ] Deal cards to multiple player boxes
-- [ ] Allow player to split hand into two boxes when their initial hand contains a pair
+- [ ] Feature 1
+- [ ] Feature 2
+- [ ] Feature 3
+  - [ ] Nested Feature
 
-
-<!-- See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues). -->
+See the [open issues](https://github.com/gazjosef/blackjack-game/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- LICENSE -->
 
+## License
+
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTACT -->
+
 ## Contact
 
-GitPage: https://gazjosef.github.io/blackjack-game/
+Gareth Hind - gareth@gmail.com
 
-Gareth Hind - garethjhind@gmail.com
-
-Project Link: [https://github.com/gazjosef/blackjack-game](https://github.com/gazjosef/blackjack-game)
+Project Link: [https://github.com/gazjosef](https://github.com/gazjosef)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-
+[contributors-shield]: https://img.shields.io/github/contributors/gazjosef/blackjack-game.svg?style=for-the-badge
+[contributors-url]: https://github.com/gazjosef/blackjack-game/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/gazjosef/blackjack-game.svg?style=for-the-badge
+[forks-url]: https://github.com/gazjosef/blackjack-game/network/members
+[stars-shield]: https://img.shields.io/github/stars/gazjosef/blackjack-game.svg?style=for-the-badge
+[stars-url]: https://github.com/gazjosef/blackjack-game/stargazers
+[issues-shield]: https://img.shields.io/github/issues/gazjosef/blackjack-game.svg?style=for-the-badge
+[issues-url]: https://github.com/gazjosef/blackjack-game/issues
+[license-shield]: https://img.shields.io/github/license/gazjosef/blackjack-game.svg?style=for-the-badge
+[license-url]: https://github.com/gazjosef/blackjack-game/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/gareth-h-a32448191
+[product-screenshot]: images/screenshot.png
+[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
+[Next-url]: https://nextjs.org/
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
+[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
+[Vue-url]: https://vuejs.org/
+[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
+[Bootstrap-url]: https://getbootstrap.com
+[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
+[JQuery-url]: https://jquery.com
+[TailwindCSS.com]: https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white
+[TailwindCSS-url]: https://tailwindcss.com/
+[Cypress.com]: https://img.shields.io/badge/-cypress-%23E5E5E5?style=for-the-badge&logo=cypress&logoColor=058a5e
+[Cypress-url]: https://www.cypress.io/
+[Jest.com]: https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&logo=jest&logoColor=white
+[Jest-url]: https://jestjs.io/
+[TypeScript.com]: https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white
+[TypeScript-url]: https://www.typescriptlang.org/
+[JavaScript.com]: https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E
+[JavaScript-url]: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+[Vite.com]: https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white
+[Vite-url]: https://vitejs.dev/
+[MongoDB.com]: https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white
+[MongoDB-url]: https://www.mongodb.com/
+[Redux.com]: https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white
+[Redux-url]: https://redux.js.org/
+[Sass.com]: https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white
+[Sass-url]: https://sass-lang.com/
