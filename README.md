@@ -30,7 +30,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/gazjosef/blackjack-game">
-    <img src="https://raw.githubusercontent.com/gazjosef/blackjack-game/master/img/blackjack.png" alt="BlackJack Logo" width="80" height="80">
+    <img src="img/favicon_io/android-chrome-512x512.png" alt="BlackJack Logo" width="80" height="80">
   </a>
 
 <h3 align="center">BlackJack Game</h3>
@@ -179,7 +179,7 @@ Project Link: [https://github.com/gazjosef](https://github.com/gazjosef)
 [license-url]: https://github.com/gazjosef/blackjack-game/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/gareth-h-a32448191
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: https://raw.githubusercontent.com/gazjosef/blackjack-game/master/img/blackjack.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
