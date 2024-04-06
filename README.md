@@ -36,7 +36,7 @@
 <h3 align="center">BlackJack Game</h3>
 
   <p align="center">
-    Test your luck and strategy in our captivating blackjack game.
+    Test your luck and strategy with this captivating blackjack game.
     <br />
     <br />
     <a href="https://github.com/gazjosef/blackjack-game">View Demo</a>
