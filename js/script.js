@@ -368,7 +368,7 @@ function endPlay() {
     $message.innerHTML += `<span style="color:dodgerblue;font-weight:bold">Push</span>`;
     balance = balance + betvalue;
   } else {
-    $message.innerHTML += `<span style="color:tomato;font-weight:bold;">Dealer Wins!</span> You lost $${betvalue}`;
+    $message.innerHTML += `<span style="color:grey;font-weight:bold;">Dealer Wins!</span> You lost $${betvalue}`;
   }
   $playerValue.innerHTML = playervalue;
   $chipStack.innerHTML = balance;
