@@ -129,10 +129,10 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-  - [ ] Nested Feature
+- [x] Create Deck of Cards.
+- [x] Deal Cards to Player & Dealer.
+- [x] Allow Player to Hit, Stand, & Double.
+- [ ] Refactor to TypeScript
 
 See the [open issues](https://github.com/gazjosef/blackjack-game/issues) for a full list of proposed features (and known issues).
 
