@@ -14,9 +14,10 @@
   "license": "ISC",
   "dependencies": {
     "concurrently": "^7.2.0",
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.16",
+    "sass": "^1.75.0"
   },
   "devDependencies": {
-    "node-sass": "^7.0.1"
+    "typescript": "^5.4.5"
   }
 }
