@@ -1,5 +1,4 @@
 "use strict";
-// // import { Deck } from "./Deck";
 // import { buildDeck } from "./Cards";
 // const deck = buildDeck();
 // 1. Variables
