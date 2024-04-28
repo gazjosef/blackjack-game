@@ -5,9 +5,13 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "sourceMap": true,
+
     "forceConsistentCasingInFileNames": true,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "moduleResolution": "node", // Add moduleResolution
+    "jsx": "react-jsx" // Add JSX configuration if you're using React
   },
-  "include": ["ts/**/*.ts"],
+  "include": ["ts/**/*.ts", "ts/**/*.tsx"], // Include TypeScript and TSX files
   "exclude": ["node_modules"]
 }

@@ -1,28 +1,20 @@
 import { Deck } from "./deck";
-import { Card } from "./card";
-
 export class BlackjackGame {
-  private deck: Deck = new Deck();
-  private dealersHand: Card[] = [];
-  private playersHand: Card[] = [];
-  private balance: number = 1000;
-
   constructor() {
+    this.deck = new Deck();
+    this.dealersHand = [];
+    this.playersHand = [];
+    this.balance = 1000;
     // Initialization logic
   }
-
-  startGame(): void {
+  startGame() {
     this.deck.shuffle();
     // Other game initialization logic
   }
-
-  deal(): void {
+  deal() {
     // Deal logic
   }
-
-  takeCard(): void {
+  takeCard() {
     // Take a card logic
   }
-
-  // Other game logic methods
 }
