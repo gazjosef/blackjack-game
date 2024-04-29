@@ -4,20 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "compile:sass": "node-sass sass/main.scss css/style.css -w",
-    "start:build": "tsc -w",
-    "start:run": "nodemon build/index.js",
-    "start": "concurrently npm:start:*"
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "compile:sass": "sass src/styles/main.scss dist/css/style.css -w"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "concurrently": "^7.2.0",
-    "nodemon": "^2.0.16",
     "sass": "^1.75.0"
   },
   "devDependencies": {
+    "nodemon": "^3.1.0",
     "typescript": "^5.4.5"
   }
 }
