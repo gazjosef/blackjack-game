@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Card = void 0;
-class Card {
+export class Card {
     constructor(suit, icon, bgcolor, cardnum, cardvalue) {
         this.suit = suit;
         this.icon = icon;
@@ -10,4 +7,3 @@ class Card {
         this.cardvalue = cardvalue;
     }
 }
-exports.Card = Card;

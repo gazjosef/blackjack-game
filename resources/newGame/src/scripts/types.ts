@@ -14,3 +14,5 @@ export interface Card {
   cardnum: string;
   cardvalue: number;
 }
+
+export const text = "Hello String";

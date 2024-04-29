@@ -1,10 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.UI = void 0;
-const game_1 = require("./game");
-class UI {
+import { BlackjackGame } from "./game";
+export class UI {
     constructor() {
-        this.game = new game_1.BlackjackGame();
+        this.game = new BlackjackGame();
         this.initUI();
     }
     initUI() {
@@ -14,4 +11,3 @@ class UI {
         // Update UI based on game state
     }
 }
-exports.UI = UI;
