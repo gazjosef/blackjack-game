@@ -1,5 +1,4 @@
-import { UI } from "./ui.js";
+// import { UI } from "./ui";
 import { Deck } from "./deck.js";
-console.log("UI", UI);
-console.log("Deck", Deck);
-console.log("Hello World");
+const deck = new Deck();
+console.log("Deck", deck.getDeck());

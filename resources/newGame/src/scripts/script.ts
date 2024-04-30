@@ -1,4 +1,4 @@
 // import { UI } from "./ui";
-import { text } from "./types";
-console.log("text", text);
-console.log("Hello World");
+import { Deck } from "./deck";
+const deck = new Deck();
+console.log("Deck", deck.getDeck());

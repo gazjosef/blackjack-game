@@ -39,11 +39,20 @@ export class Deck {
   }
 
   shuffle(): void {
-    // Shuffle logic
+    // Fisher-Yates shuffle algorithm
+    for (let i = this.deck.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [this.deck[i], this.deck[j]] = [this.deck[j], this.deck[i]];
+    }
   }
 
   deal(): Card {
     // Deal a card
     return this.deck.pop()!;
+  }
+
+  getDeck(): Card[] {
+    this.shuffle(); // Shuffle the deck before returning
+    return this.deck;
   }
 }
