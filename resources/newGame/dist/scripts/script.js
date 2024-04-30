@@ -1,4 +1,5 @@
-// import { UI } from "./ui";
-import { text } from "./types.js";
-console.log("text", text);
+import { UI } from "./ui.js";
+import { Deck } from "./deck.js";
+console.log("UI", UI);
+console.log("Deck", Deck);
 console.log("Hello World");

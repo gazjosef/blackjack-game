@@ -1,13 +1,13 @@
-import { BlackjackGame } from "./game";
+import { BlackjackGame } from "./game.js";
 export class UI {
-    constructor() {
-        this.game = new BlackjackGame();
-        this.initUI();
-    }
-    initUI() {
-        // Initialize UI elements and event listeners
-    }
-    updateUI() {
-        // Update UI based on game state
-    }
+  constructor() {
+    this.game = new BlackjackGame();
+    this.initUI();
+  }
+  initUI() {
+    // Initialize UI elements and event listeners
+  }
+  updateUI() {
+    // Update UI based on game state
+  }
 }
