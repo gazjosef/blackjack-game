@@ -20,14 +20,6 @@ export class BlackjackGame {
     // Deal logic
   }
 
-  changeBet() {
-    // Change bet
-  }
-
-  playerAction() {
-    // Player action
-  }
-
   checkTotal() {
     // Check Total
   }
