@@ -12,6 +12,12 @@ export class UI {
     // Initialize UI elements and event listeners
   }
 
+  startGame() {
+    // Other game initialization logic
+  }
+
+  clearTable() {}
+
   updateUI(): void {
     // Update UI based on game state
   }

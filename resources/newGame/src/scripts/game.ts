@@ -5,22 +5,31 @@ export class BlackjackGame {
   dealersHand: any[]; // Adjust the type as needed
   playersHand: any[]; // Adjust the type as needed
   balance: number;
+  bet: number;
 
   constructor() {
     this.deck = new Deck();
     this.dealersHand = [];
     this.playersHand = [];
     this.balance = 1000;
-    // Initialization logic
-  }
-
-  startGame() {
-    this.deck.shuffle();
-    // Other game initialization logic
+    this.bet = 50;
   }
 
   deal() {
+    this.deck.shuffle();
     // Deal logic
+  }
+
+  changeBet() {
+    // Change bet
+  }
+
+  playerAction() {
+    // Player action
+  }
+
+  checkTotal() {
+    // Check Total
   }
 
   takeCard() {
