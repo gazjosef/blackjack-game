@@ -70,9 +70,9 @@ export class UI {
     // Loop through each card in the player's hand and create HTML elements to display them
     this.game.playersHand.forEach((card) => {
       console.log(card);
-      // const cardElement = document.createElement("div");
-      // cardElement.textContent = card; // Assuming card is a string representation of the card
-      // this.$playerHand.appendChild(cardElement);
+      const cardElement = document.createElement("div");
+      cardElement.textContent = card.cardvalue; // Assuming card is a string representation of the card
+      this.$playerHand.appendChild(cardElement);
     });
   }
   increaseBetSize() {}
