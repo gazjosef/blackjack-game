@@ -40,8 +40,7 @@ export class Deck {
       [this.deck[i], this.deck[j]] = [this.deck[j], this.deck[i]];
     }
   }
-  deal() {
-    // Deal a card
+  draw() {
     return this.deck.pop();
   }
   getDeck() {

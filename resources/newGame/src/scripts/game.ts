@@ -17,7 +17,12 @@ export class BlackjackGame {
 
   deal() {
     this.deck.shuffle();
+    console.log("deck before", this.deck);
     // Deal logic
+    this.playersHand.push(this.deck.draw());
+    this.dealersHand.push(this.deck.draw());
+    this.playersHand.push(this.deck.draw());
+    console.log("deck after", this.deck);
   }
 
   checkTotal() {

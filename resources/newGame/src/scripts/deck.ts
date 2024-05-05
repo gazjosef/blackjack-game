@@ -46,7 +46,7 @@ export class Deck {
     }
   }
 
-  deal(): Card {
+  draw(): Card {
     // Deal a card
     return this.deck.pop()!;
   }
