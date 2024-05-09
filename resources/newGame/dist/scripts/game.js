@@ -7,6 +7,7 @@ export class BlackjackGame {
     this.balance = 1000;
     this.bet = 50;
   }
+
   deal() {
     this.deck.shuffle();
     console.log("deck before", this.deck);
@@ -19,6 +20,38 @@ export class BlackjackGame {
     console.log("playersHand", this.playersHand);
     console.log("deck after", this.deck);
   }
+
+  cardAction(action) {
+    console.log(action);
+    switch (action) {
+      case "hit":
+        this.takeCard();
+        break;
+
+      case "double":
+        this.adjustBetAndBalance(2);
+        this.takeCard();
+        break;
+
+      // case "split":
+      //   this.splitCard();
+      //   break;
+
+      default:
+        console.log("Unknown action:", action);
+    }
+  }
+
+  endplay() {
+    while (dealervalue < 17) {
+      // DEALERS_HAND.push(DECK[cardCount]);
+      // $dealerHand.innerHTML += cardOutput(cardCount, DEALERS_HAND.length - 1);
+      // reDeal();
+      // dealervalue = checkTotal(DEALERS_HAND);
+      // $dealerValue.innerHTML = dealervalue;
+    }
+  }
+
   checkTotal() {
     // Check Total
   }
