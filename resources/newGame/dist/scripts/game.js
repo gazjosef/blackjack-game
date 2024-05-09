@@ -43,7 +43,13 @@ export class BlackjackGame {
   }
 
   endplay() {
+    let dealervalue = 0;
+
+    this.dealersHand.forEach((card) => {
+      dealervalue += card.cardValue;
+    });
     while (dealervalue < 17) {
+      this.dealersHand.push(this.deck.draw());
       // DEALERS_HAND.push(DECK[cardCount]);
       // $dealerHand.innerHTML += cardOutput(cardCount, DEALERS_HAND.length - 1);
       // reDeal();
