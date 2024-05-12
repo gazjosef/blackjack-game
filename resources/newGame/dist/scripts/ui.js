@@ -11,6 +11,7 @@ export class UI {
     this.$message = document.getElementById("message");
     this.$betStake = document.getElementById("bet-stake");
     this.$chipStack = document.getElementById("chip-stack");
+
     this.$start = document.getElementById("button-deal");
     this.$increaseBtn = document.getElementById("button-increase");
     this.$decreaseBtn = document.getElementById("button-decrease");
