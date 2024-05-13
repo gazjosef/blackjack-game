@@ -1,10 +1,10 @@
-import { Hand, DOMElements } from "./types";
+import { Card } from "./card";
 import { Deck } from "./deck";
 
 export class BlackjackGame {
   deck: Deck;
-  dealersHand: Hand;
-  playersHand: Hand;
+  dealersHand: Card[];
+  playersHand: Card[];
   balance: number;
   bet: number;
 
@@ -16,12 +16,12 @@ export class BlackjackGame {
   private $betStake: HTMLElement | null;
   private $chipStack: HTMLElement | null;
   private $start: HTMLElement | null;
-  private $increaseBtn: HTMLElement | null;
-  private $decreaseBtn: HTMLElement | null;
-  private $hitBtn: HTMLElement | null;
-  private $standBtn: HTMLElement | null;
-  private $doubleBtn: HTMLElement | null;
-  private $splitBtn: HTMLElement | null;
+
+  private $increaseBtn!: HTMLElement | null;
+  private $decreaseBtn!: HTMLElement | null;
+  private $hitBtn!: HTMLElement | null;
+  private $standBtn!: HTMLElement | null;
+  private $doubleBtn!: HTMLElement | null;
 
   constructor() {
     this.deck = new Deck();
@@ -30,6 +30,7 @@ export class BlackjackGame {
     this.balance = 1000;
     this.bet = 50;
 
+    // DOM Elements
     this.$dealerHand = document.getElementById("dealer-hand");
     this.$playerHand = document.getElementById("player-hand");
     this.$dealerValue = document.getElementById("dealer-value");
@@ -38,83 +39,84 @@ export class BlackjackGame {
     this.$betStake = document.getElementById("bet-stake");
     this.$chipStack = document.getElementById("chip-stack");
     this.$start = document.getElementById("button-deal");
-    this.$increaseBtn = document.getElementById("button-increase");
-    this.$decreaseBtn = document.getElementById("button-decrease");
-    this.$hitBtn = document.getElementById("button-hit");
-    this.$standBtn = document.getElementById("button-stand");
-    this.$doubleBtn = document.getElementById("button-double");
-    this.$splitBtn = document.getElementById("button-split");
 
     this.initUI();
   }
+
   private initUI(): void {
-    if (this.$start) {
-      this.$start.addEventListener("click", (e) => {
-        e.preventDefault();
-        this.startGame();
-      });
-    }
+    this.addButtonEventListener(this.$start, () => this.startGame());
+    this.addButtonEventListener(this.$increaseBtn, () =>
+      this.increaseBetSize()
+    );
+    this.addButtonEventListener(this.$decreaseBtn, () =>
+      this.decreaseBetSize()
+    );
+    this.addButtonEventListener(this.$hitBtn, () => this.cardAction("hit"));
+    this.addButtonEventListener(this.$standBtn, () => this.cardAction("stand"));
+    this.addButtonEventListener(this.$doubleBtn, () =>
+      this.cardAction("double")
+    );
+  }
 
-    if (this.$increaseBtn) {
-      this.$increaseBtn.addEventListener("click", (e) => {
+  private addButtonEventListener(
+    button: HTMLElement | null,
+    callback: () => void
+  ): void {
+    if (button) {
+      button.addEventListener("click", (e) => {
         e.preventDefault();
-        this.increaseBetSize();
-      });
-    }
-
-    if (this.$decreaseBtn) {
-      this.$decreaseBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        this.decreaseBetSize();
-      });
-    }
-
-    if (this.$hitBtn) {
-      this.$hitBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        this.cardAction("hit");
-      });
-    }
-
-    if (this.$standBtn) {
-      this.$standBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        this.cardAction("stand");
-      });
-    }
-
-    if (this.$doubleBtn) {
-      this.$doubleBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        this.cardAction("double");
+        callback();
       });
     }
   }
 
-  private startGame() {
+  startGame() {
+    this.deck.shuffle();
     // Other game initialization logic
   }
 
-  private increaseBetSize() {}
+  // CLEAR TABLES
 
-  private decreaseBetSize() {}
+  clearTable() {
+    this.playersHand = [];
+    this.dealersHand = [];
 
-  clearTable() {}
-
-  updateUI(): void {
-    // Update UI based on game state
+    this.setInnerHTML(this.$chipStack, this.balance.toString());
+    this.setInnerHTML(this.$dealerValue, "?");
+    this.clearInnerHtml(this.$dealerHand, this.$playerHand);
+    this.toggleButtonDisplay(
+      [this.$start, this.$decreaseBtn, this.$increaseBtn],
+      false
+    );
+    this.toggleButtonDisplay([this.$hitBtn, this.$standBtn], true);
   }
 
-  deal() {
-    this.deck.shuffle();
-    console.log("deck before", this.deck);
-    // Deal logic
-    this.playersHand.push(this.deck.draw());
-    this.dealersHand.push(this.deck.draw());
-    this.playersHand.push(this.deck.draw());
-    this.dealersHand.push(this.deck.draw());
-    console.log("deck after", this.deck);
+  private setInnerHTML(element: HTMLElement | null, content: string) {
+    if (element) {
+      element.innerHTML = content;
+    }
   }
+
+  private clearInnerHtml(...elements: (HTMLElement | null)[]) {
+    elements.forEach((element) => {
+      if (element) {
+        element.innerHTML = "";
+      }
+    });
+  }
+
+  private toggleButtonDisplay(
+    buttons: (HTMLElement | null)[],
+    isVisible: boolean
+  ) {
+    buttons.forEach((button) => {
+      if (button) {
+        button.style.display = isVisible ? "inline" : "none";
+      }
+    });
+  }
+
+  cardOutput() {}
 
   cardAction(action: string) {
     console.log(action);
@@ -133,27 +135,18 @@ export class BlackjackGame {
     }
   }
 
-  endplay() {
-    let dealervalue = 0;
-
-    // this.dealersHand.forEach((card) => {
-    //   dealervalue += card.cardValue;
-    // });
-    while (dealervalue < 17) {
-      this.dealersHand.push(this.deck.draw());
-    }
-  }
-
-  checkTotal() {
-    // Check Total
-  }
-
-  takeCard() {
-    // Take a card logic
-  }
-
   private adjustBetAndBalance(factor: number) {
     this.bet *= factor;
     this.balance -= this.bet;
+  }
+
+  takeCard() {}
+  checkTotal() {}
+  endPlay() {}
+  increaseBetSize() {}
+  decreaseBetSize() {}
+
+  deal() {
+    // Deal logic
   }
 }
