@@ -17,6 +17,7 @@ export class BlackjackGame {
   private $chipStack: HTMLElement | null;
   private $start: HTMLElement | null;
 
+  // BUTTONS
   private $increaseBtn!: HTMLElement | null;
   private $decreaseBtn!: HTMLElement | null;
   private $hitBtn!: HTMLElement | null;
