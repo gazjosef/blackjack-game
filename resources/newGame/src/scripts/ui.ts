@@ -1,7 +1,9 @@
 import { BlackjackGame } from "./game";
 
 export class UI {
+  // Instant
   private game: BlackjackGame;
+  // Game
   private $dealerHand: HTMLElement | null;
   private $playerHand: HTMLElement | null;
   private $dealerValue: HTMLElement | null;
@@ -9,16 +11,19 @@ export class UI {
   private $message: HTMLElement | null;
   private $betStake: HTMLElement | null;
   private $chipStack: HTMLElement | null;
+  // Buttons
   private $start: HTMLElement | null;
   private $increaseBtn: HTMLElement | null;
   private $decreaseBtn: HTMLElement | null;
   private $hitBtn: HTMLElement | null;
   private $standBtn: HTMLElement | null;
   private $doubleBtn: HTMLElement | null;
-  private $splitBtn: HTMLElement | null;
+  // private $splitBtn: HTMLElement | null;
 
   constructor() {
+    // Instant
     this.game = new BlackjackGame();
+    // Game
     this.$dealerHand = document.getElementById("dealer-hand");
     this.$playerHand = document.getElementById("player-hand");
     this.$dealerValue = document.getElementById("dealer-value");
@@ -27,70 +32,33 @@ export class UI {
     this.$betStake = document.getElementById("bet-stake");
     this.$chipStack = document.getElementById("chip-stack");
     this.$start = document.getElementById("button-deal");
+    // Buttons
     this.$increaseBtn = document.getElementById("button-increase");
     this.$decreaseBtn = document.getElementById("button-decrease");
     this.$hitBtn = document.getElementById("button-hit");
     this.$standBtn = document.getElementById("button-stand");
     this.$doubleBtn = document.getElementById("button-double");
-    this.$splitBtn = document.getElementById("button-split");
+    // this.$splitBtn = document.getElementById("button-split");
 
     this.initUI();
   }
 
   private initUI(): void {
-    if (this.$start) {
-      this.$start.addEventListener("click", (e) => {
-        e.preventDefault();
-        this.startGame();
-      });
-    }
-
-    if (this.$increaseBtn) {
-      this.$increaseBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        this.increaseBetSize();
-      });
-    }
-
-    if (this.$decreaseBtn) {
-      this.$decreaseBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        this.decreaseBetSize();
-      });
-    }
-
-    if (this.$hitBtn) {
-      this.$hitBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        this.cardAction("hit");
-      });
-    }
-
-    if (this.$standBtn) {
-      this.$standBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        this.cardAction("stand");
-      });
-    }
-
-    if (this.$doubleBtn) {
-      this.$doubleBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        this.cardAction("double");
-      });
-    }
+    this.setupButton(this.$start, this.game.startGame);
+    this.setupButton(this.$increaseBtn, this.game.increaseBetSize);
+    this.setupButton(this.$decreaseBtn, this.game.decreaseBetSize);
+    this.setupButton(this.$hitBtn, () => this.game.cardAction("hit"));
+    this.setupButton(this.$standBtn, () => this.game.cardAction("stand"));
+    this.setupButton(this.$doubleBtn, () => this.game.cardAction("double"));
   }
 
-  private startGame() {
-    // Other game initialization logic
-  }
-
-  private increaseBetSize() {}
-
-  private decreaseBetSize() {}
-
-  private cardAction(action: string) {
-    // Implement card action logic here
+  private setupButton(button: HTMLElement | null, action: () => void): void {
+    if (button) {
+      button.addEventListener("click", (e) => {
+        e.preventDefault();
+        action();
+      });
+    }
   }
 
   clearTable() {}
