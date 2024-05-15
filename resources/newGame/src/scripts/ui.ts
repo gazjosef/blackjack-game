@@ -1,7 +1,7 @@
 import { BlackjackGame } from "./game";
 
 export class UI {
-  // Instant
+  // Instance
   private game: BlackjackGame;
   // Game
   private $dealerHand: HTMLElement | null;
@@ -18,11 +18,10 @@ export class UI {
   private $hitBtn: HTMLElement | null;
   private $standBtn: HTMLElement | null;
   private $doubleBtn: HTMLElement | null;
-  // private $splitBtn: HTMLElement | null;
 
-  constructor() {
-    // Instant
-    this.game = new BlackjackGame();
+  constructor(game: BlackjackGame) {
+    // Instance
+    this.game = game || new BlackjackGame();
     // Game
     this.$dealerHand = document.getElementById("dealer-hand");
     this.$playerHand = document.getElementById("player-hand");
@@ -38,32 +37,71 @@ export class UI {
     this.$hitBtn = document.getElementById("button-hit");
     this.$standBtn = document.getElementById("button-stand");
     this.$doubleBtn = document.getElementById("button-double");
-    // this.$splitBtn = document.getElementById("button-split");
 
     this.initUI();
   }
 
   private initUI(): void {
-    this.setupButton(this.$start, this.game.startGame);
-    this.setupButton(this.$increaseBtn, this.game.increaseBetSize);
-    this.setupButton(this.$decreaseBtn, this.game.decreaseBetSize);
-    this.setupButton(this.$hitBtn, () => this.game.cardAction("hit"));
-    this.setupButton(this.$standBtn, () => this.game.cardAction("stand"));
-    this.setupButton(this.$doubleBtn, () => this.game.cardAction("double"));
-  }
-
-  private setupButton(button: HTMLElement | null, action: () => void): void {
-    if (button) {
-      button.addEventListener("click", (e) => {
-        e.preventDefault();
-        action();
-      });
+    if (this.$start) {
+      this.$start.addEventListener("click", () => this.game.startGame());
+    }
+    if (this.$increaseBtn) {
+      this.$increaseBtn.addEventListener("click", () =>
+        this.game.increaseBetSize()
+      );
+    }
+    if (this.$decreaseBtn) {
+      this.$decreaseBtn.addEventListener("click", () =>
+        this.game.decreaseBetSize()
+      );
+    }
+    if (this.$hitBtn) {
+      this.$hitBtn.addEventListener("click", () => this.game.cardAction("hit"));
+    }
+    if (this.$standBtn) {
+      this.$standBtn.addEventListener("click", () =>
+        this.game.cardAction("stand")
+      );
+    }
+    if (this.$doubleBtn) {
+      this.$doubleBtn.addEventListener("click", () =>
+        this.game.cardAction("double")
+      );
     }
   }
 
-  clearTable() {}
+  clearTable() {
+    this.setInnerHTML(this.$dealerValue, "?");
+    this.clearInnerHtml(this.$dealerHand, this.$playerHand);
+    this.toggleButtonDisplay(
+      [this.$start, this.$decreaseBtn, this.$increaseBtn],
+      false
+    );
+    this.toggleButtonDisplay([this.$hitBtn, this.$standBtn], true);
+  }
 
-  updateUI(): void {
-    // Update UI based on game state
+  private setInnerHTML(element: HTMLElement | null, content: string) {
+    if (element) {
+      element.innerHTML = content;
+    }
+  }
+
+  private clearInnerHtml(...elements: (HTMLElement | null)[]) {
+    elements.forEach((element) => {
+      if (element) {
+        element.innerHTML = "";
+      }
+    });
+  }
+
+  private toggleButtonDisplay(
+    buttons: (HTMLElement | null)[],
+    isVisible: boolean
+  ) {
+    buttons.forEach((button) => {
+      if (button) {
+        button.style.display = isVisible ? "inline" : "none";
+      }
+    });
   }
 }

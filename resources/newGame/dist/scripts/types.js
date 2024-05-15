@@ -1,4 +1,3 @@
-// Enum for Card Suits
 export var Suit;
 (function (Suit) {
     Suit["SPADES"] = "spades";

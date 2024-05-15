@@ -1,68 +1,75 @@
 import { Deck } from "./deck.js";
 export class BlackjackGame {
   constructor() {
+    // Instance
     this.deck = new Deck();
+    // Game
     this.dealersHand = [];
     this.playersHand = [];
     this.balance = 1000;
     this.bet = 50;
+    this.cardCount = 0;
   }
-
-  deal() {
+  startGame() {
+    console.log("Start Game");
+    console.log("Deck", this.deck);
     this.deck.shuffle();
-    console.log("deck before", this.deck);
-    console.log("playersHand before", this.playersHand);
-    // Deal logic
-    this.playersHand.push(this.deck.draw());
-    this.dealersHand.push(this.deck.draw());
-    this.playersHand.push(this.deck.draw());
-
-    console.log("playersHand", this.playersHand);
-    console.log("deck after", this.deck);
+    // Other game initialization logic
   }
-
+  increaseBetSize() {
+    console.log("Increase Bet");
+    this.bet += 25;
+    this.balance -= this.bet;
+  }
+  decreaseBetSize() {
+    console.log("Decrease Bet");
+    this.bet += 25;
+    this.balance -= this.bet;
+  }
+  deal() {
+    const numCards = 2;
+    const players = [this.dealersHand, this.playersHand];
+    for (let i = 0; i < numCards; i++) {
+      players.forEach((hand) => {
+        hand.push(this.deck.draw());
+        this.checkDeck();
+      });
+      console.log("Dealers Hand", this.dealersHand);
+      console.log("Players Hand", this.playersHand);
+      // Deal logic
+    }
+  }
+  checkDeck() {
+    this.cardCount++;
+    if (this.cardCount > 40) {
+      console.log("New Deck");
+      this.cardCount = 0;
+    }
+  }
+  checkTotal() {}
   cardAction(action) {
     console.log(action);
     switch (action) {
       case "hit":
-        this.takeCard();
+        this.playersHand.push(this.deck.draw());
         break;
-
+      case "stand":
+        this.endPlay();
+        break;
       case "double":
         this.adjustBetAndBalance(2);
-        this.takeCard();
+        this.playersHand.push(this.deck.draw());
         break;
-
-      // case "split":
-      //   this.splitCard();
-      //   break;
-
       default:
         console.log("Unknown action:", action);
     }
   }
-
-  endplay() {
-    let dealervalue = 0;
-
-    this.dealersHand.forEach((card) => {
-      dealervalue += card.cardValue;
-    });
-    while (dealervalue < 17) {
-      this.dealersHand.push(this.deck.draw());
-      // DEALERS_HAND.push(DECK[cardCount]);
-      // $dealerHand.innerHTML += cardOutput(cardCount, DEALERS_HAND.length - 1);
-      // reDeal();
-      // dealervalue = checkTotal(DEALERS_HAND);
-      // $dealerValue.innerHTML = dealervalue;
-    }
+  adjustBetAndBalance(factor) {
+    this.bet *= factor;
+    this.balance -= this.bet;
   }
-
-  checkTotal() {
-    // Check Total
-  }
-  takeCard() {
-    // Take a card logic
-    this.playersHand.push(this.deck.draw());
+  cardOutput() {}
+  endPlay() {
+    console.log("End Play");
   }
 }

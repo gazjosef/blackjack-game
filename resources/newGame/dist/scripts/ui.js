@@ -1,9 +1,9 @@
-import { Deck } from "./deck.js";
 import { BlackjackGame } from "./game.js";
 export class UI {
-  constructor() {
-    this.deck = new Deck();
-    this.game = new BlackjackGame();
+  constructor(game) {
+    // Instance
+    this.game = game || new BlackjackGame();
+    // Game
     this.$dealerHand = document.getElementById("dealer-hand");
     this.$playerHand = document.getElementById("player-hand");
     this.$dealerValue = document.getElementById("dealer-value");
@@ -11,78 +11,69 @@ export class UI {
     this.$message = document.getElementById("message");
     this.$betStake = document.getElementById("bet-stake");
     this.$chipStack = document.getElementById("chip-stack");
-
     this.$start = document.getElementById("button-deal");
+    // Buttons
     this.$increaseBtn = document.getElementById("button-increase");
     this.$decreaseBtn = document.getElementById("button-decrease");
     this.$hitBtn = document.getElementById("button-hit");
     this.$standBtn = document.getElementById("button-stand");
     this.$doubleBtn = document.getElementById("button-double");
-    this.$splitBtn = document.getElementById("button-split");
     this.initUI();
   }
   initUI() {
     if (this.$start) {
-      this.$start.addEventListener("click", (e) => {
-        e.preventDefault();
-        this.startGame();
-      });
+      this.$start.addEventListener("click", () => this.game.startGame());
     }
     if (this.$increaseBtn) {
-      this.$increaseBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        this.increaseBetSize();
-      });
+      this.$increaseBtn.addEventListener("click", () =>
+        this.game.increaseBetSize()
+      );
     }
     if (this.$decreaseBtn) {
-      this.$decreaseBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        this.decreaseBetSize();
-      });
+      this.$decreaseBtn.addEventListener("click", () =>
+        this.game.decreaseBetSize()
+      );
     }
     if (this.$hitBtn) {
-      this.$hitBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        this.cardAction("hit");
-      });
+      this.$hitBtn.addEventListener("click", () => this.game.cardAction("hit"));
     }
     if (this.$standBtn) {
-      this.$standBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        this.cardAction("stand");
-      });
+      this.$standBtn.addEventListener("click", () =>
+        this.game.cardAction("stand")
+      );
     }
     if (this.$doubleBtn) {
-      this.$doubleBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        this.cardAction("double");
-      });
+      this.$doubleBtn.addEventListener("click", () =>
+        this.game.cardAction("double")
+      );
     }
   }
-  startGame() {
-    // Other game initialization logic
-    this.game.deal();
-    this.updatePlayersHand();
+  clearTable() {
+    this.setInnerHTML(this.$dealerValue, "?");
+    this.clearInnerHtml(this.$dealerHand, this.$playerHand);
+    this.toggleButtonDisplay(
+      [this.$start, this.$decreaseBtn, this.$increaseBtn],
+      false
+    );
+    this.toggleButtonDisplay([this.$hitBtn, this.$standBtn], true);
   }
-
-  updatePlayersHand() {
-    // Clear previous content
-    this.$playerHand.innerHTML = "";
-    // Loop through each card in the player's hand and create HTML elements to display them
-    this.game.playersHand.forEach((card) => {
-      console.log(card);
-      const cardElement = document.createElement("div");
-      cardElement.textContent = card.cardvalue; // Assuming card is a string representation of the card
-      this.$playerHand.appendChild(cardElement);
+  setInnerHTML(element, content) {
+    if (element) {
+      element.innerHTML = content;
+    }
+  }
+  clearInnerHtml(...elements) {
+    elements.forEach((element) => {
+      if (element) {
+        element.innerHTML = "";
+      }
     });
   }
-  increaseBetSize() {}
-  decreaseBetSize() {}
-  cardAction(action) {
-    // Implement card action logic here
-  }
-  clearTable() {}
-  updateUI() {
-    // Update UI based on game state
+  toggleButtonDisplay(buttons, isVisible) {
+    buttons.forEach((button) => {
+      if (button) {
+        button.style.display = isVisible ? "inline" : "none";
+      }
+    });
   }
 }
