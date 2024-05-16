@@ -1,14 +1,12 @@
 import { Deck } from "./deck.js";
-import { UI } from "./ui.js";
 export class BlackjackGame {
   constructor() {
     // Instance
     this.deck = new Deck();
-    this.ui = new UI();
     // Game
     this.dealersHand = [];
     this.playersHand = [];
-    this.balance = 1250;
+    this.balance = 1000;
     this.bet = 50;
     this.cardCount = 0;
   }
@@ -16,8 +14,6 @@ export class BlackjackGame {
     console.log("Start Game");
     console.log("Deck", this.deck);
     this.deck.shuffle();
-    this.deal();
-    this.ui.clearTable();
     // Other game initialization logic
   }
   increaseBetSize() {
@@ -50,8 +46,6 @@ export class BlackjackGame {
       this.cardCount = 0;
     }
   }
-
-  checkAce() {}
   checkTotal() {}
   cardAction(action) {
     console.log(action);

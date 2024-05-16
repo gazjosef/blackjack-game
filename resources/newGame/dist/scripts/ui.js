@@ -2,7 +2,7 @@ import { BlackjackGame } from "./game.js";
 export class UI {
   constructor(game) {
     // Instance
-    this.game = game;
+    this.game = game || new BlackjackGame();
     // Game
     this.$dealerHand = document.getElementById("dealer-hand");
     this.$playerHand = document.getElementById("player-hand");
@@ -11,20 +11,21 @@ export class UI {
     this.$message = document.getElementById("message");
     this.$betStake = document.getElementById("bet-stake");
     this.$chipStack = document.getElementById("chip-stack");
+    this.$start = document.getElementById("button-deal");
     // Buttons
-    this.$startBtn = document.getElementById("button-deal");
     this.$increaseBtn = document.getElementById("button-increase");
     this.$decreaseBtn = document.getElementById("button-decrease");
     this.$hitBtn = document.getElementById("button-hit");
     this.$standBtn = document.getElementById("button-stand");
     this.$doubleBtn = document.getElementById("button-double");
-
-    // Initialize event listeners
-    this.initEventListeners();
+    this.initUI();
   }
-  initEventListeners() {
-    if (this.$startBtn) {
-      this.$startBtn.addEventListener("click", () => this.game.startGame());
+  initUI() {
+    if (!this.game) {
+      return;
+    }
+    if (this.$start) {
+      this.$start.addEventListener("click", () => this.game.startGame());
     }
     if (this.$increaseBtn) {
       this.$increaseBtn.addEventListener("click", () =>
@@ -50,7 +51,6 @@ export class UI {
       );
     }
   }
-
   clearTable() {
     this.setInnerHTML(this.$dealerValue, "?");
     this.clearInnerHtml(this.$dealerHand, this.$playerHand);

@@ -1,4 +1,5 @@
-// import { UI } from "./ui";
-import { Deck } from "./deck";
-const deck = new Deck();
-console.log("Deck", deck.getDeck());
+import { BlackjackGame } from "./game";
+import { UI } from "./ui";
+
+const blackjack = new BlackjackGame();
+const ui = new UI(blackjack);
