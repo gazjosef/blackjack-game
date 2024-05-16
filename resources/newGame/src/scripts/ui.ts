@@ -42,6 +42,9 @@ export class UI {
   }
 
   private initUI(): void {
+    if (!this.game) {
+      return;
+    }
     if (this.$start) {
       this.$start.addEventListener("click", () => this.game.startGame());
     }
