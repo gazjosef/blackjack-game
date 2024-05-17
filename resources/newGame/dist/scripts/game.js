@@ -9,11 +9,13 @@ export class BlackjackGame {
     this.balance = 1000;
     this.bet = 50;
     this.cardCount = 0;
+    this.hasStarted = false;
   }
   startGame() {
     console.log("Start Game");
     console.log("Deck", this.deck);
     this.deck.shuffle();
+    this.hasStarted = true;
     // Other game initialization logic
   }
   increaseBetSize() {

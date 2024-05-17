@@ -46,7 +46,12 @@ export class UI {
       return;
     }
     if (this.$start) {
-      this.$start.addEventListener("click", () => this.game.startGame());
+      this.$start.addEventListener("click", () => {
+        if (!this.game.hasStarted) {
+          this.game.startGame();
+          this.clearTable();
+        }
+      });
     }
     if (this.$increaseBtn) {
       this.$increaseBtn.addEventListener("click", () =>
