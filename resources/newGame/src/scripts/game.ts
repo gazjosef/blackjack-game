@@ -70,7 +70,12 @@ export class BlackjackGame {
     }
   }
 
-  checkTotal() {}
+  checkTotal() {
+    console.log(
+      "playersHand total",
+      this.playersHand.reduce((acc, card) => acc + card.cardvalue, 0)
+    );
+  }
 
   cardAction(action: string) {
     console.log(action);

@@ -23,24 +23,33 @@ export class UI {
   initUI() {
     if (!this.game) {
       return;
+    } else {
+      console.log(this.game);
+      this.updateUI();
     }
+
     if (this.$start) {
       this.$start.addEventListener("click", () => {
         if (!this.game.hasStarted) {
           this.game.startGame();
           this.clearTable();
+          this.updateUI();
+          //   this.$playerHand.innerHTML = this.game.playerHand;
+          //   this.$playerValue.innerHTML = this.game.playerValue;
         }
       });
     }
     if (this.$increaseBtn) {
-      this.$increaseBtn.addEventListener("click", () =>
-        this.game.increaseBetSize()
-      );
+      this.$increaseBtn.addEventListener("click", () => {
+        this.game.increaseBetSize();
+        this.updateBalance();
+      });
     }
     if (this.$decreaseBtn) {
-      this.$decreaseBtn.addEventListener("click", () =>
-        this.game.decreaseBetSize()
-      );
+      this.$decreaseBtn.addEventListener("click", () => {
+        this.game.decreaseBetSize();
+        this.updateBalance();
+      });
     }
     if (this.$hitBtn) {
       this.$hitBtn.addEventListener("click", () => this.game.cardAction("hit"));
@@ -56,6 +65,22 @@ export class UI {
       );
     }
   }
+
+  updateBalance() {
+    this.$betStake.innerHTML = this.game.bet.toString();
+    this.$chipStack.innerHTML = this.game.balance.toString();
+  }
+
+  updateUI() {
+    this.$betStake.innerHTML = this.game.bet.toString();
+    this.$chipStack.innerHTML = this.game.balance.toString();
+    // this.$playerHand.innerHTML = this.game.getPlayerHandString();
+    // this.$playerValue.innerHTML = "Working";
+    this.$playerValue.innerHTML = this.game.playersValue.toString();
+    // this.$playerValue.innerHTML = this.game.getPlayerValue().toString();
+    // console.log("getPlayerValue", this.game.getPlayerValue());
+  }
+
   clearTable() {
     this.setInnerHTML(this.$dealerValue, "?");
     this.clearInnerHtml(this.$dealerHand, this.$playerHand);
