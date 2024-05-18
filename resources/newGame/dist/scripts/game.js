@@ -12,8 +12,10 @@ export class BlackjackGame {
     this.bet = 50;
     this.cardCount = 0;
     this.hasStarted = false;
+    this.hasFinished = false;
     this.hasBlackJack = false;
     this.hasDouble = false;
+    this.message = "";
   }
 
   startGame() {
@@ -23,7 +25,6 @@ export class BlackjackGame {
     this.hasStarted = true;
     console.log("dealersHand", this.dealersHand);
     console.log("playersHand", this.playersHand);
-    // Other game initialization logic
     this.checkTotal();
     this.checkBlackJack();
     this.checkDouble();
@@ -35,7 +36,7 @@ export class BlackjackGame {
       return this.bet === 200;
     }
     this.bet += 25;
-    this.balance -= this.bet;
+    this.balance -= 25;
   }
 
   decreaseBetSize() {
@@ -44,7 +45,7 @@ export class BlackjackGame {
       return this.bet === 25;
     }
     this.bet -= 25;
-    this.balance -= this.bet;
+    this.balance -= 25;
   }
 
   deal() {
@@ -79,6 +80,11 @@ export class BlackjackGame {
       0
     );
 
+    if (this.playersValue > 21) {
+      console.log("Bust");
+      this.endPlay();
+    }
+
     console.log("dealersValue", this.dealersValue);
     console.log("playersValue", this.playersValue);
   }
@@ -95,9 +101,10 @@ export class BlackjackGame {
 
   checkDouble() {
     if (
-      this.playersValue === 9 ||
-      this.playersValue === 10 ||
-      (this.playersValue === 11 && this.playersHand.length === 2)
+      (this.playersValue === 9 ||
+        this.playersValue === 10 ||
+        this.playersValue === 11) &&
+      this.playersHand.length === 2
     ) {
       this.hasDouble = true;
       console.log("Double?");
@@ -129,10 +136,44 @@ export class BlackjackGame {
     this.bet *= factor;
     this.balance -= this.bet;
   }
-  cardOutput() {}
+
+  //   cardOutput() {}
+
   endPlay() {
     console.log("End Play");
+    this.hasFinished = true;
+    while (this.dealersValue < 17) {
+      console.log("Less than 17");
+      const card = this.deck.draw();
+      if (card) {
+        this.dealersHand.push(card);
+        this.dealersValue += card.cardvalue;
+      } else {
+        console.error("Deck is empty, cannot draw more cards.");
+        break;
+      }
+    }
+    this.checkWinner();
   }
 
-  checkWinner() {}
+  checkWinner() {
+    console.log(this.dealersValue);
+
+    if (
+      (this.playersValue < 22 && this.dealersValue < this.playersValue) ||
+      (this.dealersValue > 21 && this.playersValue < 22)
+    ) {
+      console.log("You Won");
+      this.message = "Yon Won";
+    } else if (this.playersValue > 21) {
+      console.log("You Lost");
+      this.message = "You Lost";
+    } else if (this.playersValue === this.dealersValue) {
+      console.log("Push");
+      this.message = "Push";
+    } else {
+      console.log("You Lost");
+      this.message = "You Lost";
+    }
+  }
 }

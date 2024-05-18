@@ -3,11 +3,12 @@ export class UI {
   constructor(game) {
     // Instance
     this.game = game || new BlackjackGame();
-    // Game
+    // Player / Dealer
     this.$dealerHand = document.getElementById("dealer-hand");
     this.$playerHand = document.getElementById("player-hand");
     this.$dealerValue = document.getElementById("dealer-value");
     this.$playerValue = document.getElementById("player-value");
+    // Game
     this.$message = document.getElementById("message");
     this.$betStake = document.getElementById("bet-stake");
     this.$chipStack = document.getElementById("chip-stack");
@@ -33,8 +34,6 @@ export class UI {
           this.game.startGame();
           this.clearTable();
           this.updateUI();
-          //   this.$playerHand.innerHTML = this.game.playerHand;
-          //   this.$playerValue.innerHTML = this.game.playerValue;
         }
         if (this.game.hasDouble) {
           console.log("Has double???");
@@ -82,10 +81,13 @@ export class UI {
   }
 
   updateUI() {
-    // this.$playerHand.innerHTML = this.game.getPlayerHandString();
     // this.$playerHand.innerHTML = this.game.playerHand;
-
     this.$playerValue.innerHTML = this.game.playersValue.toString();
+
+    if (this.game.hasFinished) {
+      this.checkResult();
+      this.$message.innerHTML = this.game.message;
+    }
   }
 
   clearTable() {
