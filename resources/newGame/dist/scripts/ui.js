@@ -1,9 +1,10 @@
 import { BlackjackGame } from "./game.js";
+import { Card } from "./card.js";
 export class UI {
   constructor(game) {
     // Instance
     this.game = game || new BlackjackGame();
-    // Player / Dealer
+    // Dealer / Player
     this.$dealerHand = document.getElementById("dealer-hand");
     this.$playerHand = document.getElementById("player-hand");
     this.$dealerValue = document.getElementById("dealer-value");
@@ -27,7 +28,6 @@ export class UI {
     } else {
       this.updateUI();
     }
-
     if (this.$start) {
       this.$start.addEventListener("click", () => {
         if (!this.game.hasStarted) {
@@ -69,27 +69,39 @@ export class UI {
     if (this.$doubleBtn) {
       this.$doubleBtn.addEventListener("click", () => {
         this.game.cardAction("double");
-        this.$playerValue.innerHTML = this.game.playersValue.toString();
+        if (this.$playerValue) {
+          this.$playerValue.innerHTML = this.game.playersValue.toString();
+        }
         this.checkResult();
       });
     }
   }
-
   updateBalance() {
-    this.$betStake.innerHTML = this.game.bet.toString();
-    this.$chipStack.innerHTML = this.game.balance.toString();
-  }
-
-  updateUI() {
-    // this.$playerHand.innerHTML = this.game.playerHand;
-    this.$playerValue.innerHTML = this.game.playersValue.toString();
-
-    if (this.game.hasFinished) {
-      this.checkResult();
-      this.$message.innerHTML = this.game.message;
+    if (this.$betStake) {
+      this.$betStake.innerHTML = this.game.bet.toString();
+    }
+    if (this.$chipStack) {
+      this.$chipStack.innerHTML = this.game.balance.toString();
     }
   }
-
+  updateUI() {
+    if (this.$playerHand) {
+      this.$playerHand.innerHTML = this.game.playersHand
+        .map((card, index) => Card.cardOutput(card, index))
+        .join("");
+    }
+    if (this.$playerValue) {
+      this.$playerValue.innerHTML = this.game.playersValue.toString();
+    }
+    if (this.$dealerHand) {
+      this.$dealerHand.innerHTML = this.game.dealersHand
+        .map((card, index) => Card.cardOutput(card, index))
+        .join("");
+    }
+    if (this.$dealerValue) {
+      this.$dealerValue.innerHTML = this.game.dealersValue.toString();
+    }
+  }
   clearTable() {
     this.clearInnerHtml(
       this.$dealerHand,
@@ -103,8 +115,12 @@ export class UI {
     );
     this.toggleButtonDisplay([this.$hitBtn, this.$standBtn], true);
   }
-
   checkResult() {
+    if (this.game.hasFinished) {
+      if (this.$message) {
+        this.$message.innerHTML = this.game.message;
+      }
+    }
     this.toggleButtonDisplay(
       [this.$hitBtn, this.$standBtn, this.$doubleBtn],
       false
@@ -114,7 +130,6 @@ export class UI {
       true
     );
   }
-
   clearInnerHtml(...elements) {
     elements.forEach((element) => {
       if (element) {

@@ -17,37 +17,35 @@ export class BlackjackGame {
     this.hasDouble = false;
     this.message = "";
   }
-
   startGame() {
     console.log("Start Game");
     this.deck.shuffle();
     this.deal();
     this.hasStarted = true;
-    console.log("dealersHand", this.dealersHand);
-    console.log("playersHand", this.playersHand);
     this.checkTotal();
     this.checkBlackJack();
     this.checkDouble();
+    console.log("dealersHand", this.dealersHand);
+    console.log("playersHand", this.playersHand);
   }
-
   increaseBetSize() {
     console.log("Increase Bet");
-    if (this.bet === 200) {
-      return this.bet === 200;
+    // MAX BET: $200
+    if (this.bet >= 200) {
+      return;
     }
     this.bet += 25;
     this.balance -= 25;
   }
-
   decreaseBetSize() {
     console.log("Decrease Bet");
-    if (this.bet === 25) {
-      return this.bet === 25;
+    // MIN BET: $25
+    if (this.bet <= 25) {
+      return;
     }
     this.bet -= 25;
     this.balance -= 25;
   }
-
   deal() {
     const numCards = 2;
     const players = [this.dealersHand, this.playersHand];
@@ -61,7 +59,6 @@ export class BlackjackGame {
       // Deal logic
     }
   }
-
   checkDeck() {
     this.cardCount++;
     if (this.cardCount > 40) {
@@ -69,50 +66,6 @@ export class BlackjackGame {
       this.cardCount = 0;
     }
   }
-
-  checkTotal() {
-    this.dealersValue = this.dealersHand.reduce(
-      (acc, card) => acc + card.cardvalue,
-      0
-    );
-    this.playersValue = this.playersHand.reduce(
-      (acc, card) => acc + card.cardvalue,
-      0
-    );
-
-    if (this.playersValue > 21) {
-      console.log("Bust");
-      this.endPlay();
-    }
-
-    console.log("dealersValue", this.dealersValue);
-    console.log("playersValue", this.playersValue);
-  }
-
-  checkBlackJack() {
-    if (this.playersValue === 21 && this.playersHand.length === 2) {
-      this.hasBlackJack = true;
-      console.log("Has BlackJack");
-      this.endPlay();
-    } else {
-      console.log("Does Not Have BlackJack");
-    }
-  }
-
-  checkDouble() {
-    if (
-      (this.playersValue === 9 ||
-        this.playersValue === 10 ||
-        this.playersValue === 11) &&
-      this.playersHand.length === 2
-    ) {
-      this.hasDouble = true;
-      console.log("Double?");
-    } else {
-      console.log("not 9,10,11");
-    }
-  }
-
   cardAction(action) {
     console.log(action);
     switch (action) {
@@ -136,9 +89,61 @@ export class BlackjackGame {
     this.bet *= factor;
     this.balance -= this.bet;
   }
-
+  checkTotal() {
+    this.dealersValue = this.dealersHand.reduce(
+      (acc, card) => acc + card.cardvalue,
+      0
+    );
+    this.playersValue = this.playersHand.reduce(
+      (acc, card) => acc + card.cardvalue,
+      0
+    );
+    if (this.playersValue > 21) {
+      console.log("Bust");
+      this.endPlay();
+    }
+    console.log("dealersValue", this.dealersValue);
+    console.log("playersValue", this.playersValue);
+  }
+  checkBlackJack() {
+    if (this.playersValue === 21 && this.playersHand.length === 2) {
+      this.hasBlackJack = true;
+      console.log("Has BlackJack");
+      this.endPlay();
+    } else {
+      console.log("Does Not Have BlackJack");
+    }
+  }
+  checkDouble() {
+    if (
+      (this.playersValue === 9 ||
+        this.playersValue === 10 ||
+        this.playersValue === 11) &&
+      this.playersHand.length === 2
+    ) {
+      this.hasDouble = true;
+      console.log("Double?");
+    } else {
+      console.log("not 9,10,11");
+    }
+  }
+  checkAce(cards) {
+    let totalValue = 0;
+    let hasAce = false;
+    // Calculate the total value and check for aces
+    for (const card of cards) {
+      totalValue += card.cardvalue;
+      if (card.cardnum === "A") {
+        hasAce = true;
+      }
+    }
+    // Adjust for the ace if the total value is over 21
+    if (hasAce && totalValue + 10 <= 21) {
+      totalValue += 10;
+    }
+    return totalValue;
+  }
   //   cardOutput() {}
-
   endPlay() {
     console.log("End Play");
     this.hasFinished = true;
@@ -155,10 +160,9 @@ export class BlackjackGame {
     }
     this.checkWinner();
   }
-
   checkWinner() {
-    console.log(this.dealersValue);
-
+    console.log("checkWinner: dealersValue", this.dealersValue);
+    console.log("checkWinner: playersValue", this.playersValue);
     if (
       (this.playersValue < 22 && this.dealersValue < this.playersValue) ||
       (this.dealersValue > 21 && this.playersValue < 22)
