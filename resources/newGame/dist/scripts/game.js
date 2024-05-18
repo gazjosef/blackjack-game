@@ -84,7 +84,13 @@ export class BlackjackGame {
   }
 
   checkBlackJack() {
-    console.log("checkBlackJack");
+    if (this.playersValue === 21 && this.playersHand.length === 2) {
+      this.hasBlackJack = true;
+      console.log("Has BlackJack");
+      this.endPlay();
+    } else {
+      console.log("Does Not Have BlackJack");
+    }
   }
 
   checkDouble() {
@@ -105,6 +111,7 @@ export class BlackjackGame {
     switch (action) {
       case "hit":
         this.playersHand.push(this.deck.draw());
+        this.checkTotal();
         break;
       case "stand":
         this.endPlay();
@@ -112,6 +119,7 @@ export class BlackjackGame {
       case "double":
         this.adjustBetAndBalance(2);
         this.playersHand.push(this.deck.draw());
+        this.endPlay();
         break;
       default:
         console.log("Unknown action:", action);

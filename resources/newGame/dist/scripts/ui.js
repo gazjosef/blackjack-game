@@ -24,7 +24,6 @@ export class UI {
     if (!this.game) {
       return;
     } else {
-      console.log(this.game);
       this.updateUI();
     }
 
@@ -36,6 +35,10 @@ export class UI {
           this.updateUI();
           //   this.$playerHand.innerHTML = this.game.playerHand;
           //   this.$playerValue.innerHTML = this.game.playerValue;
+        }
+        if (this.game.hasDouble) {
+          console.log("Has double???");
+          this.toggleButtonDisplay([this.$doubleBtn], true);
         }
       });
     }
@@ -52,17 +55,24 @@ export class UI {
       });
     }
     if (this.$hitBtn) {
-      this.$hitBtn.addEventListener("click", () => this.game.cardAction("hit"));
+      this.$hitBtn.addEventListener("click", () => {
+        this.game.cardAction("hit");
+        this.toggleButtonDisplay([this.$doubleBtn], false);
+        this.updateUI();
+      });
     }
     if (this.$standBtn) {
-      this.$standBtn.addEventListener("click", () =>
-        this.game.cardAction("stand")
-      );
+      this.$standBtn.addEventListener("click", () => {
+        this.game.cardAction("stand");
+        this.checkResult();
+      });
     }
     if (this.$doubleBtn) {
-      this.$doubleBtn.addEventListener("click", () =>
-        this.game.cardAction("double")
-      );
+      this.$doubleBtn.addEventListener("click", () => {
+        this.game.cardAction("double");
+        this.$playerValue.innerHTML = this.game.playersValue.toString();
+        this.checkResult();
+      });
     }
   }
 
@@ -72,29 +82,37 @@ export class UI {
   }
 
   updateUI() {
-    this.$betStake.innerHTML = this.game.bet.toString();
-    this.$chipStack.innerHTML = this.game.balance.toString();
     // this.$playerHand.innerHTML = this.game.getPlayerHandString();
-    // this.$playerValue.innerHTML = "Working";
+    // this.$playerHand.innerHTML = this.game.playerHand;
+
     this.$playerValue.innerHTML = this.game.playersValue.toString();
-    // this.$playerValue.innerHTML = this.game.getPlayerValue().toString();
-    // console.log("getPlayerValue", this.game.getPlayerValue());
   }
 
   clearTable() {
-    this.setInnerHTML(this.$dealerValue, "?");
-    this.clearInnerHtml(this.$dealerHand, this.$playerHand);
+    this.clearInnerHtml(
+      this.$dealerHand,
+      this.$dealerValue,
+      this.$playerHand,
+      this.$playerValue
+    );
     this.toggleButtonDisplay(
       [this.$start, this.$decreaseBtn, this.$increaseBtn],
       false
     );
     this.toggleButtonDisplay([this.$hitBtn, this.$standBtn], true);
   }
-  setInnerHTML(element, content) {
-    if (element) {
-      element.innerHTML = content;
-    }
+
+  checkResult() {
+    this.toggleButtonDisplay(
+      [this.$hitBtn, this.$standBtn, this.$doubleBtn],
+      false
+    );
+    this.toggleButtonDisplay(
+      [this.$start, this.$decreaseBtn, this.$increaseBtn],
+      true
+    );
   }
+
   clearInnerHtml(...elements) {
     elements.forEach((element) => {
       if (element) {
