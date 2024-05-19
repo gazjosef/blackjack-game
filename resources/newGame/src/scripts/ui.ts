@@ -53,10 +53,11 @@ export class UI {
     }
 
     if (this.$start) {
-      this.$start.addEventListener("click", () => {
+      this.$start.addEventListener("click", async () => {
         if (!this.game.hasStarted) {
-          this.game.startGame();
           this.clearTable();
+          this.game.startGame();
+          await this.dealCardsWithDelay();
           this.updateUI();
         }
         if (this.game.hasDouble) {
@@ -78,26 +79,67 @@ export class UI {
       });
     }
     if (this.$hitBtn) {
-      this.$hitBtn.addEventListener("click", () => {
+      this.$hitBtn.addEventListener("click", async () => {
         this.game.cardAction("hit");
         this.toggleButtonDisplay([this.$doubleBtn], false);
+        await this.dealCardsWithDelay();
         this.updateUI();
       });
     }
     if (this.$standBtn) {
-      this.$standBtn.addEventListener("click", () => {
+      this.$standBtn.addEventListener("click", async () => {
         this.game.cardAction("stand");
+        await this.dealCardsWithDelay();
         this.checkResult();
       });
     }
     if (this.$doubleBtn) {
-      this.$doubleBtn.addEventListener("click", () => {
+      this.$doubleBtn.addEventListener("click", async () => {
         this.game.cardAction("double");
         if (this.$playerValue) {
           this.$playerValue.innerHTML = this.game.playersValue.toString();
         }
+        await this.dealCardsWithDelay();
         this.checkResult();
       });
+    }
+  }
+
+  private delay(ms: number): Promise<void> {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  private async dealCardsWithDelay(): Promise<void> {
+    const numCards = 4;
+    for (let i = 0; i < numCards; i++) {
+      if (i % 2 === 0) {
+        this.updatePlayerHand();
+      } else {
+        this.updateDealerHand();
+      }
+      await this.delay(500); // 500ms delay between card outputs
+      console.log("Deal Card", i);
+    }
+  }
+  private updatePlayerHand() {
+    if (this.$playerHand) {
+      this.$playerHand.innerHTML = this.game.playersHand
+        .map((card, index) => Card.cardOutput(card, index))
+        .join("");
+    }
+    if (this.$playerValue) {
+      this.$playerValue.innerHTML = this.game.playersValue.toString();
+    }
+  }
+
+  private updateDealerHand() {
+    if (this.$dealerHand) {
+      this.$dealerHand.innerHTML = this.game.dealersHand
+        .map((card, index) => Card.cardOutput(card, index))
+        .join("");
+    }
+    if (this.$dealerValue) {
+      this.$dealerValue.innerHTML = this.game.dealersValue.toString();
     }
   }
 
@@ -112,23 +154,8 @@ export class UI {
   }
 
   updateUI() {
-    if (this.$playerHand) {
-      this.$playerHand.innerHTML = this.game.playersHand
-        .map((card, index) => Card.cardOutput(card, index))
-        .join("");
-    }
-    if (this.$playerValue) {
-      // this.$playerValue.innerHTML = this.game.playersValue.toString();
-      this.$playerValue.innerHTML = this.game.playersValue.toString();
-    }
-    if (this.$dealerHand) {
-      this.$dealerHand.innerHTML = this.game.dealersHand
-        .map((card, index) => Card.cardOutput(card, index))
-        .join("");
-    }
-    if (this.$dealerValue) {
-      this.$dealerValue.innerHTML = this.game.dealersValue.toString();
-    }
+    this.updatePlayerHand();
+    this.updateDealerHand();
   }
 
   clearTable() {

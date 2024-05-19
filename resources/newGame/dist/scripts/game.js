@@ -37,9 +37,15 @@ export class BlackjackGame {
     this.balance -= amount;
   }
   dealInitialCards() {
-    for (let i = 0; i < 2; i++) {
-      this.dealCard(this.playersHand);
-      this.dealCard(this.dealersHand);
+    const numCards = 2;
+    const players = [this.dealersHand, this.playersHand];
+    for (let i = 0; i < numCards; i++) {
+      for (const hand of players) {
+        hand.push(this.deck.draw());
+        this.checkDeck();
+      }
+      console.log("Dealers Hand", this.dealersHand);
+      console.log("Players Hand", this.playersHand);
     }
   }
   dealCard(hand) {
@@ -59,7 +65,6 @@ export class BlackjackGame {
       case "hit":
         this.dealCard(this.playersHand);
         this.updateGameState();
-        // this.checkTotal();
         break;
       case "stand":
         this.endPlay();
