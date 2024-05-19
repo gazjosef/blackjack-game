@@ -128,6 +128,10 @@ export class UI {
     return __awaiter(this, void 0, void 0, function* () {
       const numCards = 4;
       for (let i = 0; i < numCards; i++) {
+        if (i === 0) {
+          this.$dealerHand.innerHTML +=
+            '<div id="cover" class="card card__cover" style="left: 0px"></div>';
+        }
         if (i % 2 === 0) {
           this.updatePlayerHand();
           console.log("playersHand", this.game.playersHand);
