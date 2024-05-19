@@ -1,6 +1,6 @@
-import { Suit } from "./types";
+import { Suit, Card as ICard } from "./types";
 
-export class Card {
+export class Card implements ICard {
   constructor(
     public suit: Suit,
     public icon: string,

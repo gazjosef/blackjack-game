@@ -5,4 +5,3 @@ export var Suit;
     Suit["CLUBS"] = "clubs";
     Suit["DIAMONDS"] = "diams";
 })(Suit || (Suit = {}));
-export const text = "Hello String";

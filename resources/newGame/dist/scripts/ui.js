@@ -91,6 +91,7 @@ export class UI {
         .join("");
     }
     if (this.$playerValue) {
+      // this.$playerValue.innerHTML = this.game.playersValue.toString();
       this.$playerValue.innerHTML = this.game.playersValue.toString();
     }
     if (this.$dealerHand) {

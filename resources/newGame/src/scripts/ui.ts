@@ -4,6 +4,7 @@ import { Card } from "./card";
 export class UI {
   // Instance
   private game: BlackjackGame;
+
   // Dealer / Player
   private $dealerHand: HTMLElement | null;
   private $playerHand: HTMLElement | null;
@@ -117,6 +118,7 @@ export class UI {
         .join("");
     }
     if (this.$playerValue) {
+      // this.$playerValue.innerHTML = this.game.playersValue.toString();
       this.$playerValue.innerHTML = this.game.playersValue.toString();
     }
     if (this.$dealerHand) {

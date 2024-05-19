@@ -12,9 +12,8 @@ export interface Card {
   cardnum: string;
   cardvalue: number;
 }
-export interface Hand extends Array<Card> {}
-
-export interface Deck extends Array<Card> {}
+export type Hand = Card[];
+export type Deck = Card[];
 
 export interface Player {
   hand: Hand;
@@ -22,20 +21,18 @@ export interface Player {
 }
 
 export interface DOMElements {
-  dealerHand: HTMLElement | null;
-  playerHand: HTMLElement | null;
-  dealerValue: HTMLElement | null;
-  playerValue: HTMLElement | null;
-  message: HTMLElement | null;
-  betStake: HTMLElement | null;
-  chipStack: HTMLElement | null;
-  start: HTMLElement | null;
-  increaseBtn: HTMLElement | null;
-  decreaseBtn: HTMLElement | null;
-  hitBtn: HTMLElement | null;
-  standBtn: HTMLElement | null;
-  doubleBtn: HTMLElement | null;
-  splitBtn: HTMLElement | null;
+  dealerHand?: HTMLElement;
+  playerHand?: HTMLElement;
+  dealerValue?: HTMLElement;
+  playerValue?: HTMLElement;
+  message?: HTMLElement;
+  betStake?: HTMLElement;
+  chipStack?: HTMLElement;
+  start?: HTMLElement;
+  increaseBtn?: HTMLElement;
+  decreaseBtn?: HTMLElement;
+  hitBtn?: HTMLElement;
+  standBtn?: HTMLElement;
+  doubleBtn?: HTMLElement;
+  splitBtn?: HTMLElement;
 }
-
-export const text = "Hello String";

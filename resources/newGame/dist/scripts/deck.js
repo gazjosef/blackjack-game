@@ -33,6 +33,11 @@ export class Deck {
       }
     }
   }
+  getCardValue(cardnum) {
+    if (cardnum === "A") return 11;
+    const value = parseInt(cardnum);
+    return isNaN(value) ? 10 : value;
+  }
   shuffle() {
     // Fisher-Yates shuffle algorithm
     for (let i = this.deck.length - 1; i > 0; i--) {

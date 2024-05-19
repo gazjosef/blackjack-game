@@ -2,7 +2,7 @@ import { Card } from "./card";
 import { Suit } from "./types";
 
 export class Deck {
-  private deck: Card[] = [];
+  private readonly deck: Card[] = [];
 
   constructor() {
     this.buildDeck();
@@ -36,6 +36,12 @@ export class Deck {
         this.deck.push(card);
       }
     }
+  }
+
+  private getCardValue(cardnum: string): number {
+    if (cardnum === "A") return 11;
+    const value = parseInt(cardnum);
+    return isNaN(value) ? 10 : value;
   }
 
   shuffle(): void {
