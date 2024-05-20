@@ -14,7 +14,6 @@ export class BlackjackGame {
     this.message = "";
   }
   startGame() {
-    console.log("Start Game");
     this.resetGame();
     this.deck.shuffle();
     this.hasStarted = true;
@@ -44,8 +43,6 @@ export class BlackjackGame {
         hand.push(this.deck.draw());
         this.checkDeck();
       }
-      console.log("Dealers Hand", this.dealersHand);
-      console.log("Players Hand", this.playersHand);
     }
   }
   dealCard(hand) {
@@ -109,7 +106,7 @@ export class BlackjackGame {
   updateGameState() {
     if (this.playersValue > 21) {
       console.log("Bust");
-      this.endPlay();
+      this.checkWinner();
     }
   }
   endPlay() {

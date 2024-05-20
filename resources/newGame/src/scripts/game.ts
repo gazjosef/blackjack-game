@@ -139,7 +139,7 @@ export class BlackjackGame {
   private updateGameState() {
     if (this.playersValue > 21) {
       console.log("Bust");
-      this.endPlay();
+      this.checkWinner();
     }
   }
 

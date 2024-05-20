@@ -132,6 +132,7 @@ export class UI {
           this.$dealerHand.innerHTML +=
             '<div id="cover" class="card card__cover" style="left: 0px"></div>';
         }
+        console.log("playersHand", this.game.playersHand);
         if (i % 2 === 0) {
           this.updatePlayerHand();
           console.log("playersHand", this.game.playersHand);
@@ -139,7 +140,8 @@ export class UI {
           this.updateDealerHand();
           console.log("dealersHand", this.game.dealersHand);
         }
-        yield this.delay(500); // 500ms delay between card outputs
+        // 500ms delay between card outputs
+        // yield this.delay(500);
         console.log("Deal Card", i);
       }
     });

@@ -57,7 +57,7 @@ export class UI {
         if (!this.game.hasStarted) {
           this.clearTable();
           this.game.startGame();
-          await this.dealCardsWithDelay();
+          // await this.dealCardsWithDelay();
           this.updateUI();
         }
         if (this.game.hasDouble) {
@@ -82,14 +82,14 @@ export class UI {
       this.$hitBtn.addEventListener("click", async () => {
         this.game.cardAction("hit");
         this.toggleButtonDisplay([this.$doubleBtn], false);
-        await this.dealCardsWithDelay();
+        // await this.dealCardsWithDelay();
         this.updateUI();
       });
     }
     if (this.$standBtn) {
       this.$standBtn.addEventListener("click", async () => {
         this.game.cardAction("stand");
-        await this.dealCardsWithDelay();
+        // await this.dealCardsWithDelay();
         this.checkResult();
       });
     }
@@ -99,28 +99,28 @@ export class UI {
         if (this.$playerValue) {
           this.$playerValue.innerHTML = this.game.playersValue.toString();
         }
-        await this.dealCardsWithDelay();
+        // await this.dealCardsWithDelay();
         this.checkResult();
       });
     }
   }
 
-  private delay(ms: number): Promise<void> {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
+  // private delay(ms: number): Promise<void> {
+  //   return new Promise((resolve) => setTimeout(resolve, ms));
+  // }
 
-  private async dealCardsWithDelay(): Promise<void> {
-    const numCards = 4;
-    for (let i = 0; i < numCards; i++) {
-      if (i % 2 === 0) {
-        this.updatePlayerHand();
-      } else {
-        this.updateDealerHand();
-      }
-      await this.delay(500); // 500ms delay between card outputs
-      console.log("Deal Card", i);
-    }
-  }
+  // private async dealCardsWithDelay(): Promise<void> {
+  //   const numCards = 4;
+  //   for (let i = 0; i < numCards; i++) {
+  //     if (i % 2 === 0) {
+  //       this.updatePlayerHand();
+  //     } else {
+  //       this.updateDealerHand();
+  //     }
+  //     await this.delay(500); // 500ms delay between card outputs
+  //     console.log("Deal Card", i);
+  //   }
+  // }
   private updatePlayerHand() {
     if (this.$playerHand) {
       this.$playerHand.innerHTML = this.game.playersHand
