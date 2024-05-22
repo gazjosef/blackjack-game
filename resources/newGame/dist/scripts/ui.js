@@ -67,8 +67,8 @@ export class UI {
           if (!this.game.hasStarted) {
             this.clearTable();
             this.game.startGame();
-            yield this.dealCardsWithDelay();
-            // this.updateUI();
+            // await this.dealCardsWithDelay();
+            this.updateUI();
           }
           if (this.game.hasDouble) {
             console.log("Has double???");
@@ -94,7 +94,7 @@ export class UI {
         __awaiter(this, void 0, void 0, function* () {
           this.game.cardAction("hit");
           this.toggleButtonDisplay([this.$doubleBtn], false);
-          yield this.dealCardsWithDelay();
+          // await this.dealCardsWithDelay();
           this.updateUI();
         })
       );
@@ -103,7 +103,7 @@ export class UI {
       this.$standBtn.addEventListener("click", () =>
         __awaiter(this, void 0, void 0, function* () {
           this.game.cardAction("stand");
-          yield this.dealCardsWithDelay();
+          // await this.dealCardsWithDelay();
           this.checkResult();
         })
       );
@@ -115,37 +115,27 @@ export class UI {
           if (this.$playerValue) {
             this.$playerValue.innerHTML = this.game.playersValue.toString();
           }
-          yield this.dealCardsWithDelay();
+          // await this.dealCardsWithDelay();
           this.checkResult();
         })
       );
     }
   }
-  delay(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
-  dealCardsWithDelay() {
-    return __awaiter(this, void 0, void 0, function* () {
-      const numCards = 4;
-      for (let i = 0; i < numCards; i++) {
-        if (i === 0) {
-          this.$dealerHand.innerHTML +=
-            '<div id="cover" class="card card__cover" style="left: 0px"></div>';
-        }
-        console.log("playersHand", this.game.playersHand);
-        if (i % 2 === 0) {
-          this.updatePlayerHand();
-          console.log("playersHand", this.game.playersHand);
-        } else {
-          this.updateDealerHand();
-          console.log("dealersHand", this.game.dealersHand);
-        }
-        // 500ms delay between card outputs
-        // yield this.delay(500);
-        console.log("Deal Card", i);
-      }
-    });
-  }
+  // private delay(ms: number): Promise<void> {
+  //   return new Promise((resolve) => setTimeout(resolve, ms));
+  // }
+  // private async dealCardsWithDelay(): Promise<void> {
+  //   const numCards = 4;
+  //   for (let i = 0; i < numCards; i++) {
+  //     if (i % 2 === 0) {
+  //       this.updatePlayerHand();
+  //     } else {
+  //       this.updateDealerHand();
+  //     }
+  //     await this.delay(500); // 500ms delay between card outputs
+  //     console.log("Deal Card", i);
+  //   }
+  // }
   updatePlayerHand() {
     if (this.$playerHand) {
       this.$playerHand.innerHTML = this.game.playersHand
@@ -193,6 +183,8 @@ export class UI {
   }
   checkResult() {
     if (this.game.hasFinished) {
+      this.updateDealerHand();
+
       if (this.$message) {
         this.$message.innerHTML = this.game.message;
       }

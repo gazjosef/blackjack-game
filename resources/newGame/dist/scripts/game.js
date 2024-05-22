@@ -14,6 +14,7 @@ export class BlackjackGame {
     this.message = "";
   }
   startGame() {
+    console.log("Start Game");
     this.resetGame();
     this.deck.shuffle();
     this.hasStarted = true;
@@ -43,6 +44,8 @@ export class BlackjackGame {
         hand.push(this.deck.draw());
         this.checkDeck();
       }
+      console.log("Dealers Hand", this.dealersHand);
+      console.log("Players Hand", this.playersHand);
     }
   }
   dealCard(hand) {
@@ -82,6 +85,10 @@ export class BlackjackGame {
   checkInitialConditions() {
     this.hasBlackJack =
       this.playersValue === 21 && this.playersHand.length === 2;
+
+    if (this.hasBlackJack) {
+      return this.checkWinner();
+    }
     this.hasDouble =
       [9, 10, 11].includes(this.playersValue) && this.playersHand.length === 2;
     if (this.hasBlackJack) {
@@ -110,10 +117,10 @@ export class BlackjackGame {
     }
   }
   endPlay() {
-    this.hasFinished = true;
     while (this.dealersValue < 17) {
       this.dealCard(this.dealersHand);
     }
+    this.hasFinished = true;
     this.checkWinner();
   }
   checkWinner() {
