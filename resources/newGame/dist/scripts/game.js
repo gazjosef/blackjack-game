@@ -23,14 +23,18 @@ export class BlackjackGame {
     // this.updateGameState();
   }
   increaseBetSize() {
-    if (this.bet < 200) {
-      this.adjustBet(25);
+    if (this.bet === 200) {
+      this.adjustBet(200);
     }
+    // this.adjustBet(25);
+    console.log("Bet", this.bet);
   }
   decreaseBetSize() {
-    if (this.bet > 25) {
-      this.adjustBet(-25);
+    if (this.bet === 25) {
+      this.adjustBet(25);
     }
+    console.log("Bet", this.bet);
+    // this.adjustBet(-25);
   }
   adjustBet(amount) {
     this.bet += amount;
@@ -122,6 +126,7 @@ export class BlackjackGame {
     }
     this.hasFinished = true;
     this.checkWinner();
+    this.hasStarted = false;
   }
   checkWinner() {
     console.log("Checking winner...");
@@ -132,8 +137,10 @@ export class BlackjackGame {
       this.message = "You Lost";
     } else if (this.playersValue === this.dealersValue) {
       this.message = "Push";
+      this.balance += this.bet;
     } else {
       this.message = "You Won";
+      this.balance += this.bet * 2;
     }
     console.log(this.message);
   }

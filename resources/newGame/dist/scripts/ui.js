@@ -62,8 +62,9 @@ export class UI {
       this.updateUI();
     }
     if (this.$start) {
-      this.$start.addEventListener("click", () =>
+      this.$start.addEventListener("click", (e) =>
         __awaiter(this, void 0, void 0, function* () {
+          e.preventDefault();
           if (!this.game.hasStarted) {
             this.clearTable();
             this.game.startGame();
@@ -81,12 +82,14 @@ export class UI {
       this.$increaseBtn.addEventListener("click", () => {
         this.game.increaseBetSize();
         this.updateBalance();
+        console.log("Increase");
       });
     }
     if (this.$decreaseBtn) {
       this.$decreaseBtn.addEventListener("click", () => {
         this.game.decreaseBetSize();
         this.updateBalance();
+        console.log("Decrease");
       });
     }
     if (this.$hitBtn) {
@@ -184,6 +187,7 @@ export class UI {
   checkResult() {
     if (this.game.hasFinished) {
       this.updateDealerHand();
+      this.updateBalance();
 
       if (this.$message) {
         this.$message.innerHTML = this.game.message;
