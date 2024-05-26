@@ -65,11 +65,11 @@ export class UI {
       this.$start.addEventListener("click", (e) =>
         __awaiter(this, void 0, void 0, function* () {
           e.preventDefault();
-          if (!this.game.hasStarted) {
+          if (!this.game.hasStarted || this.game.hasFinished) {
             this.clearTable();
             this.game.startGame();
-            // await this.dealCardsWithDelay();
             this.updateUI();
+            this.coverFirstDealerCard(); // Cover the dealer's first card
           }
           if (this.game.hasDouble) {
             console.log("Has double???");
@@ -159,6 +159,30 @@ export class UI {
       this.$dealerValue.innerHTML = this.game.dealersValue.toString();
     }
   }
+
+  coverFirstDealerCard() {
+    if (this.$dealerHand && this.game.dealersHand.length > 0) {
+      const firstCardElement = this.$dealerHand.firstElementChild;
+      if (firstCardElement) {
+        const coverElement = document.createElement("div");
+        coverElement.id = "cover";
+        coverElement.className = "card card__cover";
+        coverElement.style.left = "0px";
+        this.$dealerHand.insertBefore(
+          coverElement,
+          firstCardElement.nextSibling
+        );
+      }
+    }
+  }
+
+  removeCoverFromDealerCard() {
+    const coverElement = document.getElementById("cover");
+    if (coverElement) {
+      coverElement.remove();
+    }
+  }
+
   updateBalance() {
     if (this.$betStake) {
       this.$betStake.innerHTML = this.game.bet.toString();
@@ -186,6 +210,7 @@ export class UI {
   }
   checkResult() {
     if (this.game.hasFinished) {
+      this.removeCoverFromDealerCard(); // Remove cover when play ends
       this.updateDealerHand();
       this.updateBalance();
 

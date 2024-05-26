@@ -51,7 +51,24 @@ export class BlackjackGame {
       console.log("Dealers Hand", this.dealersHand);
       console.log("Players Hand", this.playersHand);
     }
+
+    // this.coverFirstDealerCard;
   }
+
+  //   coverFirstDealerCard() {
+  //     const $dealerHand = document.getElementById("dealer-hand");
+  //     if ($dealerHand && this.dealersHand.length > 0) {
+  //       const firstCardElement = $dealerHand.firstElementChild;
+  //       if (firstCardElement) {
+  //         const coverElement = document.createElement("div");
+  //         coverElement.id = "cover";
+  //         coverElement.className = "card card__cover";
+  //         coverElement.style.left = "0px";
+  //         $dealerHand.insertBefore(coverElement, firstCardElement.nextSibling);
+  //       }
+  //     }
+  //   }
+
   dealCard(hand) {
     hand.push(this.deck.draw());
     this.checkDeck();
