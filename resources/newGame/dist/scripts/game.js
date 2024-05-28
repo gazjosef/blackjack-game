@@ -23,22 +23,32 @@ export class BlackjackGame {
     // this.updateGameState();
   }
   increaseBetSize() {
-    if (this.bet === 200) {
-      this.adjustBet(200);
-    }
-    // this.adjustBet(25);
-    console.log("Bet", this.bet);
-  }
-  decreaseBetSize() {
-    if (this.bet === 25) {
+    if (this.bet < 200) {
+      // Ensure bet does not exceed the maximum allowed
       this.adjustBet(25);
     }
     console.log("Bet", this.bet);
-    // this.adjustBet(-25);
+  }
+  decreaseBetSize() {
+    if (this.bet > 25) {
+      // Ensure bet does not go below the minimum allowed
+      this.adjustBet(-25);
+    }
+    console.log("Bet", this.bet);
   }
   adjustBet(amount) {
-    this.bet += amount;
-    this.balance -= amount;
+    if (this.balance >= amount) {
+      this.balance -= amount;
+      this.bet += amount;
+      console.log(
+        "Adjusted bet by",
+        amount,
+        "new bet:",
+        this.bet,
+        "new balance:",
+        this.balance
+      );
+    }
   }
   dealInitialCards() {
     const numCards = 2;
@@ -51,23 +61,7 @@ export class BlackjackGame {
       console.log("Dealers Hand", this.dealersHand);
       console.log("Players Hand", this.playersHand);
     }
-
-    // this.coverFirstDealerCard;
   }
-
-  //   coverFirstDealerCard() {
-  //     const $dealerHand = document.getElementById("dealer-hand");
-  //     if ($dealerHand && this.dealersHand.length > 0) {
-  //       const firstCardElement = $dealerHand.firstElementChild;
-  //       if (firstCardElement) {
-  //         const coverElement = document.createElement("div");
-  //         coverElement.id = "cover";
-  //         coverElement.className = "card card__cover";
-  //         coverElement.style.left = "0px";
-  //         $dealerHand.insertBefore(coverElement, firstCardElement.nextSibling);
-  //       }
-  //     }
-  //   }
 
   dealCard(hand) {
     hand.push(this.deck.draw());

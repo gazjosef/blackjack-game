@@ -61,6 +61,7 @@ export class UI {
     } else {
       this.updateUI();
     }
+
     if (this.$start) {
       this.$start.addEventListener("click", (e) =>
         __awaiter(this, void 0, void 0, function* () {
@@ -82,12 +83,14 @@ export class UI {
       this.$increaseBtn.addEventListener("click", () => {
         this.game.increaseBetSize();
         this.updateBalance();
+        // this.updateBet();
         console.log("Increase");
       });
     }
     if (this.$decreaseBtn) {
       this.$decreaseBtn.addEventListener("click", () => {
         this.game.decreaseBetSize();
+        // this.updateBet();
         this.updateBalance();
         console.log("Decrease");
       });
@@ -97,7 +100,6 @@ export class UI {
         __awaiter(this, void 0, void 0, function* () {
           this.game.cardAction("hit");
           this.toggleButtonDisplay([this.$doubleBtn], false);
-          // await this.dealCardsWithDelay();
           this.updateUI();
         })
       );
@@ -106,7 +108,6 @@ export class UI {
       this.$standBtn.addEventListener("click", () =>
         __awaiter(this, void 0, void 0, function* () {
           this.game.cardAction("stand");
-          // await this.dealCardsWithDelay();
           this.checkResult();
         })
       );
@@ -118,27 +119,11 @@ export class UI {
           if (this.$playerValue) {
             this.$playerValue.innerHTML = this.game.playersValue.toString();
           }
-          // await this.dealCardsWithDelay();
           this.checkResult();
         })
       );
     }
   }
-  // private delay(ms: number): Promise<void> {
-  //   return new Promise((resolve) => setTimeout(resolve, ms));
-  // }
-  // private async dealCardsWithDelay(): Promise<void> {
-  //   const numCards = 4;
-  //   for (let i = 0; i < numCards; i++) {
-  //     if (i % 2 === 0) {
-  //       this.updatePlayerHand();
-  //     } else {
-  //       this.updateDealerHand();
-  //     }
-  //     await this.delay(500); // 500ms delay between card outputs
-  //     console.log("Deal Card", i);
-  //   }
-  // }
   updatePlayerHand() {
     if (this.$playerHand) {
       this.$playerHand.innerHTML = this.game.playersHand
@@ -184,23 +169,39 @@ export class UI {
   }
 
   updateBalance() {
+    if (this.$chipStack) {
+      this.$chipStack.innerHTML = `${this.game.balance - this.game.bet}`;
+    }
     if (this.$betStake) {
       this.$betStake.innerHTML = this.game.bet.toString();
     }
-    if (this.$chipStack) {
-      this.$chipStack.innerHTML = this.game.balance.toString();
+  }
+
+  //   updateBet() {
+  //   }
+
+  updateMessage() {
+    if (this.$message) {
+      this.$message.innerHTML = this.game.message;
     }
   }
+
   updateUI() {
     this.updatePlayerHand();
     this.updateDealerHand();
+    this.updateBalance();
+    // this.updateBet();
+    if (this.$message) {
+      this.$message.innerHTML = this.game.message;
+    }
   }
   clearTable() {
     this.clearInnerHtml(
       this.$dealerHand,
       this.$dealerValue,
       this.$playerHand,
-      this.$playerValue
+      this.$playerValue,
+      this.$message
     );
     this.toggleButtonDisplay(
       [this.$start, this.$decreaseBtn, this.$increaseBtn],
@@ -210,9 +211,10 @@ export class UI {
   }
   checkResult() {
     if (this.game.hasFinished) {
-      this.removeCoverFromDealerCard(); // Remove cover when play ends
+      this.removeCoverFromDealerCard();
       this.updateDealerHand();
       this.updateBalance();
+      this.updateMessage();
 
       if (this.$message) {
         this.$message.innerHTML = this.game.message;
