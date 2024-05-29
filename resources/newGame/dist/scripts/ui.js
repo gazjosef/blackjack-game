@@ -175,10 +175,8 @@ export class UI {
     if (this.$betStake) {
       this.$betStake.innerHTML = this.game.bet.toString();
     }
+    console.log("Updated UI: Bet", this.game.bet, "Balance", this.game.balance);
   }
-
-  //   updateBet() {
-  //   }
 
   updateMessage() {
     if (this.$message) {
@@ -190,7 +188,6 @@ export class UI {
     this.updatePlayerHand();
     this.updateDealerHand();
     this.updateBalance();
-    // this.updateBet();
     if (this.$message) {
       this.$message.innerHTML = this.game.message;
     }
