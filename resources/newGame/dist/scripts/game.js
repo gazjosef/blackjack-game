@@ -154,6 +154,7 @@ export class BlackjackGame {
       this.balance += this.bet * 2;
     }
     console.log(this.message);
+    console.log("Balance:", this.balance);
   }
   resetGame() {
     this.dealersHand = [];
