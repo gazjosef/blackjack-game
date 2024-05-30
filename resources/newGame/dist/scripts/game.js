@@ -27,18 +27,17 @@ export class BlackjackGame {
       // Ensure bet does not exceed the maximum allowed
       this.adjustBet(25);
     }
-    console.log("Bet", this.bet);
+    console.log("Increase Bet", this.bet);
   }
   decreaseBetSize() {
     if (this.bet > 25) {
       // Ensure bet does not go below the minimum allowed
       this.adjustBet(-25);
     }
-    console.log("Bet", this.bet);
+    console.log("Decrease Bet", this.bet);
   }
   adjustBet(amount) {
     if (this.balance >= amount) {
-      this.balance -= amount;
       this.bet += amount;
       console.log(
         "Adjusted bet by",
@@ -146,6 +145,7 @@ export class BlackjackGame {
       (this.dealersValue <= 21 && this.dealersValue > this.playersValue)
     ) {
       this.message = "You Lost";
+      this.balance -= this.bet;
     } else if (this.playersValue === this.dealersValue) {
       this.message = "Push";
       this.balance += this.bet;

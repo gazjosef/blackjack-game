@@ -169,8 +169,10 @@ export class UI {
   }
 
   updateBalance() {
+    const bet = this.bet;
+    const balance = this.balance;
     if (this.$chipStack) {
-      this.$chipStack.innerHTML = `${this.game.balance - this.game.bet}`;
+      this.$chipStack.innerHTML = (balance - bet).toString();
     }
     if (this.$betStake) {
       this.$betStake.innerHTML = this.game.bet.toString();
