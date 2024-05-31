@@ -70,10 +70,9 @@ export class UI {
             this.clearTable();
             this.game.startGame();
             this.updateUI();
-            this.coverFirstDealerCard(); // Cover the dealer's first card
+            this.coverFirstDealerCard();
           }
           if (this.game.hasDouble) {
-            console.log("Has double???");
             this.toggleButtonDisplay([this.$doubleBtn], true);
           }
         })
@@ -83,14 +82,12 @@ export class UI {
       this.$increaseBtn.addEventListener("click", () => {
         this.game.increaseBetSize();
         this.updateBalance();
-        // this.updateBet();
         console.log("Increase");
       });
     }
     if (this.$decreaseBtn) {
       this.$decreaseBtn.addEventListener("click", () => {
         this.game.decreaseBetSize();
-        // this.updateBet();
         this.updateBalance();
         console.log("Decrease");
       });
@@ -124,26 +121,6 @@ export class UI {
       );
     }
   }
-  updatePlayerHand() {
-    if (this.$playerHand) {
-      this.$playerHand.innerHTML = this.game.playersHand
-        .map((card, index) => Card.cardOutput(card, index))
-        .join("");
-    }
-    if (this.$playerValue) {
-      this.$playerValue.innerHTML = this.game.playersValue.toString();
-    }
-  }
-  updateDealerHand() {
-    if (this.$dealerHand) {
-      this.$dealerHand.innerHTML = this.game.dealersHand
-        .map((card, index) => Card.cardOutput(card, index))
-        .join("");
-    }
-    if (this.$dealerValue) {
-      this.$dealerValue.innerHTML = this.game.dealersValue.toString();
-    }
-  }
 
   coverFirstDealerCard() {
     if (this.$dealerHand && this.game.dealersHand.length > 0) {
@@ -168,9 +145,31 @@ export class UI {
     }
   }
 
+  updatePlayerHand() {
+    if (this.$playerHand) {
+      this.$playerHand.innerHTML = this.game.playersHand
+        .map((card, index) => Card.cardOutput(card, index))
+        .join("");
+    }
+    if (this.$playerValue) {
+      this.$playerValue.innerHTML = this.game.playersValue.toString();
+    }
+  }
+
+  updateDealerHand() {
+    if (this.$dealerHand) {
+      this.$dealerHand.innerHTML = this.game.dealersHand
+        .map((card, index) => Card.cardOutput(card, index))
+        .join("");
+    }
+    if (this.$dealerValue) {
+      this.$dealerValue.innerHTML = this.game.dealersValue.toString();
+    }
+  }
+
   updateBalance() {
-    const bet = this.bet;
-    const balance = this.balance;
+    const bet = this.game.bet;
+    const balance = this.game.balance;
     if (this.$chipStack) {
       this.$chipStack.innerHTML = (balance - bet).toString();
     }
