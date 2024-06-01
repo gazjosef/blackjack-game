@@ -101,8 +101,10 @@ export class BlackjackGame {
       this.playersValue === 21 && this.playersHand.length === 2;
 
     if (this.hasBlackJack) {
+      this.hasFinished = true;
       return this.checkWinner();
     }
+
     this.hasDouble =
       [9, 10, 11].includes(this.playersValue) && this.playersHand.length === 2;
     if (this.hasBlackJack) {
@@ -127,6 +129,10 @@ export class BlackjackGame {
   updateGameState() {
     if (this.playersValue > 21) {
       console.log("Bust");
+      this.hasFinished = true;
+      this.checkWinner();
+    } else if (playersValue === 21) {
+      this.hasFinished = true;
       this.checkWinner();
     }
   }

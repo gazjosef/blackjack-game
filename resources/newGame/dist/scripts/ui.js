@@ -209,6 +209,7 @@ export class UI {
   }
   checkResult() {
     if (this.game.hasFinished) {
+      this.toggleButtonDisplay([this.$hitBtn, this.$standBtn], false);
       this.removeCoverFromDealerCard();
       this.updateDealerHand();
       this.updateBalance();
