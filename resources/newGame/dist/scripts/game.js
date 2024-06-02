@@ -131,9 +131,6 @@ export class BlackjackGame {
       console.log("Bust");
       this.hasFinished = true;
       this.checkWinner();
-    } else if (playersValue === 21) {
-      this.hasFinished = true;
-      this.checkWinner();
     }
   }
   endPlay() {
