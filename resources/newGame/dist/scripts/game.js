@@ -66,6 +66,7 @@ export class BlackjackGame {
     hand.push(this.deck.draw());
     this.checkDeck();
   }
+
   checkDeck() {
     this.cardCount++;
     if (this.cardCount > 40) {
@@ -73,6 +74,7 @@ export class BlackjackGame {
       this.cardCount = 0;
     }
   }
+
   cardAction(action) {
     console.log(action);
     switch (action) {
@@ -92,10 +94,12 @@ export class BlackjackGame {
         console.log("Unknown action:", action);
     }
   }
+
   adjustBetAndBalance(factor) {
     this.bet *= factor;
     this.balance -= this.bet;
   }
+
   checkInitialConditions() {
     this.hasBlackJack =
       this.playersValue === 21 && this.playersHand.length === 2;
@@ -112,12 +116,15 @@ export class BlackjackGame {
       this.endPlay();
     }
   }
+
   get playersValue() {
     return this.calculateHandValue(this.playersHand);
   }
+
   get dealersValue() {
     return this.calculateHandValue(this.dealersHand);
   }
+
   calculateHandValue(hand) {
     let totalValue = hand.reduce((acc, card) => acc + card.cardvalue, 0);
     const hasAce = hand.some((card) => card.cardnum === "A");
@@ -126,13 +133,14 @@ export class BlackjackGame {
     }
     return totalValue;
   }
+
   updateGameState() {
-    if (this.playersValue > 21) {
-      console.log("Bust");
+    if (this.playersValue >= 21) {
       this.hasFinished = true;
       this.checkWinner();
     }
   }
+
   endPlay() {
     while (this.dealersValue < 17) {
       this.dealCard(this.dealersHand);
@@ -141,6 +149,7 @@ export class BlackjackGame {
     this.checkWinner();
     this.hasStarted = false;
   }
+
   checkWinner() {
     console.log("Checking winner...");
     if (
@@ -159,6 +168,7 @@ export class BlackjackGame {
     console.log(this.message);
     console.log("Balance:", this.balance);
   }
+
   resetGame() {
     this.dealersHand = [];
     this.playersHand = [];

@@ -189,10 +189,12 @@ export class UI {
     this.updatePlayerHand();
     this.updateDealerHand();
     this.updateBalance();
+
     if (this.$message) {
       this.$message.innerHTML = this.game.message;
     }
   }
+
   clearTable() {
     this.clearInnerHtml(
       this.$dealerHand,
@@ -207,9 +209,13 @@ export class UI {
     );
     this.toggleButtonDisplay([this.$hitBtn, this.$standBtn], true);
   }
+
   checkResult() {
     if (this.game.hasFinished) {
-      this.toggleButtonDisplay([this.$hitBtn, this.$standBtn], false);
+      this.toggleButtonDisplay(
+        [this.$hitBtn, this.$standBtn, this.$doubleBtn],
+        false
+      );
       this.removeCoverFromDealerCard();
       this.updateDealerHand();
       this.updateBalance();
@@ -218,15 +224,12 @@ export class UI {
       if (this.$message) {
         this.$message.innerHTML = this.game.message;
       }
+
+      this.toggleButtonDisplay(
+        [this.$start, this.$decreaseBtn, this.$increaseBtn],
+        true
+      );
     }
-    this.toggleButtonDisplay(
-      [this.$hitBtn, this.$standBtn, this.$doubleBtn],
-      false
-    );
-    this.toggleButtonDisplay(
-      [this.$start, this.$decreaseBtn, this.$increaseBtn],
-      true
-    );
   }
   clearInnerHtml(...elements) {
     elements.forEach((element) => {
