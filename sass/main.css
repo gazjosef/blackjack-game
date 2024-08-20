@@ -34,6 +34,7 @@ body {
   padding: 1rem 2rem;
   min-width: 10rem;
   margin-left: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 1rem;
   display: flex;
   align-items: center;
@@ -190,7 +191,7 @@ body {
 }
 
 .playing-area {
-  border: 2px solid #97d3b4;
+  border: 1px solid #97d3b4;
   border-radius: 1rem;
   box-shadow: inset 0px 0px 10px rgba(139, 195, 74, 0.2);
   height: 65rem;
