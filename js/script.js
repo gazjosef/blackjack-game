@@ -363,12 +363,12 @@ function endPlay() {
     $message.innerHTML += `<span style="text-shadow: 1px 1px black;color:chartreuse;font-weight:bold">You WIN!</span> You won $${betvalue}`;
     balance = balance + betvalue * 2;
   } else if (playervalue > 21) {
-    $message.innerHTML += `<span style="text-shadow: 1px 1px black;color:deeppink;font-weight:bold;">Dealer Wins!</span> You lost $${betvalue}`;
+    $message.innerHTML += `<span style="text-shadow: 1px 1px black;color:orangered;font-weight:bold;">Dealer Wins!</span> You lost $${betvalue}`;
   } else if (playervalue === dealervalue) {
     $message.innerHTML += `<span style="text-shadow: 1px 1px black;color:dodgerblue;font-weight:bold">Push</span>`;
     balance = balance + betvalue;
   } else {
-    $message.innerHTML += `<span style="text-shadow: 1px 1px black;color:firebrick;font-weight:bold;">Dealer Wins!</span> You lost $${betvalue}`;
+    $message.innerHTML += `<span style="text-shadow: 1px 1px black;color:orangered;font-weight:bold;">Dealer Wins!</span> You lost $${betvalue}`;
   }
   $playerValue.innerHTML = playervalue;
   $chipStack.innerHTML = balance;
